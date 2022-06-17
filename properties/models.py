@@ -21,8 +21,9 @@ class Property(models.Model):
         (STANDARD, 'Standard of amenities nearby'),
         (VALUE, 'Value for money'),
     ]
+    # Model fields
     title = models.CharField(max_length=100)
-    address = AddressField(null=True, unique=True)
+    address = AddressField(null=True)
     num_of_bedrooms = models.PositiveIntegerField()
     num_of_bathrooms = models.PositiveIntegerField()
     type_of_property = models.CharField(
@@ -39,3 +40,12 @@ class Property(models.Model):
         verbose_name='Landlord/Estate Agent'
         )
     created_on = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        """
+        Class to add Metadata, in this instance the ordering options
+        """
+        ordering = ['-created_on', 'title']
+
+    def __str__(self):
+        return self.title
