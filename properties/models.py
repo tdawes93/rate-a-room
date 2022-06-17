@@ -9,17 +9,19 @@ class Property(models.Model):
     A class to represnt a property eligible for review.
     """
     # Specifiy choices for dropdown option
-    CONDITION = '1'
-    QUALITY = '2'
-    RATE = '3'
-    STANDARD = '4'
-    VALUE = '5'
+    FLAT = '1'
+    TERRACE = '2'
+    SEMI = '3'
+    DETACHED = '4'
+    BUNGALOW = '5'
+    SHARE = '6'
     HOUSING_CHOICES = [
-        (CONDITION, 'Condition of property'),
-        (QUALITY, 'Quality of landlord'),
-        (RATE, 'Rate the neighbourhood'),
-        (STANDARD, 'Standard of amenities nearby'),
-        (VALUE, 'Value for money'),
+        (FLAT, 'Flat'),
+        (TERRACE, 'Terrace house'),
+        (SEMI, 'Semi-detached house'),
+        (DETACHED, 'Detached house'),
+        (BUNGALOW, 'Bungalow'),
+        (SHARE, 'House share'),
     ]
     # Model fields
     title = models.CharField(max_length=100)
@@ -33,12 +35,12 @@ class Property(models.Model):
         blank=False
     )
     for_rent = models.BooleanField(default=False)
-    images = CloudinaryField('image')
-    ll_or_ea = models.ForeignKey(
-        User,
-        on_delete=models.CASCADE,
-        verbose_name='Landlord/Estate Agent'
-        )
+    # images = CloudinaryField('image')
+    # ll_or_ea = models.ForeignKey(
+    #     User,
+    #     on_delete=models.CASCADE,
+    #     verbose_name='Landlord/Estate Agent'
+    #     )
     created_on = models.DateTimeField(auto_now_add=True)
 
     class Meta:
