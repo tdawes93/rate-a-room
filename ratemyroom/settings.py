@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'reviews',
     'profiles',
     'cloudinary',
+    'address',
 ]
 
 MIDDLEWARE = [
