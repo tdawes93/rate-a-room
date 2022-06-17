@@ -14,13 +14,12 @@ class PropertyTest(TestCase):
             num_of_bathrooms=3,
             type_of_property=1,
             for_rent=False,
-            )
+            ) 
 
     def test_title_has_max_length_of_100(self):
         """
-        If property1 title is less than 100 characters test will return True
+        If property1 title is less than 100 characters test will pass
         """
-        self.assertTrue(
-            len(self.property1.title) < 101,
-            len('Property 1') < 101
+        self.assertLessEqual(
+            len(self.property1.title), 101
             )
