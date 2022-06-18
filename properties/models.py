@@ -24,7 +24,8 @@ class Property(models.Model):
         (SHARE, 'House share'),
     ]
     # Model fields
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=100, unique=True)
+    slug = models.SlugField(max_length=100, unique=True)
     address = AddressField(null=True)
     num_of_bedrooms = models.PositiveIntegerField()
     num_of_bathrooms = models.PositiveIntegerField()
