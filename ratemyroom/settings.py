@@ -101,15 +101,8 @@ if 'test' in sys.argv:
     # Configuration for test database
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'd94cf6p3l8ir3o',
-            'USER': 'epmrkjcbmgtjme',
-            'PASSWORD': '5f2ac8559bea818964ae3afb4564b1939f850de0d3f289e930eb119765c02155',
-            'HOST': 'ec2-52-72-99-110.compute-1.amazonaws.com',
-            'PORT': 5432,
-            'TEST': {
-                'NAME': 'd94cf6p3l8ir3o',  # This is an important entry
-            }
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
 else:
