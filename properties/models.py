@@ -27,8 +27,8 @@ class Property(models.Model):
     title = models.CharField(max_length=100, unique=True)
     slug = models.SlugField(max_length=100, unique=True)
     address = AddressField(null=True)
-    num_of_bedrooms = models.PositiveIntegerField()
-    num_of_bathrooms = models.PositiveIntegerField()
+    num_of_bedrooms = models.PositiveIntegerField(null=True, blank=True)
+    num_of_bathrooms = models.PositiveIntegerField(null=True, blank=True)
     type_of_property = models.CharField(
         max_length=30,
         choices=HOUSING_CHOICES,
