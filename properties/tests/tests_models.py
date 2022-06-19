@@ -9,6 +9,7 @@ class PropertyTest(TestCase):
     def setUp(self):
         self.property1 = Property.objects.create(
             title='Property 1',
+            slug='',
             address='5 Firgrove Hill, Farnham, Surrey, GU9 8LH',
             num_of_bedrooms=4,
             num_of_bathrooms=3,
@@ -23,3 +24,10 @@ class PropertyTest(TestCase):
         self.assertLessEqual(
             len(self.property1.title), 101
             )
+
+    # def test_slug_auto_populates(self):
+    #     """
+    #     If slug auto populates property1 slug will be Property-1
+    #     """
+    #     print(self.property1.slug)
+    #     self.assertEqual(self.property1.slug, 'property-1')
