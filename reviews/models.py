@@ -46,3 +46,6 @@ class Review(models.Model):
         blank=True,
     )
     # images
+
+    def __str__(self):
+        return self.title
