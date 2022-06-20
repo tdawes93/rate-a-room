@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator
+from cloudinary.models import CloudinaryField
 from properties.models import Property
 
 
@@ -46,7 +47,12 @@ class Review(models.Model):
         related_name='review_likes',
         blank=True,
     )
-    # images
+    images = CloudinaryField(
+        'image',
+        default='placeholder',
+        blank=True,
+        null=True
+    )
 
     def __str__(self):
         return self.title
