@@ -37,6 +37,7 @@ class Review(models.Model):
     standard_of_amenities_nearby = models.PositiveIntegerField(
         validators=[MaxValueValidator(5)]
     )
+    overall_rating = models.PositiveIntegerField(blank=True, null=True)
     date_reviewed = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     property = models.ForeignKey(Property, on_delete=models.CASCADE)
@@ -49,3 +50,15 @@ class Review(models.Model):
 
     def __str__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        self.overall_rating = int(sum(
+            [
+                self.condition_of_property,
+                self.quality_of_landlord,
+                self.rate_the_neighbourhood,
+                self.value_for_money,
+                self.standard_of_amenities_nearby
+            ]
+        )) / 5
+        return super(Review, self).save(*args, **kwargs)
