@@ -47,10 +47,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'cloudinary_storage',
     'django.contrib.staticfiles',
+    'django_summernote',
+    'cloudinary',
     'properties',
     'reviews',
     'profiles',
-    'cloudinary',
 ]
 
 MIDDLEWARE = [
