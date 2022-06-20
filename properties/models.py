@@ -49,6 +49,7 @@ class Property(models.Model):
         Class to add Metadata, in this instance the ordering options
         """
         ordering = ['-created_on', 'title']
+        verbose_name_plural = 'Properties'
 
     def __str__(self):
         return self.title
