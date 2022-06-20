@@ -25,9 +25,24 @@ class Property(models.Model):
     # Model fields
     title = models.CharField(max_length=100)
     slug = models.SlugField(max_length=100, unique=True)
-    address_street = models.CharField(max_length=100, null=True, blank=True)
-    address_street2 = models.CharField(max_length=100, null=True, blank=True)
-    address_town = models.CharField(max_length=50, null=True, blank=True)
+    street_address = models.CharField(
+        max_length=100,
+        null=True,
+        blank=True,
+        verbose_name='Address Line 1'
+    )
+    address_street2 = models.CharField(
+        max_length=100,
+        null=True,
+        blank=True,
+        verbose_name='Address Line 2'
+    )
+    address_town = models.CharField(
+        max_length=50,
+        null=True,
+        blank=True,
+        verbose_name='Town'
+    )
     address_county = models.CharField(
         max_length=50,
         null=True,
@@ -38,7 +53,12 @@ class Property(models.Model):
         max_length=35,
         verbose_name='Postal Code/Zip Code'
     )
-    address_country = models.CharField(max_length=75, null=True, blank=True)
+    address_country = models.CharField(
+        max_length=75,
+        null=True,
+        blank=True,
+        verbose_name='Country'
+    )
     num_of_bedrooms = models.PositiveIntegerField(null=True, blank=True)
     num_of_bathrooms = models.PositiveIntegerField(null=True, blank=True)
     type_of_property = models.CharField(
