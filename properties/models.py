@@ -22,6 +22,12 @@ class Property(models.Model):
         (BUNGALOW, 'Bungalow'),
         (SHARE, 'House share'),
     ]
+    DRAFT = '0'
+    PUBLISHED = '1'
+    STATUS = [
+        (DRAFT, 'Draft'),
+        (PUBLISHED, 'Published'),
+    ]
     # Model fields
     title = models.CharField(max_length=100)
     slug = models.SlugField(max_length=100, unique=True)
@@ -81,6 +87,12 @@ class Property(models.Model):
         default=1
         )
     created_on = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(
+        max_length=30,
+        choices=STATUS,
+        default=0,
+        blank=False
+    )
 
     class Meta:
         """
