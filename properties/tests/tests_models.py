@@ -1,4 +1,5 @@
 from django.test import TestCase
+from django.contrib.auth.models import User
 from properties.models import Property
 
 
@@ -7,14 +8,15 @@ class PropertyTest(TestCase):
     Test class to test the Property class found in properties.models
     """
     def setUp(self):
+        user = User.objects.create(username='testuser')
         self.property1 = Property.objects.create(
             title='Property 1',
-            slug='',
-            address='5 Firgrove Hill, Farnham, Surrey, GU9 8LH',
+            address_postcode='AB1 2CD',
             num_of_bedrooms=4,
             num_of_bathrooms=3,
             type_of_property=1,
             for_rent=False,
+            ll_or_ea=user,  # User.objects.get(user_id),
             )
 
     def test_title_has_max_length_of_100(self):
@@ -24,10 +26,3 @@ class PropertyTest(TestCase):
         self.assertLessEqual(
             len(self.property1.title), 101
             )
-
-    # def test_slug_auto_populates(self):
-    #     """
-    #     If slug auto populates property1 slug will be Property-1
-    #     """
-    #     print(self.property1.slug)
-    #     self.assertEqual(self.property1.slug, 'property-1')
