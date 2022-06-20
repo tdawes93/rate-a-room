@@ -7,5 +7,12 @@ class PropertyAdmin(admin.ModelAdmin):
     """
     An admin class for the property model
     """
-    prepopulated_fields = {'slug': ('title',)}
-    search_fields = ['title']
+    prepopulated_fields = {'slug': ('title', 'address_postcode')}
+    search_fields = ('title', 'address_postcode')
+    list_display = (
+        'title',
+        'street_address',
+        'address_postcode',
+        'num_of_bedrooms',
+        'for_rent'
+    )
