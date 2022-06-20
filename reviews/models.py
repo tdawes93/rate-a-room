@@ -55,7 +55,7 @@ class Review(models.Model):
     )
 
     def __str__(self):
-        return self.title
+        return f'{self.title} by {self.user}'
 
     def save(self, *args, **kwargs):
         self.overall_rating = int(sum(
@@ -68,3 +68,6 @@ class Review(models.Model):
             ]
         )) / 5
         return super(Review, self).save(*args, **kwargs)
+
+    def num_of_likes(self):
+        return self.likes.count()
