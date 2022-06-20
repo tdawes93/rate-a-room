@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
-from address.models import AddressField
 
 
 class Property(models.Model):
@@ -24,9 +23,22 @@ class Property(models.Model):
         (SHARE, 'House share'),
     ]
     # Model fields
-    title = models.CharField(max_length=100, unique=True)
+    title = models.CharField(max_length=100)
     slug = models.SlugField(max_length=100, unique=True)
-    address = AddressField(null=True)
+    address_street = models.CharField(max_length=100, null=True, blank=True)
+    address_street2 = models.CharField(max_length=100, null=True, blank=True)
+    address_town = models.CharField(max_length=50, null=True, blank=True)
+    address_county = models.CharField(
+        max_length=50,
+        null=True,
+        blank=True,
+        verbose_name='County/Province/State'
+    )
+    address_postcode = models.CharField(
+        max_length=35,
+        verbose_name='Postal Code/Zip Code'
+    )
+    address_country = models.CharField(max_length=75, null=True, blank=True)
     num_of_bedrooms = models.PositiveIntegerField(null=True, blank=True)
     num_of_bathrooms = models.PositiveIntegerField(null=True, blank=True)
     type_of_property = models.CharField(
@@ -36,12 +48,13 @@ class Property(models.Model):
         blank=False
     )
     for_rent = models.BooleanField(default=False)
-    # images = CloudinaryField('image')
-    # ll_or_ea = models.ForeignKey(
-    #     User,
-    #     on_delete=models.CASCADE,
-    #     verbose_name='Landlord/Estate Agent'
-    #     )
+    images = CloudinaryField('image', default='placeholder')
+    ll_or_ea = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        verbose_name='Landlord/Estate Agent',
+        default=1
+        )
     created_on = models.DateTimeField(auto_now_add=True)
 
     class Meta:
