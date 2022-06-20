@@ -68,7 +68,12 @@ class Property(models.Model):
         blank=False
     )
     for_rent = models.BooleanField(default=False)
-    images = CloudinaryField('image', default='placeholder')
+    images = CloudinaryField(
+        'image',
+        default='placeholder',
+        blank=True,
+        null=True
+    )
     ll_or_ea = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
