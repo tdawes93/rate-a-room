@@ -7,5 +7,7 @@ class ReviewAdmin(admin.ModelAdmin):
     """
     An admin class for the Review model
     """
-    prepopulated_fields = {'slug': ('title',)}
-    search_fields = ['title']
+    prepopulated_fields = {'slug': ('title', 'user')}
+    search_fields = ('title', 'property',)
+    list_display = ('title', 'property', 'user', 'overall_rating',)
+    readonly_fields = ('overall_rating',)
