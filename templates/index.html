@@ -48,19 +48,14 @@
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
                     aria-label="Slide 3"></button>
             </div>
-            <div class="carousel-inner">
+            <div class="carousel-inner text-center"">
+                {% for property in property_list %}
                 <div class="carousel-item active">
-                    <img src="https://res.cloudinary.com/tdawes93/image/upload/v1655856822/ratemyroom/pexels-frans-van-heerden-1438832_lodxpn.jpg"
-                        class="d-block w-100" alt="...">
+                    <img src="{{ property.images.url }}" class="d-block w-100" alt="Photo of property uploaded by user">
+                    <h5>{{ property.title }}</h5>
+                    <h6>The rating will go here</h6>
                 </div>
-                <div class="carousel-item">
-                    <img src="https://res.cloudinary.com/tdawes93/image/upload/v1655856822/ratemyroom/pexels-binyamin-mellish-106399_mmzebn.jpg"
-                        class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://res.cloudinary.com/tdawes93/image/upload/v1655856825/ratemyroom/pexels-mike-b-463996_szdfy3.jpg"
-                        class="d-block w-100" alt="...">
-                </div>
+                {% endfor %}
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
                 data-bs-slide="prev">
