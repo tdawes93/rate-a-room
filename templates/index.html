@@ -62,7 +62,7 @@
                 {% else %}
                 <div class="carousel-item">
                 {% endif %}
-                    <a href="{% url 'property_detail' property.slug %}">
+                    <a href="{% url 'property_detail' property.slug %}" class="text-decoration-none">
                         <img src="{{ property.images.url }}" class="d-block w-100"
                         alt="Photo of property uploaded by user">
                         <h5>{{ property.title }}</h5>
