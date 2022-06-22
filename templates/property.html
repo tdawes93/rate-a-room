@@ -24,7 +24,7 @@
     <div class="col-8">
         <h2>{{ property.title }}</h2>
     </div>
-    <div class="col-4">
+    <div class="col-4 text-end">
         <a href="#" class="d-inline-block me-1"><i class="fa-solid fa-pencil fa-2x"></i></a>
         <a href="#" class="d-inline-block mx-1"><i class="fa-solid fa-heart fa-2x"></i></a>
     </div>
@@ -35,7 +35,7 @@
 </div>
 <div class="row m-2">
     <div class="col">
-        <a href="#"><i class="fa-solid fa-location-dot"></i> {{ property.street_address}},
+        <a href="#" class="text-decoration-none"><i class="fa-solid fa-location-dot"></i> {{ property.street_address}},
             {{ property.address_street2 }}, {{ property.address_town }}, {{ property.address_county }},
             {{ property.address_postcode }}, {{ property.address_country }}</a>
     </div>
@@ -48,8 +48,30 @@
 </div>
 <div class="row m-2">
     <div class="col">
-        Section for recent reviews
+        <h2>Reviews</h2>
     </div>
+    <hr>
 </div>
 
+{% for review in reviews %}
+<div class="row m-2">
+    <div class="col-4 d-inline-block">{{ review.user }}</div>
+    <div class="col-4 d-inline-block">{{ review.overall_rating }}</div>
+    <div class="col-4 d-inline-block text-end">{{ review.date_reviewed }}</div>
+</div>
+<div class="row m-2">
+    <div class="col">
+        <h4>{{ review.title }}</h4>
+
+    </div>
+</div>
+<div class="row m-2">
+    <div class="col">{{ review.content }}</div>
+</div>
+<div class="row m-2">
+    <div class="col-6"><strong>Rented from:</strong> {{ review.date_rented_from }}</div>
+    <div class="col-6 text-end"><strong>To:</strong> {{ review.date_rented_to }}</div>
+</div>
+<hr>
+{% endfor %}
 {% endblock %}

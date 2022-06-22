@@ -28,10 +28,13 @@ class PropertyDetail(View):
         """
         queryset = Property.objects.filter(status=1)
         property = get_object_or_404(queryset, slug=slug)
+        reviews = property.reviews.order_by('date_reviewed')
+
         return render(
             request,
             'property.html',
             {
                 'property': property,
+                'reviews': reviews,
             },
         )
