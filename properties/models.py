@@ -93,6 +93,7 @@ class Property(models.Model):
         default=0,
         blank=False
     )
+    # overall_rating = models.ForeignKey(to, on_delete)
 
     class Meta:
         """
