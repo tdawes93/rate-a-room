@@ -41,7 +41,10 @@ class Review(models.Model):
     overall_rating = models.PositiveIntegerField(blank=True, null=True)
     date_reviewed = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    property = models.ForeignKey(Property, on_delete=models.CASCADE)
+    property = models.ForeignKey(
+        Property,
+        on_delete=models.CASCADE,
+        related_name='reviews')
     likes = models.ManyToManyField(
         User,
         related_name='review_likes',
