@@ -24,19 +24,24 @@ class Review(models.Model):
     date_rented_to = models.DateField(null=True, blank=True)
     content = models.TextField(max_length=500, null=True, blank=True)
     condition_of_property = models.PositiveIntegerField(
-        validators=[MaxValueValidator(5)]
+        validators=[MaxValueValidator(5),],
+        default=0,
     )
     quality_of_landlord = models.PositiveIntegerField(
-        validators=[MaxValueValidator(5)]
+        validators=[MaxValueValidator(5)],
+        default=0,
     )
     rate_the_neighbourhood = models.PositiveIntegerField(
-        validators=[MaxValueValidator(5)]
+        validators=[MaxValueValidator(5)],
+        default=0,
     )
     value_for_money = models.PositiveIntegerField(
-        validators=[MaxValueValidator(5)]
+        validators=[MaxValueValidator(5)],
+        default=0,
     )
     standard_of_amenities_nearby = models.PositiveIntegerField(
-        validators=[MaxValueValidator(5)]
+        validators=[MaxValueValidator(5)],
+        default=0,
     )
     overall_rating = models.PositiveIntegerField(blank=True, null=True)
     date_reviewed = models.DateTimeField(auto_now_add=True)
