@@ -24,8 +24,7 @@ class SearchProperty(View):
         doc
         """
         searched = request.POST.get('searched')
-        property = Property.objects.all()
-        postcodes = Property.objects.filter(Q(
+        properties = Property.objects.filter(Q(
             address_postcode__icontains=searched) 
             | Q(address_town__icontains=searched) 
             | Q(address_county__icontains=searched) 
@@ -36,8 +35,7 @@ class SearchProperty(View):
             'search-properties.html',
             {
                 'searched': searched,
-                'postcodes': postcodes,
-                'property': property,
+                'properties': properties,
             },
             )
 

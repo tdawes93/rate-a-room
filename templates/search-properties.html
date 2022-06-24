@@ -27,19 +27,19 @@
     </div>
 </div>
 
-{% for postcode in postcodes %}
+{% for property in properties %}
 <div class="row mx-0">
     <div class="col mx-2">
-        <a class="text-decoration-none" href=" {% url 'property_detail' postcode.slug %} ">{{ postcode }}
+        <a class="text-decoration-none" href=" {% url 'property_detail' property.slug %} ">{{ property }}
         </a>
     </div>
-    <div class="col me-2"><img class="w-100" src="{{ postcode.images.url }}" alt="Image of property uploaded by landlord">
+    <div class="col me-2"><img class="w-100" src="{{ property.images.url }}" alt="Image of property uploaded by landlord">
     </div>
 </div>
 {% endfor %}
 
 {% else %}
-<h1> You forgot to search for a postcode. Please search for a valid postcode</h1>
+<h1> You forgot to search for a property. Please search for a valid property</h1>
 
 {% endif %}
 {% endblock %}
