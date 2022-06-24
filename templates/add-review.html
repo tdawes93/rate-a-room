@@ -2,8 +2,9 @@
 
 <!--Header and Navbar Code-->
 {% block header %}
-<a href="#" class="d-none d-md-inline-block d-lg-none me-1"><i class="fa-solid fa-pencil fa-2x"></i></a>
-<a href="#" class="d-none d-lg-inline-block me-1 text-decoration-none"><i
+<a href="{% url 'add_review' %}" class="d-none d-md-inline-block d-lg-none me-1"><i
+        class="fa-solid fa-pencil fa-2x"></i></a>
+<a href="{% url 'add_review' %}" class="d-none d-lg-inline-block me-1 text-decoration-none"><i
         class="fa-solid fa-pencil fa-2x"></i>Review</a>
 <a href="#" class="d-none d-md-inline-block d-lg-none mx-1"><i class="fa-solid fa-heart fa-2x"></i></a>
 <a href="#" class="d-none d-lg-inline-block mx-1 text-decoration-none"><i class="fa-solid fa-heart fa-2x"></i>Likes</a>
@@ -41,11 +42,9 @@
             </label>
         </div>
     </div>
-<h2>{{ review.property }}</h2>
     <div class="row mx-2 justify-content-left">
-        <div class="col-8">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search for your property"
-                name="property" id="property">
+        <div class="col">
+            {{ form.property }}
         </div>
     </div>
     <div class="row m-2">
@@ -180,7 +179,10 @@
         </div>
     </div>
     <div class="row mx-2">
-        <div class="col"> <button class="form-control m-2" type="submit" name="add" value="add">Add Review</button>
+        <div class="col">
+            <button class="form-control m-2" type="submit" name="add" value="add">
+                Add Review
+            </button>
         </div>
     </div>
 

@@ -3,8 +3,8 @@
 <!--Header and navbar code-->
 {% block header %}
 <a href="#" class="d-md-none"><i class="fa-solid fa-arrow-right-to-bracket fa-2x"></i></a>
-<a href="#" class="d-none d-md-inline-block d-lg-none me-1"><i class="fa-solid fa-pencil fa-2x"></i></a>
-<a href="#" class="d-none d-lg-inline-block me-1 text-decoration-none"><i class="fa-solid fa-pencil fa-2x"></i>Review</a>
+<a href="{% url 'add_review' %}" class="d-none d-md-inline-block d-lg-none me-1"><i class="fa-solid fa-pencil fa-2x"></i></a>
+<a href="{% url 'add_review' %}" class="d-none d-lg-inline-block me-1 text-decoration-none"><i class="fa-solid fa-pencil fa-2x"></i>Review</a>
 <a href="#" class="d-none d-md-inline-block d-lg-none mx-1"><i class="fa-solid fa-heart fa-2x"></i></a>
 <a href="#" class="d-none d-lg-inline-block mx-1 text-decoration-none"><i class="fa-solid fa-heart fa-2x"></i>Likes</a>
 <a href="#" class="d-none d-md-inline-block d-lg-none mx-1"><i class="fa-solid fa-bell fa-2x"></i></a>
