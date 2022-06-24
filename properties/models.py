@@ -22,8 +22,8 @@ class Property(models.Model):
         (BUNGALOW, 'Bungalow'),
         (SHARE, 'House share'),
     ]
-    DRAFT = '0'
-    PUBLISHED = '1'
+    DRAFT = 'draft'
+    PUBLISHED = 'published'
     STATUS = [
         (DRAFT, 'Draft'),
         (PUBLISHED, 'Published'),
@@ -90,7 +90,7 @@ class Property(models.Model):
     status = models.CharField(
         max_length=30,
         choices=STATUS,
-        default=0,
+        default=DRAFT,
         blank=False
     )
     # overall_rating = models.ForeignKey(to, on_delete)
