@@ -1,10 +1,185 @@
 {% extends 'base.html' %}
 
-{% block content %}
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star"></span>
-<span class="fa fa-star"></span>
+<!--Header and Navbar Code-->
+{% block header %}
+<a href="#" class="d-none d-md-inline-block d-lg-none me-1"><i class="fa-solid fa-pencil fa-2x"></i></a>
+<a href="#" class="d-none d-lg-inline-block me-1 text-decoration-none"><i
+        class="fa-solid fa-pencil fa-2x"></i>Review</a>
+<a href="#" class="d-none d-md-inline-block d-lg-none mx-1"><i class="fa-solid fa-heart fa-2x"></i></a>
+<a href="#" class="d-none d-lg-inline-block mx-1 text-decoration-none"><i class="fa-solid fa-heart fa-2x"></i>Likes</a>
+<a href="#" class="d-none d-md-inline-block d-lg-none mx-1"><i class="fa-solid fa-bell fa-2x"></i></a>
+<a href="#" class="d-none d-lg-inline-block mx-1 text-decoration-none"><i class="fa-solid fa-bell fa-2x"></i>Alerts</a>
+<!--Logged in view differs as nav bar buttons change depending on user type-->
+{% if user.is_ll_or_ea %}
+<a href="#" class="d-none d-md-inline-block d-lg-none mx-1"><i class="fa-solid fa-plus fa-2x"></i></a>
+<a href="#" class="d-none d-lg-inline-block mx-1 text-decoration-none"><i class="fa-solid fa-plus fa-2x"></i>Add a
+    property</a>
+{% endif %}
+<a href="#" class="d-inline-block"><i class="fa-solid fa-user fa-2x"></i></a>
+{% endblock %}
 
-{% end block %}
+<!--Main content code-->
+{% block content %}
+<div class="row m-2">
+    <div class="col">
+        <h2>Write a review</h2>
+    </div>
+</div>
+<div class="row m-2">
+    <div class="col">
+        <p>Some text about how a review should be written blah blah blah </p>
+    </div>
+</div>
+
+<form action="" method="POST" class="rate-form">
+    {% csrf_token %}
+
+    <div class="row m-2">
+        <div class="col">
+            <label for="property">
+                <h4>Select your property</h4>
+            </label>
+        </div>
+    </div>
+
+    <div class="row mx-2 justify-content-left">
+        <div class="col-8">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search for your property"
+                name="property" id="property">
+        </div>
+    </div>
+    <div class="row m-2">
+        <div class="col">
+            <label for="title">
+                <h4>Title of your review</h4>
+            </label>
+        </div>
+    </div>
+    <div class="row mx-2 justify-content-left">
+        <div class="col">
+            <input class="form-control me-2" type="text" aria-label="Title of your review" name="title" id="title">
+        </div>
+    </div>
+    <div class="row m-2">
+        <div class="col">
+            <label for="content">
+                <h4>Your review</h4>
+            </label>
+        </div>
+    </div>
+    <div class="row mx-2 justify-content-left">
+        <div class="col">
+            <textarea class="form-control me-2" type="text" aria-label="Title of your review" name="content"
+                id="content"></textarea>
+        </div>
+    </div>
+    <div class="row m-2">
+        <div class="col">
+            <h4>When did you rent this property?</h4>
+            </label>
+        </div>
+    </div>
+    <div class="row mx-2 justify-content-left">
+        <div class="col-2 text-end">
+            <label for="date_rented_from">
+                <h6>from:</h6>
+            </label>
+        </div>
+        <div class="col-4">
+            <input class="form-control me-2" type="date" aria-label="Date rented from" name="date_rented_from"
+                id="date_rented_from">
+        </div>
+        <div class="col-2 text-end">
+            <label for="date_rented_to">
+                <h6>to:</h6>
+            </label>
+        </div>
+        <div class="col-4">
+            <input class="form-control me-2" type="date" aria-label="Date rented from" name="date_rented_to"
+                id="date_rented_to">
+        </div>
+    </div>
+    <div class="row m-2">
+        <div class="col">
+            <label for="condition_of_property">
+                <h4>Condition of property</h4>
+            </label>
+        </div>
+        <div class="col">
+            <button type="button" class="fa fa-star rate-btn" id="1.1"></button>
+            <button type="button" class="fa fa-star rate-btn" id="2.1"></button>
+            <button type="button" class="fa fa-star rate-btn" id="3.1"></button>
+            <button type="button" class="fa fa-star rate-btn" id="4.1"></button>
+            <button type="button" class="fa fa-star rate-btn" id="5.1"></button>
+        </div>
+    </div>
+    <div class="row m-2">
+        <div class="col">
+            <label for="quality_of_landlord">
+                <h4>Quality of landlord</h4>
+            </label>
+        </div>
+        <div class="col">
+            <button type="button" class="fa fa-star rate-btn" id="1.2"></button>
+            <button type="button" class="fa fa-star rate-btn" id="2.2"></button>
+            <button type="button" class="fa fa-star rate-btn" id="3.2"></button>
+            <button type="button" class="fa fa-star rate-btn" id="4.2"></button>
+            <button type="button" class="fa fa-star rate-btn" id="5.2"></button>
+        </div>
+    </div>
+    <div class="row m-2">
+        <div class="col">
+            <label for="rate_the_neighbourhood">
+                <h4>Rate the neighbourhood</h4>
+            </label>
+        </div>
+        <div class="col">
+            <button type="button" class="fa fa-star rate-btn" id="1.3"></button>
+            <button type="button" class="fa fa-star rate-btn" id="2.3"></button>
+            <button type="button" class="fa fa-star rate-btn" id="3.3"></button>
+            <button type="button" class="fa fa-star rate-btn" id="4.3"></button>
+            <button type="button" class="fa fa-star rate-btn" id="5.3"></button>
+        </div>
+    </div>
+    <div class="row m-2">
+        <div class="col">
+            <label for="value_for_money">
+                <h4>Value for money</h4>
+            </label>
+        </div>
+        <div class="col">
+            <button type="button" class="fa fa-star rate-btn" id="1.4"></button>
+            <button type="button" class="fa fa-star rate-btn" id="2.4"></button>
+            <button type="button" class="fa fa-star rate-btn" id="3.4"></button>
+            <button type="button" class="fa fa-star rate-btn" id="4.4"></button>
+            <button type="button" class="fa fa-star rate-btn" id="5.4"></button>
+        </div>
+    </div>
+    <div class="row m-2">
+        <div class="col">
+            <label for="standard_of_amenities_nearby">
+                <h4>Standard of amenities nearby</h4>
+            </label>
+        </div>
+        <div class="col">
+            <button type="button" class="fa fa-star rate-btn" id="1.5"></button>
+            <button type="button" class="fa fa-star rate-btn" id="2.5"></button>
+            <button type="button" class="fa fa-star rate-btn" id="3.5"></button>
+            <button type="button" class="fa fa-star rate-btn" id="4.5"></button>
+            <button type="button" class="fa fa-star rate-btn" id="5.5"></button>
+        </div>
+    </div>
+    <div class="row mx-2">
+        <div class="col">
+            <!-- <button type="button" class="fa fa-star rate-btn" id="first"></button>
+            <button type="button" class="fa fa-star rate-btn" id="second"></button>
+            <button type="button" class="fa fa-star rate-btn" id="third"></button>
+            <button type="button" class="fa fa-star rate-btn" id="fourth"></button>
+            <button type="button" class="fa fa-star rate-btn" id="fifth"></button> -->
+        </div>
+    </div>
+    <button type="submit" name="add" value="add">Add Review</button>
+</form>
+
+
+{% endblock %}
