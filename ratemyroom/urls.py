@@ -14,6 +14,12 @@ urlpatterns = [
         views.SearchProperty.as_view(),
         name='search_properties'
     ),
+    path(
+        'search_properties_for_review/',
+        views.SearchPropertyForReview.as_view(),
+        name='search_properties_for_review'
+    ),
+    path('search_form', views.SearchForm.as_view(), name='search_form')
 ]
 
 urlpatterns += staticfiles_urlpatterns()
