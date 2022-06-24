@@ -35,14 +35,15 @@
 </div>
 
 {% for property in properties %}
-<div class="row mx-0">
-    <div class="col mx-2">
-        <a class="text-decoration-none" href=" {% url 'property_detail' property.slug %} ">{{ property }}
-        </a>
+    <div class="row mx-0">
+        <div class="col mx-2">
+
+            <a href="{% url 'add_review' %}?slug={{ property.slug }}">{{ property.slug }}</a>
+        </div>
+        <div class="col me-2"><img class="w-100" src="{{ property.images.url }}"
+                alt="Image of property uploaded by landlord">
+        </div>
     </div>
-    <div class="col me-2"><img class="w-100" src="{{ property.images.url }}" alt="Image of property uploaded by landlord">
-    </div>
-</div>
 {% endfor %}
 
 {% else %}

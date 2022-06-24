@@ -27,26 +27,15 @@
 
 <!--Main Content code-->
 {% block content %}
-{% if searched %}
-<div class="row mx-2">
-    <div class="col">
-        <h1>You searched for {{ searched }}</h1>
+<div class="row justify-content-center text-center position-absolute bottom-50 w-100 g-0">
+    <div class="col-8 col-md-6">
+        <form class="d-flex" role="search" method="POST" action="{% url 'search_properties_for_review' %}">
+            {% csrf_token %}
+            <input class="form-control me-2" type="search" placeholder="Search by Postcode" aria-label="Search"
+                name="searched">
+            <button class="btn btn-light" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
     </div>
 </div>
 
-{% for property in properties %}
-<div class="row mx-0">
-    <div class="col mx-2">
-        <a class="text-decoration-none" href=" {% url 'property_detail' property.slug %} ">{{ property }}
-        </a>
-    </div>
-    <div class="col me-2"><img class="w-100" src="{{ property.images.url }}" alt="Image of property uploaded by landlord">
-    </div>
-</div>
-{% endfor %}
-
-{% else %}
-<h1> You forgot to search for a property. Please search for a valid property</h1>
-
-{% endif %}
 {% endblock %}

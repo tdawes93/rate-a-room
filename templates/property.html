@@ -2,13 +2,20 @@
 
 <!--Header and Navbar Code-->
 {% block header %}
-<a href="#" class="d-none d-md-inline-block d-lg-none me-1"><i class="fa-solid fa-pencil fa-2x"></i></a>
-<a href="{% url 'add_review' %}" class="d-none d-lg-inline-block me-1 text-decoration-none"><i
-        class="fa-solid fa-pencil fa-2x"></i>Review</a>
-<a href="{% url 'add_review' %}" class="d-none d-md-inline-block d-lg-none mx-1"><i class="fa-solid fa-heart fa-2x"></i></a>
-<a href="#" class="d-none d-lg-inline-block mx-1 text-decoration-none"><i class="fa-solid fa-heart fa-2x"></i>Likes</a>
-<a href="#" class="d-none d-md-inline-block d-lg-none mx-1"><i class="fa-solid fa-bell fa-2x"></i></a>
-<a href="#" class="d-none d-lg-inline-block mx-1 text-decoration-none"><i class="fa-solid fa-bell fa-2x"></i>Alerts</a>
+<div class="nav-links">
+    <a href="{% url 'add_review' %}" class="d-none d-md-inline-block d-lg-none me-1"><i
+            class="fa-solid fa-pencil "></i></a>
+    <a href="{% url 'add_review' %}" class="d-none d-lg-inline-block me-1 text-decoration-none"><i
+            class="fa-solid fa-pencil "></i> Review</a>
+</div>
+<div class="nav-links">
+    <a href="#" class="d-none d-md-inline-block d-lg-none mx-1"><i class="fa-solid fa-heart "></i></a>
+    <a href="#" class="d-none d-lg-inline-block mx-1 text-decoration-none"><i class="fa-solid fa-heart"></i> Likes</a>
+</div>
+<div class="nav-links">
+    <a href="#" class="d-none d-md-inline-block d-lg-none mx-1"><i class="fa-solid fa-bell "></i></a>
+    <a href="#" class="d-none d-lg-inline-block mx-1 text-decoration-none"><i class="fa-solid fa-bell "></i> Alerts</a>
+</div>
 <!--Logged in view differs as nav bar buttons change depending on user type-->
 {% if user.is_ll_or_ea %}
 <a href="#" class="d-none d-md-inline-block d-lg-none mx-1"><i class="fa-solid fa-plus fa-2x"></i></a>
@@ -25,7 +32,7 @@
         <h2>{{ property.title }}</h2>
     </div>
     <div class="col-4 text-end">
-        <a href="#" class="d-inline-block me-1"><i class="fa-solid fa-pencil fa-2x"></i></a>
+        <a href="{% url 'add_review' %}" class="d-inline-block me-1"><i class="fa-solid fa-pencil fa-2x"></i></a>
         <a href="#" class="d-inline-block mx-1"><i class="fa-solid fa-heart fa-2x"></i></a>
     </div>
 </div>
@@ -36,50 +43,53 @@
 <div class="row m-2">
     <div class="col">
         <a href="#" class="text-decoration-none"><i class="fa-solid fa-location-dot"></i> {{ property.street_address}},
-            {{ property.address_street2 }}, {{ property.address_town }}, {{ property.address_county }},
+            {% if property.address_street2 %}
+            {{ property.address_street2 }}, {% endif %} {{ property.address_town }}, {{ property.address_county }},
             {{ property.address_postcode }}, {{ property.address_country }}</a>
     </div>
 </div>
-<div class="row mx-0">
-    <div class="col mx-0 px-0">
+<div class="row mx-0 card">
+    <div class="col-11 mx-auto px-0 card-body">
         <img src="{{ property.images.url }}" alt="Photo of rental uploaded by the landlord or estate agent"
-            class="w-100">
+            class="card-img">
     </div>
 </div>
-<div class="row m-2 d-none d-md-flex">
-    <div class="col-7">
-        <h2>Ratings</h2>
+<div class="row my-2 mx-0 d-none d-md-flex">
+    <div class="col-7 card">
+        <h2 class="card-body">Ratings</h2>
     </div>
-    <div class="col-5">
-        <h2>Location</h2>
+    <div class="col-5 card">
+        <h2 class="card-body">Location</h2>
     </div>
 </div>
-<div class="row m-2">
-    <div class="col">
-        <h2>Reviews</h2>
+<div class="card">
+    <div class="row m-2 card-title">
+        <div class="col">
+            <h2>Reviews</h2>
+        </div>
     </div>
-    <hr>
-</div>
 
-{% for review in reviews %}
-<div class="row m-2">
-    <div class="col-4 d-inline-block">{{ review.user }}</div>
-    <div class="col-4 d-inline-block">{{ review.overall_rating }}</div>
-    <div class="col-4 d-inline-block text-end">{{ review.date_reviewed }}</div>
-</div>
-<div class="row m-2">
-    <div class="col">
-        <h4>{{ review.title }}</h4>
-
+    {% for review in reviews %}
+    <div class="row m-2">
+        <hr>
+        <div class="col-4 d-inline-block">{{ review.user }}</div>
+        <div class="col-4 d-inline-block">{{ review.overall_rating }}</div>
+        <div class="col-4 d-inline-block text-end">{{ review.date_reviewed }}</div>
     </div>
+    <div class="row m-2">
+        <div class="col">
+            <h4>{{ review.title }}</h4>
+
+        </div>
+    </div>
+    <div class="row m-2">
+        <div class="col">{{ review.snippet }}</div>
+    </div>
+    <div class="row m-2">
+        <div class="col-6"><strong>Rented from:</strong> {{ review.date_rented_from }}</div>
+        <div class="col-6 text-end"><strong>To:</strong> {{ review.date_rented_to }}</div>
+    </div>
+
+    {% endfor %}
+    {% endblock %}
 </div>
-<div class="row m-2">
-    <div class="col">{{ review.snippet }}</div>
-</div>
-<div class="row m-2">
-    <div class="col-6"><strong>Rented from:</strong> {{ review.date_rented_from }}</div>
-    <div class="col-6 text-end"><strong>To:</strong> {{ review.date_rented_to }}</div>
-</div>
-<hr>
-{% endfor %}
-{% endblock %}
