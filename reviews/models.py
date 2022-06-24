@@ -24,7 +24,7 @@ class Review(models.Model):
     date_rented_to = models.DateField(null=True, blank=True)
     content = models.TextField(max_length=500, null=True, blank=True)
     condition_of_property = models.PositiveIntegerField(
-        validators=[MaxValueValidator(5),],
+        validators=[MaxValueValidator(5)],
         default=0,
     )
     quality_of_landlord = models.PositiveIntegerField(
