@@ -1,14 +1,66 @@
 body {
     font-family: 'Quicksand', sans-serif;
     font-weight: 400;
+    color: #171C1F;
+}
+
+a {
+    color:#171C1F;
+}
+
+a:hover {
+    color: #A5A640;
+}
+
+.nav-links {
+    display: inline-block;
+}
+
+.nav-links a i {
+   padding-top: 1rem;
+   font-size: 150%;
+}
+
+.nav-links:hover a {
+    text-decoration: underline;
+    color:#A5A640;
+
+}
+
+.nav-btn {
+    background-color: #fff;
+    border: solid #171C1F;
+    border-radius: 15px;
+
+}
+
+.nav-btn:hover {
+    background-color: #A5A640;
+    border: solid #A5A640;
 }
 
 .header-icon {
     font-size: 10rem;
 }
 
+ /*, .carousel-indicators */
+.carousel-control-next,
+.carousel-control-prev {
+    filter: invert(100%);
+}
+
+.carousel-caption {
+   background: rgba(0, 0, 0, 0.3);
+   color: #fff;
+   opacity: 0;
+}
+
+.carousel-item:hover .carousel-caption {
+   opacity: 1;
+}
+
 .checked {
-    color: orange;
+    color: #A5A640;
   }
 
 .rate-btn {
