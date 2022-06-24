@@ -8,7 +8,12 @@ urlpatterns = [
     path('summernote/', include('django_summernote.urls')),
     path('', views.PropertyList.as_view(), name='homepage'),
     path('properties/', include('properties.urls'), name='property_urls'),
-    path('reviews/',include('reviews.url'), name='review_urls'),
+    path('reviews/', include('reviews.urls'), name='review_urls'),
+    path(
+        'search_properties/',
+        views.SearchProperty.as_view(),
+        name='search_properties'
+    ),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

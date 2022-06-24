@@ -41,7 +41,7 @@
             </label>
         </div>
     </div>
-
+<h2>{{ review.property }}</h2>
     <div class="row mx-2 justify-content-left">
         <div class="col-8">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search for your property"
@@ -95,7 +95,7 @@
             </label>
         </div>
         <div class="col-4">
-            <input class="form-control me-2" type="date" aria-label="Date rented from" name="date_rented_to"
+            <input class="form-control me-2" type="date" aria-label="Date rented to" name="date_rented_to"
                 id="date_rented_to">
         </div>
     </div>
@@ -171,14 +171,19 @@
     </div>
     <div class="row mx-2">
         <div class="col">
-            <!-- <button type="button" class="fa fa-star rate-btn" id="first"></button>
-            <button type="button" class="fa fa-star rate-btn" id="second"></button>
-            <button type="button" class="fa fa-star rate-btn" id="third"></button>
-            <button type="button" class="fa fa-star rate-btn" id="fourth"></button>
-            <button type="button" class="fa fa-star rate-btn" id="fifth"></button> -->
+            <label for="images">
+                <h4>Images</h4>
+            </label>
+        </div>
+        <div class="col">
+            <input class="form-control me-2" type="image" aria-label="Images to upload" name="images" id="images">
         </div>
     </div>
-    <button type="submit" name="add" value="add">Add Review</button>
+    <div class="row mx-2">
+        <div class="col"> <button class="form-control m-2" type="submit" name="add" value="add">Add Review</button>
+        </div>
+    </div>
+
 </form>
 
 
