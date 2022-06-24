@@ -2,15 +2,27 @@
 
 <!--Header and navbar code-->
 {% block header %}
-<a href="#" class="d-md-none"><i class="fa-solid fa-arrow-right-to-bracket fa-2x"></i></a>
-<a href="{% url 'add_review' %}" class="d-none d-md-inline-block d-lg-none me-1"><i class="fa-solid fa-pencil fa-2x"></i></a>
-<a href="{% url 'add_review' %}" class="d-none d-lg-inline-block me-1 text-decoration-none"><i class="fa-solid fa-pencil fa-2x"></i>Review</a>
-<a href="#" class="d-none d-md-inline-block d-lg-none mx-1"><i class="fa-solid fa-heart fa-2x"></i></a>
-<a href="#" class="d-none d-lg-inline-block mx-1 text-decoration-none"><i class="fa-solid fa-heart fa-2x"></i>Likes</a>
-<a href="#" class="d-none d-md-inline-block d-lg-none mx-1"><i class="fa-solid fa-bell fa-2x"></i></a>
-<a href="#" class="d-none d-lg-inline-block mx-1 text-decoration-none"><i class="fa-solid fa-bell fa-2x"></i>Alerts</a>
-<button class="d-none d-lg-inline-block btn-lg mx-1">Register</button>
-<button class="d-none d-md-inline-block btn-lg ms-1">Sign in</button>
+<div class="nav-links">
+    <a href="#" class="d-md-none"><i class="fa-solid fa-arrow-right-to-bracket "></i></a>
+</div>
+<div class="nav-links">
+    <a href="{% url 'add_review' %}" class="d-none d-md-inline-block d-lg-none me-1"><i
+            class="fa-solid fa-pencil "></i></a>
+    <a href="{% url 'add_review' %}" class="d-none d-lg-inline-block me-1 text-decoration-none"><i
+            class="fa-solid fa-pencil "></i> Review</a>
+</div>
+<div class="nav-links">
+    <a href="#" class="d-none d-md-inline-block d-lg-none mx-1"><i class="fa-solid fa-heart "></i></a>
+    <a href="#" class="d-none d-lg-inline-block mx-1 text-decoration-none"><i class="fa-solid fa-heart"></i> Likes</a>
+</div>
+<div class="nav-links">
+    <a href="#" class="d-none d-md-inline-block d-lg-none mx-1"><i class="fa-solid fa-bell "></i></a>
+    <a href="#" class="d-none d-lg-inline-block mx-1 text-decoration-none"><i class="fa-solid fa-bell "></i> Alerts</a>
+</div>
+<div class="nav-links">
+    <button class="d-none d-lg-inline-block btn-lg mx-1 nav-btn">Register</button></div>
+<div class="nav-links">
+    <button class="d-none d-md-inline-block btn-lg ms-1 nav-btn">Sign in</button></div>
 {% endblock %}
 
 <!--Main Content code-->
@@ -26,7 +38,8 @@
             <div class="col-8 col-md-6">
                 <form class="d-flex" role="search" method="POST" action="{% url 'search_properties' %}">
                     {% csrf_token %}
-                    <input class="form-control me-2" type="search" placeholder="Search by Postcode" aria-label="Search" name="searched">
+                    <input class="form-control me-2" type="search" placeholder="Search by Postcode" aria-label="Search"
+                        name="searched">
                     <button class="btn btn-light" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </form>
             </div>
@@ -39,13 +52,13 @@
     </div>
 </div>
 
-<div class="row px-4 pt-2 mx-0">
+<div class="row px-4 pt-2 mx-0 my-2">
     <div class="col px-0 mx-0">
         <h2 class="mb-0 mt-2">Top Properties</h2>
     </div>
 </div>
-<div class="row mx-0">
-    <div class="col px-0 mx-2 my-2">
+<div class="row mx-0 card">
+    <div class="col px-2 my-2 card-body">
         <!-- Carousel code taken from Bootstrap v5.2 Docs-->
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
             <div class="carousel-indicators">
@@ -60,29 +73,35 @@
                 {% for property in property_list %}
                 {% if forloop.first %}
                 <div class="active carousel-item">
-                {% else %}
-                <div class="carousel-item">
-                {% endif %}
-                    <a href="{% url 'property_detail' property.slug %}" class="text-decoration-none">
-                        <img src="{{ property.images.url }}" class="d-block w-100"
-                        alt="Photo of property uploaded by user">
-                        <h5>{{ property.title }}</h5>
-                        <h6>The rating will go here</h6>
-                    </a>
+                    {% else %}
+                    <div class="carousel-item">
+                        {% endif %}
+                        <a href="{% url 'property_detail' property.slug %}" class="text-decoration-none">
+                            <img src="{{ property.images.url }}" class="card-img-top w-75"
+                                alt="Photo of property uploaded by user">
+                            <div class="carousel-caption d-none d-lg-block">
+                                <h5 class="card-title">{{ property.title }}</h5>
+                                <h6 class="card-text">The rating will go here</h6>
+                            </div>
+                            <div class="d-lg-none">
+                                <h5 class="card-title">{{ property.title }}</h5>
+                                <h6 class="card-text">The rating will go here</h6>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
                 </div>
-                {% endfor %}
+                <button class="carousel-control-prev carousel-control-btn" type="button"
+                    data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next carousel-control-btn" type="button"
+                    data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-                data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-                data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>        
+        </div>
     </div>
-</div>
-{% endblock %}
+    {% endblock %}
