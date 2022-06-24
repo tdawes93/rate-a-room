@@ -3,7 +3,8 @@
 <!--Header and Navbar Code-->
 {% block header %}
 <a href="#" class="d-none d-md-inline-block d-lg-none me-1"><i class="fa-solid fa-pencil fa-2x"></i></a>
-<a href="#" class="d-none d-lg-inline-block me-1 text-decoration-none"><i class="fa-solid fa-pencil fa-2x"></i>Review</a>
+<a href="#" class="d-none d-lg-inline-block me-1 text-decoration-none"><i
+        class="fa-solid fa-pencil fa-2x"></i>Review</a>
 <a href="#" class="d-none d-md-inline-block d-lg-none mx-1"><i class="fa-solid fa-heart fa-2x"></i></a>
 <a href="#" class="d-none d-lg-inline-block mx-1 text-decoration-none"><i class="fa-solid fa-heart fa-2x"></i>Likes</a>
 <a href="#" class="d-none d-md-inline-block d-lg-none mx-1"><i class="fa-solid fa-bell fa-2x"></i></a>
@@ -11,7 +12,8 @@
 <!--Logged in view differs as nav bar buttons change depending on user type-->
 {% if user.is_ll_or_ea %}
 <a href="#" class="d-none d-md-inline-block d-lg-none mx-1"><i class="fa-solid fa-plus fa-2x"></i></a>
-<a href="#" class="d-none d-lg-inline-block mx-1 text-decoration-none"><i class="fa-solid fa-plus fa-2x"></i>Add a property</a>
+<a href="#" class="d-none d-lg-inline-block mx-1 text-decoration-none"><i class="fa-solid fa-plus fa-2x"></i>Add a
+    property</a>
 {% endif %}
 <a href="#" class="d-inline-block"><i class="fa-solid fa-user fa-2x"></i></a>
 {% endblock %}
@@ -19,12 +21,21 @@
 <!--Main Content code-->
 {% block content %}
 {% if searched %}
-<h1>You searched for {{ searched }}</h1>
+<div class="row mx-2">
+    <div class="col">
+        <h1>You searched for {{ searched }}</h1>
+    </div>
+</div>
 
 {% for postcode in postcodes %}
-
-<a href=" {% url 'property_detail' postcode.slug %} ">{{ postcode }} - <img src="{{ postcode.images.url }}" alt="Image of property uploaded by landlord"></a>
-
+<div class="row mx-0">
+    <div class="col mx-2">
+        <a class="text-decoration-none" href=" {% url 'property_detail' postcode.slug %} ">{{ postcode }}
+        </a>
+    </div>
+    <div class="col me-2"><img class="w-100" src="{{ postcode.images.url }}" alt="Image of property uploaded by landlord">
+    </div>
+</div>
 {% endfor %}
 
 {% else %}
