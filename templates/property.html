@@ -32,7 +32,7 @@
         <h2>{{ property.title }}</h2>
     </div>
     <div class="col-4 text-end">
-        <a href="{% url 'add_review' %}" class="d-inline-block me-1"><i class="fa-solid fa-pencil fa-2x"></i></a>
+        <a href="{% url 'add_review' %}?slug={{ property.slug }}" class="d-inline-block me-1"><i class="fa-solid fa-pencil fa-2x"></i></a>
         <a href="#" class="d-inline-block mx-1"><i class="fa-solid fa-heart fa-2x"></i></a>
     </div>
 </div>

@@ -3,9 +3,9 @@
 <!--Header and Navbar Code-->
 {% block header %}
 <div class="nav-links">
-    <a href="{% url 'add_review' %}" class="d-none d-md-inline-block d-lg-none me-1"><i
+    <a href="{% url 'search_form' %}" class="d-none d-md-inline-block d-lg-none me-1"><i
             class="fa-solid fa-pencil "></i></a>
-    <a href="{% url 'add_review' %}" class="d-none d-lg-inline-block me-1 text-decoration-none"><i
+    <a href="{% url 'search_form' %}" class="d-none d-lg-inline-block me-1 text-decoration-none"><i
             class="fa-solid fa-pencil "></i> Review</a>
 </div>
 <div class="nav-links">
@@ -27,8 +27,14 @@
 
 <!--Main Content code-->
 {% block content %}
-<div class="row justify-content-center text-center position-absolute bottom-50 w-100 g-0">
-    <div class="col-8 col-md-6">
+<div class="row justify-content-center text-center">
+    <div class="col">
+        <h2>Share your experience,</h2>
+        <h2>write a review.</h2>
+    </div>
+</div>
+<div class="row my-5 justify-content-center text-center">
+    <div class="col-8">
         <form class="d-flex" role="search" method="POST" action="{% url 'search_properties_for_review' %}">
             {% csrf_token %}
             <input class="form-control me-2" type="search" placeholder="Search by Postcode" aria-label="Search"

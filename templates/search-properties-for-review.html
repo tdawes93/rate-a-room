@@ -3,9 +3,9 @@
 <!--Header and Navbar Code-->
 {% block header %}
 <div class="nav-links">
-    <a href="{% url 'add_review' %}" class="d-none d-md-inline-block d-lg-none me-1"><i
+    <a href="{% url 'search_form' %}" class="d-none d-md-inline-block d-lg-none me-1"><i
             class="fa-solid fa-pencil "></i></a>
-    <a href="{% url 'add_review' %}" class="d-none d-lg-inline-block me-1 text-decoration-none"><i
+    <a href="{% url 'search_form' %}" class="d-none d-lg-inline-block me-1 text-decoration-none"><i
             class="fa-solid fa-pencil "></i> Review</a>
 </div>
 <div class="nav-links">
@@ -30,20 +30,42 @@
 {% if searched %}
 <div class="row mx-2">
     <div class="col">
-        <h1>You searched for {{ searched }}</h1>
+        <h2>You searched for {{ searched }}</h2>
     </div>
 </div>
 
 {% for property in properties %}
-    <div class="row mx-0">
-        <div class="col mx-2">
-
-            <a href="{% url 'add_review' %}?slug={{ property.slug }}">{{ property.slug }}</a>
-        </div>
-        <div class="col me-2"><img class="w-100" src="{{ property.images.url }}"
+<div class="card">
+    <div class="row mx-0 d-flex">
+        <div class="col-4 my-2"><img class="thumbnail w-100" src="{{ property.images.url }}"
                 alt="Image of property uploaded by landlord">
         </div>
+        <div class="col-8">
+            <div class="row mt-4">
+                <div class="col-12">
+                    <a href="{% url 'add_review' %}?slug={{ property.slug }}" class="text-decoration-none"><h5>{{ property.title }}</h5></a>
+                </div>
+            </div>
+            <div class="row p-0">
+                <div class="col-4">
+                    <p>overall_rating</p>
+                </div>
+                <div class="col-4">
+                    <p>number of reviews</p>
+                </div>
+            </div>
+            <div class="row p-0">
+                <div class="col-12">
+                    <p>{{ property.street_address}},
+                        {% if property.address_street2 %}
+                        {{ property.address_street2 }}, {% endif %} {{ property.address_town }},
+                        {{ property.address_county }},
+                        {{ property.address_postcode }}, {{ property.address_country }}</p>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
 {% endfor %}
 
 {% else %}
