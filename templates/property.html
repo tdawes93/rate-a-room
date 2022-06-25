@@ -39,7 +39,8 @@
 </div>
 <div class="row m-2">
     <div class="col-4">{% for key, value in average_property_rating.items %}
-        {% if value|floatformat:0 == '1' %}
+        {% include 'star-rating.html' %}
+        <!-- {% if value|floatformat:0 == '1' %}
         <span class="fa fa-star rate-btn checked"></span>
         <span class="fa fa-star rate-btn"></span>
         <span class="fa fa-star rate-btn"></span>
@@ -69,7 +70,7 @@
         <span class="fa fa-star rate-btn checked"></span>
         <span class="fa fa-star rate-btn checked"></span>
         <span class="fa fa-star rate-btn checked"></span>
-        {% endif %}
+        {% endif %} -->
 
         {% endfor %}
     </div>
@@ -104,6 +105,26 @@
 <div class="row mx-0 d-none d-lg-flex">
     <div class="col-5 card">
         <h2 class="card-body">Ratings</h2>
+        <h4>Condition of property {% for key, value in average_condition.items %}
+            {% include 'star-rating.html' %}
+            {% endfor %}
+        </h4>
+        <h4>Quality of landlord {% for key, value in landlord_quality.items %}
+            {% include 'star-rating.html' %}
+            {% endfor %}
+        </h4>
+        <h4>Rate the neighbourhood {% for key, value in rate_neighbourhood.items %}
+            {% include 'star-rating.html' %}
+            {% endfor %}
+        </h4>
+        <h4>Value for money {% for key, value in value_for_money.items %}
+            {% include 'star-rating.html' %}
+            {% endfor %}
+        </h4>
+        <h4>Standard of amenities nearby {% for key, value in nearby_amenities.items %}
+            {% include 'star-rating.html' %}
+            {% endfor %}
+        </h4>
     </div>
     <div class="col-7 mx-auto p-2 card">
         <img src="{{ property.images.url }}" alt="Photo of rental uploaded by the landlord or estate agent"
