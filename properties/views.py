@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404, render
 from django.views import generic, View
+from django.db.models import Avg
 from .models import Property
 
 
@@ -29,6 +30,15 @@ class PropertyDetail(View):
         queryset = Property.objects.filter(status=1)
         property = get_object_or_404(queryset, slug=slug)
         reviews = property.reviews.order_by('date_reviewed')
+        review_count = reviews.all().count()
+        # property_rating = 0
+        # for review in reviews:
+        #     property_rating += int(review.overall_rating)
+        #     return property_rating
+        # overall_property_rating = int((property_rating)/(review_count))
+        average_property_rating = reviews.aggregate(Avg('overall_rating'))
+        print(average_property_rating)
+
 
         return render(
             request,
@@ -36,5 +46,7 @@ class PropertyDetail(View):
             {
                 'property': property,
                 'reviews': reviews,
+                'review_count': review_count,
+                'average_property_rating': average_property_rating,
             },
         )
