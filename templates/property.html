@@ -38,41 +38,11 @@
     </div>
 </div>
 <div class="row m-2">
-    <div class="col-4">{% for key, value in average_property_rating.items %}
-        {% include 'star-rating.html' %}
-        <!-- {% if value|floatformat:0 == '1' %}
-        <span class="fa fa-star rate-btn checked"></span>
-        <span class="fa fa-star rate-btn"></span>
-        <span class="fa fa-star rate-btn"></span>
-        <span class="fa fa-star rate-btn"></span>
-        <span class="fa fa-star rate-btn"></span>
-        {% elif value|floatformat:0 == '2' %}
-        <span class="fa fa-star rate-btn checked"></span>
-        <span class="fa fa-star rate-btn checked"></span>
-        <span class="fa fa-star rate-btn"></span>
-        <span class="fa fa-star rate-btn"></span>
-        <span class="fa fa-star rate-btn"></span>
-        {% elif value|floatformat:0 == '3' %}
-        <span class="fa fa-star rate-btn checked"></span>
-        <span class="fa fa-star rate-btn checked"></span>
-        <span class="fa fa-star rate-btn checked"></span>
-        <span class="fa fa-star rate-btn"></span>
-        <span class="fa fa-star rate-btn"></span>
-        {% elif value|floatformat:0 == '4' %}
-        <span class="fa fa-star rate-btn checked"></span>
-        <span class="fa fa-star rate-btn checked"></span>
-        <span class="fa fa-star rate-btn checked"></span>
-        <span class="fa fa-star rate-btn checked"></span>
-        <span class="fa fa-star rate-btn"></span>
-        {% elif value|floatformat:0 == '5' %}
-        <span class="fa fa-star rate-btn checked"></span>
-        <span class="fa fa-star rate-btn checked"></span>
-        <span class="fa fa-star rate-btn checked"></span>
-        <span class="fa fa-star rate-btn checked"></span>
-        <span class="fa fa-star rate-btn checked"></span>
-        {% endif %} -->
-
-        {% endfor %}
+    <div class="col-4">
+        <h4>{% for key, value in average_property_rating.items %}
+            {% include 'star-rating.html' %}
+            {% endfor %}
+        </h4>
     </div>
     <div class="col-8">
         {% if review_count == 1 %}
@@ -84,10 +54,12 @@
 </div>
 <div class="row m-2">
     <div class="col">
-        <a href="#" class="text-decoration-none"><i class="fa-solid fa-location-dot"></i> {{ property.street_address}},
-            {% if property.address_street2 %}
-            {{ property.address_street2 }}, {% endif %} {{ property.address_town }}, {{ property.address_county }},
-            {{ property.address_postcode }}, {{ property.address_country }}</a>
+        <a href="#" class="text-decoration-none">
+            <h4><i class="fa-solid fa-location-dot"></i> {{ property.street_address}},
+                {% if property.address_street2 %}
+                {{ property.address_street2 }}, {% endif %} {{ property.address_town }}, {{ property.address_county }},
+                {{ property.address_postcode }}, {{ property.address_country }}</h4>
+        </a>
     </div>
 </div>
 <div class="row mx-0 d-md-none">
@@ -104,27 +76,66 @@
 </div>
 <div class="row mx-0 d-none d-lg-flex">
     <div class="col-5 card">
-        <h2 class="card-body">Ratings</h2>
-        <h4>Condition of property {% for key, value in average_condition.items %}
-            {% include 'star-rating.html' %}
-            {% endfor %}
-        </h4>
-        <h4>Quality of landlord {% for key, value in landlord_quality.items %}
-            {% include 'star-rating.html' %}
-            {% endfor %}
-        </h4>
-        <h4>Rate the neighbourhood {% for key, value in rate_neighbourhood.items %}
-            {% include 'star-rating.html' %}
-            {% endfor %}
-        </h4>
-        <h4>Value for money {% for key, value in value_for_money.items %}
-            {% include 'star-rating.html' %}
-            {% endfor %}
-        </h4>
-        <h4>Standard of amenities nearby {% for key, value in nearby_amenities.items %}
-            {% include 'star-rating.html' %}
-            {% endfor %}
-        </h4>
+        <div class="row">
+            <div class="col">
+                <h2 class="card-body">Ratings</h2>
+            </div>
+        </div>
+        <div class="row flex my-2 ms-2">
+            <div class="col-5">
+                <h5>Condition of property </h5>
+            </div>
+            <div class="col-7">
+                <h5> {% for key, value in average_condition.items %}
+                    {% include 'star-rating.html' %}
+                    {% endfor %}
+                </h5>
+            </div>
+        </div>
+        <div class="row flex my-2 ms-2">
+            <div class="col-5">
+                <h5>Quality of landlord </h5>
+            </div>
+            <div class="col-7">
+                <h5>{% for key, value in landlord_quality.items %}
+                    {% include 'star-rating.html' %}
+                    {% endfor %}
+                </h5>
+            </div>
+        </div>
+        <div class="row flex my-2 ms-2">
+            <div class="col-5">
+                <h5>Rate the area </h5>
+            </div>
+            <div class="col-7">
+                <h5>{% for key, value in rate_neighbourhood.items %}
+                    {% include 'star-rating.html' %}
+                    {% endfor %}
+                </h5>
+            </div>
+        </div>
+        <div class="row flex my-2 ms-2">
+            <div class="col-5">
+                <h5>Value for money </h5>
+            </div>
+            <div class="col-7">
+                <h5>{% for key, value in value_for_money.items %}
+                    {% include 'star-rating.html' %}
+                    {% endfor %}
+                </h5>
+            </div>
+        </div>
+        <div class="row flex my-2 ms-2">
+            <div class="col-5">
+                <h5>Standard of amenities nearby </h5>
+            </div>
+            <div class="col-7">
+                <h5>{% for key, value in nearby_amenities.items %}
+                    {% include 'star-rating.html' %}
+                    {% endfor %}
+                </h5>
+            </div>
+        </div>
     </div>
     <div class="col-7 mx-auto p-2 card">
         <img src="{{ property.images.url }}" alt="Photo of rental uploaded by the landlord or estate agent"

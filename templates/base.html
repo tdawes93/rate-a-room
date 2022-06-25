@@ -62,6 +62,9 @@
     <!--The footer does not change throughout the site.
         The margin-top auto bootstrap class makes it stick to the bottom of the screen-->
     <footer class=" container-lg mt-auto mb-1 px-md-5">
+        {% for property in properties %}
+        <p>{{ property.rate_neighbourhood }}</p>
+        {% endfor %}
         <div class="row mt-5">
             <div class="col">
                 <div class="accordion" id="accordionFooter">
