@@ -45,8 +45,28 @@
                     </h1>
                 </div>
                 <div class="col-3 col-md-6 text-end">
-                    {% block header %}
-                    {% endblock %}
+
+                    <div class="nav-links">
+                        <a href="{% url 'search_form' %}" class="d-none d-md-inline-block d-lg-none me-1"><i
+                                class="fa-solid fa-pencil "></i></a>
+                        <a href="{% url 'search_form' %}" class="d-none d-lg-inline-block me-1 text-decoration-none"><i
+                                class="fa-solid fa-pencil "></i> Review</a>
+                    </div>
+                    <div class="nav-links">
+                        <a href="#" class="d-none d-md-inline-block d-lg-none mx-1"><i class="fa-solid fa-heart "></i></a>
+                        <a href="#" class="d-none d-lg-inline-block mx-1 text-decoration-none"><i class="fa-solid fa-heart"></i> Likes</a>
+                    </div>
+                    <div class="nav-links">
+                        <a href="#" class="d-none d-md-inline-block d-lg-none mx-1"><i class="fa-solid fa-bell "></i></a>
+                        <a href="#" class="d-none d-lg-inline-block mx-1 text-decoration-none"><i class="fa-solid fa-bell "></i> Alerts</a>
+                    </div>
+                    <!--Logged in view differs as nav bar buttons change depending on user type-->
+                    {% if user.is_ll_or_ea %}
+                    <a href="{% url 'properties/add-property' %}" class="d-none d-md-inline-block d-lg-none mx-1"><i class="fa-solid fa-plus fa-2x"></i></a>
+                    <a href="{% url 'properties/add-property' %}" class="d-none d-lg-inline-block mx-1 text-decoration-none"><i class="fa-solid fa-plus fa-2x"></i>Add a property</a>
+                    {% endif %}
+                    <a href="#" class="d-inline-block"><i class="fa-solid fa-user fa-2x"></i></a>
+
                 </div>
             </nav>
         </div>

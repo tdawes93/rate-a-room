@@ -1,30 +1,5 @@
 {% extends 'base.html' %}
 
-<!--Header and navbar code-->
-{% block header %}
-<div class="nav-links">
-    <a href="#" class="d-md-none"><i class="fa-solid fa-arrow-right-to-bracket "></i></a>
-</div>
-<div class="nav-links">
-    <a href="{% url 'search_form' %}" class="d-none d-md-inline-block d-lg-none me-1"><i
-            class="fa-solid fa-pencil "></i></a>
-    <a href="{% url 'search_form' %}" class="d-none d-lg-inline-block me-1 text-decoration-none"><i
-            class="fa-solid fa-pencil "></i> Review</a>
-</div>
-<div class="nav-links">
-    <a href="#" class="d-none d-md-inline-block d-lg-none mx-1"><i class="fa-solid fa-heart "></i></a>
-    <a href="#" class="d-none d-lg-inline-block mx-1 text-decoration-none"><i class="fa-solid fa-heart"></i> Likes</a>
-</div>
-<div class="nav-links">
-    <a href="#" class="d-none d-md-inline-block d-lg-none mx-1"><i class="fa-solid fa-bell "></i></a>
-    <a href="#" class="d-none d-lg-inline-block mx-1 text-decoration-none"><i class="fa-solid fa-bell "></i> Alerts</a>
-</div>
-<div class="nav-links">
-    <button class="d-none d-lg-inline-block btn-lg mx-1 nav-btn">Register</button></div>
-<div class="nav-links">
-    <button class="d-none d-md-inline-block btn-lg ms-1 nav-btn">Sign in</button></div>
-{% endblock %}
-
 <!--Main Content code-->
 {% block content %}
 <div class="row mx-0">
