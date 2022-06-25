@@ -172,7 +172,87 @@
 </div>
 <div class="row my-2 mx-0 d-none d-md-flex d-lg-none">
     <div class="col-7 card">
-        <h2 class="card-body">Ratings</h2>
+        <div class="row">
+            <div class="col">
+                <h2 class="card-body">Ratings</h2>
+            </div>
+        </div>
+        <div class="row flex my-2 ms-2">
+            <div class="col-5">
+                <h5>Condition of property </h5>
+            </div>
+            <div class="col-7">
+                <h5>
+                    {% for property in properties %}
+                    {% if property.slug == slug %}
+                    {% for key, value in property.average_condition.items %}
+                    {% include 'star-rating.html' %}
+                    {% endfor %}
+                    {% endif %}
+                    {% endfor %}
+                </h5>
+            </div>
+        </div>
+        <div class="row flex my-2 ms-2">
+            <div class="col-5">
+                <h5>Quality of landlord </h5>
+            </div>
+            <div class="col-7">
+                <h5>{% for property in properties %}
+                    {% if property.slug == slug %}
+                    {% for key, value in property.landlord_quality.items %}
+                    {% include 'star-rating.html' %}
+                    {% endfor %}
+                    {% endif %}
+                    {% endfor %}
+                </h5>
+            </div>
+        </div>
+        <div class="row flex my-2 ms-2">
+            <div class="col-5">
+                <h5>Rate the area </h5>
+            </div>
+            <div class="col-7">
+                <h5>{% for property in properties %}
+                    {% if property.slug == slug %}
+                    {% for key, value in property.rate_neighbourhood.items %}
+                    {% include 'star-rating.html' %}
+                    {% endfor %}
+                    {% endif %}
+                    {% endfor %}
+                </h5>
+            </div>
+        </div>
+        <div class="row flex my-2 ms-2">
+            <div class="col-5">
+                <h5>Value for money </h5>
+            </div>
+            <div class="col-7">
+                <h5>{% for property in properties %}
+                    {% if property.slug == slug %}
+                    {% for key, value in property.value_for_money.items %}
+                    {% include 'star-rating.html' %}
+                    {% endfor %}
+                    {% endif %}
+                    {% endfor %}
+                </h5>
+            </div>
+        </div>
+        <div class="row flex my-2 ms-2">
+            <div class="col-5">
+                <h5>Standard of amenities nearby </h5>
+            </div>
+            <div class="col-7">
+                <h5>{% for property in properties %}
+                    {% if property.slug == slug %}
+                    {% for key, value in property.nearby_amenities.items %}
+                    {% include 'star-rating.html' %}
+                    {% endfor %}
+                    {% endif %}
+                    {% endfor %}
+                </h5>
+            </div>
+        </div>
     </div>
     <div class="col-5 card">
         <h2 class="card-body">Location</h2>

@@ -61,16 +61,9 @@
     <div class="col px-2 my-2 card-body">
         <!-- Carousel code taken from Bootstrap v5.2 Docs-->
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-                    aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                    aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                    aria-label="Slide 3"></button>
-            </div>
+
             <div class="carousel-inner text-center">
-                {% for property in property_list %}
+                {% for property in properties %}
                 {% if forloop.first %}
                 <div class="active carousel-item">
                     {% else %}
@@ -81,11 +74,16 @@
                                 alt="Photo of property uploaded by user">
                             <div class="carousel-caption d-none d-lg-block">
                                 <h5 class="card-title">{{ property.title }}</h5>
-                                <h6 class="card-text">The rating will go here</h6>
+                                <h6 class="card-text"></h6>
+                                {% for key, value in property.average_property_rating.items %}
+                                {% include 'star-rating.html' %}
+                                {% endfor %}</h6>
                             </div>
                             <div class="d-lg-none">
                                 <h5 class="card-title">{{ property.title }}</h5>
-                                <h6 class="card-text">The rating will go here</h6>
+                                <h6 class="card-text">{% for key, value in property.average_property_rating.items %}
+                                    {% include 'star-rating.html' %}
+                                    {% endfor %}</h6>
                             </div>
                         </a>
                     </div>

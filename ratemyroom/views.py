@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.db.models import Q
 from django.views import generic, View
 from properties.models import Property
+from properties.context import get_properties
 
 
 class PropertyList(generic.ListView):
@@ -11,6 +12,7 @@ class PropertyList(generic.ListView):
     model = Property
     queryset = Property.objects.filter(status=1)
     template_name = 'index.html'
+    # properties = get_properties(request)
 
 
 class SearchProperty(View):
@@ -22,7 +24,7 @@ class SearchProperty(View):
         doc
         """
         searched = request.POST.get('searched')
-        properties = Property.objects.filter(Q(
+        searched_properties = Property.objects.filter(Q(
             address_postcode__icontains=searched)
             | Q(address_town__icontains=searched)
             | Q(address_county__icontains=searched)
@@ -33,7 +35,7 @@ class SearchProperty(View):
             'search-properties.html',
             {
                 'searched': searched,
-                'properties': properties,
+                'searched_properties': searched_properties,
             },
             )
 
@@ -58,7 +60,7 @@ class SearchPropertyForReview(View):
         doc
         """
         searched = request.POST.get('searched')
-        properties = Property.objects.filter(Q(
+        searched_properties = Property.objects.filter(Q(
             address_postcode__icontains=searched)
             | Q(address_town__icontains=searched)
             | Q(address_county__icontains=searched)
@@ -69,7 +71,7 @@ class SearchPropertyForReview(View):
             'search-properties-for-review.html',
             {
                 'searched': searched,
-                'properties': properties,
+                'searched_properties': searched_properties,
             },
             )
 

@@ -34,7 +34,7 @@
     </div>
 </div>
 
-{% for property in properties %}
+{% for property in searched_properties %}
 <div class="card">
     <div class="row mx-0 d-flex">
         <div class="col-4 my-2"><img class="thumbnail w-100" src="{{ property.images.url }}"
@@ -43,15 +43,31 @@
         <div class="col-8">
             <div class="row mt-4">
                 <div class="col-12">
-                    <a href="{% url 'add_review' %}?slug={{ property.slug }}" class="text-decoration-none"><h5>{{ property.title }}</h5></a>
+                    <a href="{% url 'add_review' %}?slug={{ property.slug }}" class="text-decoration-none">
+                        <h5>{{ property.title }}</h5>
+                    </a>
                 </div>
             </div>
             <div class="row p-0">
                 <div class="col-4">
-                    <p>overall_rating</p>
+                    {% for p in properties %}
+                    {% if p.slug == property.slug %}
+                    <h4>{% for key, value in p.average_property_rating.items %}</h4>
+                    {% include 'star-rating.html' %}
+                    {% endfor %}
+                    {% endif %}
+                    {% endfor %}
                 </div>
                 <div class="col-4">
-                    <p>number of reviews</p>
+                    {% for p in properties %}
+                    {% if p.slug == property.slug %}
+                    {% if p.review_count == 1 %}
+                    <h4>{{ p.review_count }} review</h4>
+                    {% else %}
+                    <h4>{{ p.review_count }} reviews</h4>
+                    {% endif %}
+                    {% endif %}
+                    {% endfor %}
                 </div>
             </div>
             <div class="row p-0">
