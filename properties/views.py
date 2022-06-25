@@ -31,11 +31,6 @@ class PropertyDetail(View):
         property = get_object_or_404(queryset, slug=slug)
         reviews = property.reviews.order_by('date_reviewed')
         review_count = reviews.all().count()
-        # property_rating = 0
-        # for review in reviews:
-        #     property_rating += int(review.overall_rating)
-        #     return property_rating
-        # overall_property_rating = int((property_rating)/(review_count))
         average_property_rating = reviews.aggregate(Avg('overall_rating'))
         print(average_property_rating)
 
