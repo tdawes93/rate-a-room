@@ -10,9 +10,13 @@ def get_properties(request):
         reviews = item.reviews.order_by('date_reviewed')
         item.review_count = reviews.all().count()
         item.average_property_rating = reviews.aggregate(Avg('overall_rating'))
-        item.average_condition = reviews.aggregate(Avg('condition_of_property'))
+        item.average_condition = reviews.aggregate(Avg(
+            'condition_of_property'
+            ))
         item.landlord_quality = reviews.aggregate(Avg('quality_of_landlord'))
-        item.rate_neighbourhood = reviews.aggregate(Avg('rate_the_neighbourhood'))
+        item.rate_neighbourhood = reviews.aggregate(Avg(
+            'rate_the_neighbourhood'
+            ))
         item.value_for_money = reviews.aggregate(Avg('value_for_money'))
         item.nearby_amenities = reviews.aggregate(Avg(
             'standard_of_amenities_nearby'

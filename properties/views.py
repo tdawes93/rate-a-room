@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404, render
 from django.views import generic, View
 from django.db.models import Avg
 from .models import Property
+from .context import get_properties
 
 
 class AddProperty(generic.ListView):
@@ -30,18 +31,13 @@ class PropertyDetail(View):
         queryset = Property.objects.filter(status=1)
         property = get_object_or_404(queryset, slug=slug)
         reviews = property.reviews.order_by('date_reviewed')
-        review_count = reviews.all().count()
-        average_property_rating = reviews.aggregate(Avg('overall_rating'))
-        print(average_property_rating)
-
 
         return render(
             request,
             'property.html',
             {
+                'slug': slug,
                 'property': property,
                 'reviews': reviews,
-                'review_count': review_count,
-                'average_property_rating': average_property_rating,
             },
         )

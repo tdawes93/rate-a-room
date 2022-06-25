@@ -22,8 +22,8 @@ class Property(models.Model):
         (BUNGALOW, 'Bungalow'),
         (SHARE, 'House share'),
     ]
-    DRAFT = 'draft'
-    PUBLISHED = 'published'
+    DRAFT = '0'
+    PUBLISHED = '1'
     STATUS = [
         (DRAFT, 'Draft'),
         (PUBLISHED, 'Published'),
@@ -70,7 +70,7 @@ class Property(models.Model):
     type_of_property = models.CharField(
         max_length=30,
         choices=HOUSING_CHOICES,
-        default=1,
+        default=0,
         blank=False
     )
     for_rent = models.BooleanField(default=False)
@@ -90,10 +90,9 @@ class Property(models.Model):
     status = models.CharField(
         max_length=30,
         choices=STATUS,
-        default=DRAFT,
+        default=1,
         blank=False
     )
-    # overall_rating = models.ForeignKey(to, on_delete)
 
     class Meta:
         """

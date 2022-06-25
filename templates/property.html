@@ -39,17 +39,24 @@
 </div>
 <div class="row m-2">
     <div class="col-4">
-        <h4>{% for key, value in average_property_rating.items %}
-            {% include 'star-rating.html' %}
-            {% endfor %}
-        </h4>
+        {% for property in properties %}
+        {% if property.slug == slug %}
+        <h4>{% for key, value in property.average_property_rating.items %}</h4>
+        {% include 'star-rating.html' %}
+        {% endfor %}
+        {% endif %}
+        {% endfor %}
     </div>
     <div class="col-8">
-        {% if review_count == 1 %}
-        <h4>{{ review_count }} review</h4>
+        {% for property in properties %}
+        {% if property.slug == slug %}
+        {% if property.review_count == 1 %}
+        <h4>{{ property.review_count }} review</h4>
         {% else %}
-        <h4>{{ review_count }} reviews</h4>
+        <h4>{{ property.review_count }} reviews</h4>
         {% endif %}
+        {% endif %}
+        {% endfor %}
     </div>
 </div>
 <div class="row m-2">
@@ -86,8 +93,13 @@
                 <h5>Condition of property </h5>
             </div>
             <div class="col-7">
-                <h5> {% for key, value in average_condition.items %}
+                <h5>
+                    {% for property in properties %}
+                    {% if property.slug == slug %}
+                    {% for key, value in property.average_condition.items %}
                     {% include 'star-rating.html' %}
+                    {% endfor %}
+                    {% endif %}
                     {% endfor %}
                 </h5>
             </div>
@@ -97,8 +109,12 @@
                 <h5>Quality of landlord </h5>
             </div>
             <div class="col-7">
-                <h5>{% for key, value in landlord_quality.items %}
+                <h5>{% for property in properties %}
+                    {% if property.slug == slug %}
+                    {% for key, value in property.landlord_quality.items %}
                     {% include 'star-rating.html' %}
+                    {% endfor %}
+                    {% endif %}
                     {% endfor %}
                 </h5>
             </div>
@@ -108,8 +124,12 @@
                 <h5>Rate the area </h5>
             </div>
             <div class="col-7">
-                <h5>{% for key, value in rate_neighbourhood.items %}
+                <h5>{% for property in properties %}
+                    {% if property.slug == slug %}
+                    {% for key, value in property.rate_neighbourhood.items %}
                     {% include 'star-rating.html' %}
+                    {% endfor %}
+                    {% endif %}
                     {% endfor %}
                 </h5>
             </div>
@@ -119,8 +139,12 @@
                 <h5>Value for money </h5>
             </div>
             <div class="col-7">
-                <h5>{% for key, value in value_for_money.items %}
+                <h5>{% for property in properties %}
+                    {% if property.slug == slug %}
+                    {% for key, value in property.value_for_money.items %}
                     {% include 'star-rating.html' %}
+                    {% endfor %}
+                    {% endif %}
                     {% endfor %}
                 </h5>
             </div>
@@ -130,8 +154,12 @@
                 <h5>Standard of amenities nearby </h5>
             </div>
             <div class="col-7">
-                <h5>{% for key, value in nearby_amenities.items %}
+                <h5>{% for property in properties %}
+                    {% if property.slug == slug %}
+                    {% for key, value in property.nearby_amenities.items %}
                     {% include 'star-rating.html' %}
+                    {% endfor %}
+                    {% endif %}
                     {% endfor %}
                 </h5>
             </div>
