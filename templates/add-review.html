@@ -37,162 +37,162 @@
         <h6>Your honest reviews help new tenants find the best bang for their buck and promote the best landlords!</h6>
     </div>
 </div>
+<div class="card">
+    <form action="{% url 'property_detail' property.slug %}" method="POST" class="rate-form">
+        {% csrf_token %}
 
-<form action="" method="POST" class="rate-form">
-    {% csrf_token %}
+        <div class="row m-2">
+            <div class="col">
+                <label for="property">
+                    <h4>Your property:</h4>
+                </label>
+            </div>
+        </div>
+        <div class="row mx-2 justify-content-left">
+            <div class="col">
+                <h5 id="property">{{ property.title }}</h5>
+            </div>
+        </div>
+        <div class="row m-2">
+            <div class="col">
+                <label for="title">
+                    <h4>Title of your review:</h4>
+                </label>
+            </div>
+        </div>
+        <div class="row mx-2 justify-content-left">
+            <div class="col">
+                <input class="form-control me-2" type="text" aria-label="Title of your review" name="title" id="title">
+            </div>
+        </div>
+        <div class="row m-2">
+            <div class="col">
+                <label for="content">
+                    <h4>Your review:</h4>
+                </label>
+            </div>
+        </div>
+        <div class="row mx-2 justify-content-left">
+            <div class="col">
+                <textarea class="form-control me-2" type="text" aria-label="Title of your review" name="content"
+                    id="content"></textarea>
+            </div>
+        </div>
+        <div class="row m-2">
+            <div class="col">
+                <h4>When did you rent this property?</h4>
+                </label>
+            </div>
+        </div>
+        <div class="row mx-2 justify-content-left">
+            <div class="col-2 text-end">
+                <label for="date_rented_from">
+                    <h6>from:</h6>
+                </label>
+            </div>
+            <div class="col-4">
+                <input class="form-control me-2" type="date" aria-label="Date rented from" name="date_rented_from"
+                    id="date_rented_from">
+            </div>
+            <div class="col-2 text-end">
+                <label for="date_rented_to">
+                    <h6>to:</h6>
+                </label>
+            </div>
+            <div class="col-4">
+                <input class="form-control me-2" type="date" aria-label="Date rented to" name="date_rented_to"
+                    id="date_rented_to">
+            </div>
+        </div>
+        <div class="row m-2">
+            <div class="col">
+                <label for="condition_of_property">
+                    <h4>Condition of property:</h4>
+                </label>
+            </div>
+            <div class="col">
+                <button type="button" class="fa fa-star rate-btn" id="1.1"></button>
+                <button type="button" class="fa fa-star rate-btn" id="2.1"></button>
+                <button type="button" class="fa fa-star rate-btn" id="3.1"></button>
+                <button type="button" class="fa fa-star rate-btn" id="4.1"></button>
+                <button type="button" class="fa fa-star rate-btn" id="5.1"></button>
+            </div>
+        </div>
+        <div class="row m-2">
+            <div class="col">
+                <label for="quality_of_landlord">
+                    <h4>Quality of landlord:</h4>
+                </label>
+            </div>
+            <div class="col">
+                <button type="button" class="fa fa-star rate-btn" id="1.2"></button>
+                <button type="button" class="fa fa-star rate-btn" id="2.2"></button>
+                <button type="button" class="fa fa-star rate-btn" id="3.2"></button>
+                <button type="button" class="fa fa-star rate-btn" id="4.2"></button>
+                <button type="button" class="fa fa-star rate-btn" id="5.2"></button>
+            </div>
+        </div>
+        <div class="row m-2">
+            <div class="col">
+                <label for="rate_the_neighbourhood">
+                    <h4>Rate the neighbourhood:</h4>
+                </label>
+            </div>
+            <div class="col">
+                <button type="button" class="fa fa-star rate-btn" id="1.3"></button>
+                <button type="button" class="fa fa-star rate-btn" id="2.3"></button>
+                <button type="button" class="fa fa-star rate-btn" id="3.3"></button>
+                <button type="button" class="fa fa-star rate-btn" id="4.3"></button>
+                <button type="button" class="fa fa-star rate-btn" id="5.3"></button>
+            </div>
+        </div>
+        <div class="row m-2">
+            <div class="col">
+                <label for="value_for_money">
+                    <h4>Value for money:</h4>
+                </label>
+            </div>
+            <div class="col">
+                <button type="button" class="fa fa-star rate-btn" id="1.4"></button>
+                <button type="button" class="fa fa-star rate-btn" id="2.4"></button>
+                <button type="button" class="fa fa-star rate-btn" id="3.4"></button>
+                <button type="button" class="fa fa-star rate-btn" id="4.4"></button>
+                <button type="button" class="fa fa-star rate-btn" id="5.4"></button>
+            </div>
+        </div>
+        <div class="row m-2">
+            <div class="col">
+                <label for="standard_of_amenities_nearby">
+                    <h4>Standard of amenities nearby:</h4>
+                </label>
+            </div>
+            <div class="col">
+                <button type="button" class="fa fa-star rate-btn" id="1.5"></button>
+                <button type="button" class="fa fa-star rate-btn" id="2.5"></button>
+                <button type="button" class="fa fa-star rate-btn" id="3.5"></button>
+                <button type="button" class="fa fa-star rate-btn" id="4.5"></button>
+                <button type="button" class="fa fa-star rate-btn" id="5.5"></button>
+            </div>
+        </div>
+        <div class="row mx-2">
+            <div class="col">
+                <label for="images">
+                    <h4>Images:</h4>
+                </label>
+            </div>
+            <div class="col">
+                <input class="form-control me-2" type="image" aria-label="Images to upload" name="images" id="images">
+            </div>
+        </div>
+        <div class="row mx-2 justify-content-center">
+            <div class="col col-lg-6">
+                <button class="form-control m-2 nav-btn type=" submit" name="add" value="add">
+                    Add Review
+                </button>
+            </div>
+        </div>
 
-    <div class="row m-2">
-        <div class="col">
-            <label for="property">
-                <h4>Select your property</h4>
-            </label>
-        </div>
-    </div>
-    <div class="row mx-2 justify-content-left">
-        <div class="col">
-            <h5>{{ property.title }}</h5>
-        </div>
-    </div>
-    <div class="row m-2">
-        <div class="col">
-            <label for="title">
-                <h4>Title of your review</h4>
-            </label>
-        </div>
-    </div>
-    <div class="row mx-2 justify-content-left">
-        <div class="col">
-            <input class="form-control me-2" type="text" aria-label="Title of your review" name="title" id="title">
-        </div>
-    </div>
-    <div class="row m-2">
-        <div class="col">
-            <label for="content">
-                <h4>Your review</h4>
-            </label>
-        </div>
-    </div>
-    <div class="row mx-2 justify-content-left">
-        <div class="col">
-            <textarea class="form-control me-2" type="text" aria-label="Title of your review" name="content"
-                id="content"></textarea>
-        </div>
-    </div>
-    <div class="row m-2">
-        <div class="col">
-            <h4>When did you rent this property?</h4>
-            </label>
-        </div>
-    </div>
-    <div class="row mx-2 justify-content-left">
-        <div class="col-2 text-end">
-            <label for="date_rented_from">
-                <h6>from:</h6>
-            </label>
-        </div>
-        <div class="col-4">
-            <input class="form-control me-2" type="date" aria-label="Date rented from" name="date_rented_from"
-                id="date_rented_from">
-        </div>
-        <div class="col-2 text-end">
-            <label for="date_rented_to">
-                <h6>to:</h6>
-            </label>
-        </div>
-        <div class="col-4">
-            <input class="form-control me-2" type="date" aria-label="Date rented to" name="date_rented_to"
-                id="date_rented_to">
-        </div>
-    </div>
-    <div class="row m-2">
-        <div class="col">
-            <label for="condition_of_property">
-                <h4>Condition of property</h4>
-            </label>
-        </div>
-        <div class="col">
-            <button type="button" class="fa fa-star rate-btn" id="1.1"></button>
-            <button type="button" class="fa fa-star rate-btn" id="2.1"></button>
-            <button type="button" class="fa fa-star rate-btn" id="3.1"></button>
-            <button type="button" class="fa fa-star rate-btn" id="4.1"></button>
-            <button type="button" class="fa fa-star rate-btn" id="5.1"></button>
-        </div>
-    </div>
-    <div class="row m-2">
-        <div class="col">
-            <label for="quality_of_landlord">
-                <h4>Quality of landlord</h4>
-            </label>
-        </div>
-        <div class="col">
-            <button type="button" class="fa fa-star rate-btn" id="1.2"></button>
-            <button type="button" class="fa fa-star rate-btn" id="2.2"></button>
-            <button type="button" class="fa fa-star rate-btn" id="3.2"></button>
-            <button type="button" class="fa fa-star rate-btn" id="4.2"></button>
-            <button type="button" class="fa fa-star rate-btn" id="5.2"></button>
-        </div>
-    </div>
-    <div class="row m-2">
-        <div class="col">
-            <label for="rate_the_neighbourhood">
-                <h4>Rate the neighbourhood</h4>
-            </label>
-        </div>
-        <div class="col">
-            <button type="button" class="fa fa-star rate-btn" id="1.3"></button>
-            <button type="button" class="fa fa-star rate-btn" id="2.3"></button>
-            <button type="button" class="fa fa-star rate-btn" id="3.3"></button>
-            <button type="button" class="fa fa-star rate-btn" id="4.3"></button>
-            <button type="button" class="fa fa-star rate-btn" id="5.3"></button>
-        </div>
-    </div>
-    <div class="row m-2">
-        <div class="col">
-            <label for="value_for_money">
-                <h4>Value for money</h4>
-            </label>
-        </div>
-        <div class="col">
-            <button type="button" class="fa fa-star rate-btn" id="1.4"></button>
-            <button type="button" class="fa fa-star rate-btn" id="2.4"></button>
-            <button type="button" class="fa fa-star rate-btn" id="3.4"></button>
-            <button type="button" class="fa fa-star rate-btn" id="4.4"></button>
-            <button type="button" class="fa fa-star rate-btn" id="5.4"></button>
-        </div>
-    </div>
-    <div class="row m-2">
-        <div class="col">
-            <label for="standard_of_amenities_nearby">
-                <h4>Standard of amenities nearby</h4>
-            </label>
-        </div>
-        <div class="col">
-            <button type="button" class="fa fa-star rate-btn" id="1.5"></button>
-            <button type="button" class="fa fa-star rate-btn" id="2.5"></button>
-            <button type="button" class="fa fa-star rate-btn" id="3.5"></button>
-            <button type="button" class="fa fa-star rate-btn" id="4.5"></button>
-            <button type="button" class="fa fa-star rate-btn" id="5.5"></button>
-        </div>
-    </div>
-    <div class="row mx-2">
-        <div class="col">
-            <label for="images">
-                <h4>Images</h4>
-            </label>
-        </div>
-        <div class="col">
-            <input class="form-control me-2" type="image" aria-label="Images to upload" name="images" id="images">
-        </div>
-    </div>
-    <div class="row mx-2">
-        <div class="col">
-            <button class="form-control m-2" type="submit" name="add" value="add">
-                Add Review
-            </button>
-        </div>
-    </div>
-
-</form>
-
+    </form>
+</div>
 
 {% endblock %}

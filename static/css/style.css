@@ -67,3 +67,23 @@ a:hover {
     background-color: inherit !important;
     border: 0 !important;
 }
+
+.teaser-see-more {
+    color: #171C1F;
+}
+
+/*Forms*/
+.card {
+    border: solid #171C1F;
+}
+
+
+/* Footer */
+.accordion-button {
+    border: solid #171C1F;
+}
+
+.accordion-button:hover {
+    background-color: #A5A640;
+    border: solid #A5A640;
+}

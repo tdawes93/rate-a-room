@@ -1,4 +1,5 @@
 // Code from taken and edited from Pyplane Youtube channel
+// This Javascript file is the code for the star rating system used in the forms
 
 //Star rating for condition of property
 const oneOne = document.getElementById('1.1');
