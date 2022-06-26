@@ -113,5 +113,8 @@ class Property(models.Model):
     def __str__(self):
         return f'{self.title}'
 
+    def number_of_likes(self):
+        return self.likes.count()
+
     def get_absolute_url(self):
         return reverse('property_detail', kwargs={'slug': self.slug})

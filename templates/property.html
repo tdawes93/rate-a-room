@@ -9,7 +9,22 @@
     <div class="col-4 text-end">
         <a href="{% url 'add_review' %}?slug={{ property.slug }}" class="d-inline-block me-1"><i
                 class="fa-solid fa-pencil fa-2x"></i></a>
-        <a href="#" class="d-inline-block mx-1"><i class="fa-solid fa-heart fa-2x"></i></a>
+            {% if user.is_authenticated %}
+            <form action="{% url 'property_like' property.slug %}" class="d-inline" method="POST">
+                {% csrf_token %}
+                {% if liked %}
+                <button class="liked-btn" type="submit" name="property_id" value="{{ property.slug }}"><i
+                        class="fas fa-heart fa-2x"></i></button>
+                {% else %}
+                <button class="un-liked-btn" type="submit" name="property_id" value="{{ property.slug }}"><i
+                        class="fas fa-heart fa-2x "></i></button>
+                {% endif %}
+            </form>
+            {% else %}
+            <i class="far fa-heart fa-2x"></i>
+            {% endif %}
+            <span class="text-secondary">{{ property.number_of_likes }}</span>
+
     </div>
 </div>
 <div class="row m-2">

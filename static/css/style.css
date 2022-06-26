@@ -5,7 +5,7 @@ body {
 }
 
 a {
-    color:#171C1F;
+    color: #171C1F;
 }
 
 a:hover {
@@ -17,13 +17,13 @@ a:hover {
 }
 
 .nav-links a i {
-   padding-top: 1rem;
-   font-size: 150%;
+    padding-top: 1rem;
+    font-size: 150%;
 }
 
 .nav-links:hover a {
     text-decoration: underline;
-    color:#A5A640;
+    color: #A5A640;
 
 }
 
@@ -35,6 +35,21 @@ a:hover {
 
 }
 
+.un-liked-btn {
+    border: none;
+    background-color: #fff;
+}
+
+.un-liked-btn:hover {
+    color: #A5A640;
+}
+
+.liked-btn {
+    color: #A5A640;
+    background-color: #fff;
+    border: none;
+}
+
 .nav-btn:hover {
     background-color: #A5A640;
     border: solid #A5A640;
@@ -44,25 +59,25 @@ a:hover {
     font-size: 10rem;
 }
 
- /*, .carousel-indicators */
+/*, .carousel-indicators */
 .carousel-control-next,
 .carousel-control-prev {
     filter: invert(100%);
 }
 
 .carousel-caption {
-   background: rgba(0, 0, 0, 0.3);
-   color: #fff;
-   opacity: 0;
+    background: rgba(0, 0, 0, 0.3);
+    color: #fff;
+    opacity: 0;
 }
 
 .carousel-item:hover .carousel-caption {
-   opacity: 1;
+    opacity: 1;
 }
 
 .checked {
     color: #A5A640;
-  }
+}
 
 .rate-btn {
     background-color: inherit !important;

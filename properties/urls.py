@@ -13,4 +13,9 @@ urlpatterns = [
         views.PropertyDetail.as_view(),
         name='property_detail'
         ),
+    path(
+        'like/<slug:slug>',
+        views.PropertyLike.as_view(),
+        name='property_like'
+        ),
 ]

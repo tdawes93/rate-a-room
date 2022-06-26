@@ -1,5 +1,6 @@
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, reverse
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from django.http import HttpResponseRedirect
 from django.views import View
 from .models import Property
 from .forms import PropertyForm
@@ -30,6 +31,10 @@ class PropertyDetail(View):
         property = get_object_or_404(queryset, slug=slug)
         reviews = property.reviews.order_by('date_reviewed')
 
+        liked = False
+        if property.likes.filter(id=self.request.user.id).exists():
+            liked = True
+
         return render(
             request,
             'property.html',
@@ -37,5 +42,42 @@ class PropertyDetail(View):
                 'slug': slug,
                 'property': property,
                 'reviews': reviews,
+                'liked': liked,
             },
         )
+
+    def post(self, request, slug, *args, **kwargs):
+        """
+        This method gets the individual property information
+        needed for each property page from the model dataset
+        """
+        queryset = Property.objects.filter(status=1)
+        property = get_object_or_404(queryset, slug=slug)
+        reviews = property.reviews.order_by('date_reviewed')
+
+        liked = False
+        if property.likes.filter(id=self.request.user.id).exists():
+            liked = True
+
+        return render(
+            request,
+            'property.html',
+            {
+                'slug': slug,
+                'property': property,
+                'reviews': reviews,
+                'liked': liked,
+            },
+        )
+
+
+class PropertyLike(View):
+    
+    def post(self, request, slug, *args, **kwargs):
+        property = get_object_or_404(Property, slug=slug)
+        if property.likes.filter(id=request.user.id).exists():
+            property.likes.remove(request.user)
+        else:
+            property.likes.add(request.user)
+
+        return HttpResponseRedirect(reverse('property_detail', args=[slug]))
