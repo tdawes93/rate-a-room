@@ -43,60 +43,9 @@
         </div>
     </div>
 
-    <form action="#" method="POST" class="rate-form">
-        {% csrf_token %}
-{{ form | crispy }}
-        <!-- <div class="row m-2">
-            <div class="col">
-                <label for="title">
-                    <h4>Title of your review:</h4>
-                </label>
-            </div>
-        </div>
-        <div class="row mx-2 justify-content-left">
-            <div class="col">
-                <input class="form-control me-2" type="text" aria-label="Title of your review" name="title" id="title">
-            </div>
-        </div>
-        <div class="row m-2">
-            <div class="col">
-                <label for="content">
-                    <h4>Your review:</h4>
-                </label>
-            </div>
-        </div>
-        <div class="row mx-2 justify-content-left">
-            <div class="col">
-                <textarea class="form-control me-2" type="text" aria-label="Title of your review" name="content"
-                    id="content"></textarea>
-            </div>
-        </div>
-        <div class="row m-2">
-            <div class="col">
-                <h4>When did you rent this property?</h4>
-                </label>
-            </div>
-        </div>
-        <div class="row mx-2 justify-content-left">
-            <div class="col-2 text-end">
-                <label for="date_rented_from">
-                    <h6>from:</h6>
-                </label>
-            </div>
-            <div class="col-4">
-                <input class="form-control me-2" type="date" aria-label="Date rented from" name="date_rented_from"
-                    id="date_rented_from">
-            </div>
-            <div class="col-2 text-end">
-                <label for="date_rented_to">
-                    <h6>to:</h6>
-                </label>
-            </div>
-            <div class="col-4">
-                <input class="form-control me-2" type="date" aria-label="Date rented to" name="date_rented_to"
-                    id="date_rented_to">
-            </div>
-        </div>
+    {% crispy form form.helper %}
+
+        <!--
         <div class="row m-2">
             <div class="col">
                 <label for="condition_of_property">
@@ -177,13 +126,13 @@
                 <input class="form-control me-2" type="image" aria-label="Images to upload" name="images" id="images">
             </div>
         </div>-->
-        <div class="row mx-2 justify-content-center">
+        <!-- <div class="row mx-2 justify-content-center">
             <div class="col col-lg-6">
                 <button class="form-control m-2 nav-btn" type="submit" name="save" value="save">
                     Add Review
                 </button>
             </div>
-        </div>
+        </div> -->
 
     </form>
 </div>
