@@ -2,7 +2,11 @@ from django.urls import path, include
 from . import views
 
 urlpatterns = [
-    path('', views.AddProperty.as_view(), name='properties_list'),
+    path(
+        'add-property/',
+        views.PropertyCreateView.as_view(),
+        name='add_property'
+        ),
     path('summernote/', include('django_summernote.urls')),
     path(
         '<slug:slug>/',

@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
 <!--Main content code-->
 {% block content %}
@@ -13,22 +14,39 @@
     </div>
 </div>
 <div class="card">
-    <form action="{% url 'property_detail' property.slug %}" method="POST" class="rate-form">
-        {% csrf_token %}
+    <div class="row m-2">
+        <div class="col">
+            <label for="property">
+                <h4>Your property:</h4>
+            </label>
+        </div>
+    </div>
+    <div class="row mx-2 justify-content-left">
+        <div class="col-6">
+            <div class="row">
+                <div class="col">
+                    <h5 id="property">{{ property.title }}</h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h5>{{ property.street_address}},
+                        {% if property.address_street2 %}
+                        {{ property.address_street2 }}, {% endif %} {{ property.address_town }},
+                        {{ property.address_county }},
+                        {{ property.address_postcode }}, {{ property.address_country }}</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-6"><img class=" w-100 img-thumbnail" src="{{ property.images.url }}"
+                alt="Image of property provided by landlord">
+        </div>
+    </div>
 
-        <div class="row m-2">
-            <div class="col">
-                <label for="property">
-                    <h4>Your property:</h4>
-                </label>
-            </div>
-        </div>
-        <div class="row mx-2 justify-content-left">
-            <div class="col">
-                <h5 id="property">{{ property.title }}</h5>
-            </div>
-        </div>
-        <div class="row m-2">
+    <form action="#" method="POST" class="rate-form">
+        {% csrf_token %}
+{{ form | crispy }}
+        <!-- <div class="row m-2">
             <div class="col">
                 <label for="title">
                     <h4>Title of your review:</h4>
@@ -158,7 +176,7 @@
             <div class="col">
                 <input class="form-control me-2" type="image" aria-label="Images to upload" name="images" id="images">
             </div>
-        </div>
+        </div>-->
         <div class="row mx-2 justify-content-center">
             <div class="col col-lg-6">
                 <button class="form-control m-2 nav-btn" type="submit" name="save" value="save">

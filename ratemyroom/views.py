@@ -2,7 +2,6 @@ from django.shortcuts import render
 from django.db.models import Q
 from django.views import generic, View
 from properties.models import Property
-from properties.context import get_properties
 
 
 class PropertyList(generic.ListView):
@@ -12,7 +11,6 @@ class PropertyList(generic.ListView):
     model = Property
     queryset = Property.objects.filter(status=1)
     template_name = 'index.html'
-    # properties = get_properties(request)
 
 
 class SearchProperty(View):

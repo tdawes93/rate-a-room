@@ -4,8 +4,8 @@ from . import views
 urlpatterns = [
     path('summernote/', include('django_summernote.urls')),
     path(
-        'add_review',
-        views.ReviewFormView.as_view(),
+        'add_review/',
+        views.ReviewCreateView.as_view(),
         name='add_review'
     ),
 ]

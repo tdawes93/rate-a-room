@@ -1,19 +1,16 @@
 from django.shortcuts import get_object_or_404, render
-from django.views import generic, View
-from django.db.models import Avg
+from django.views import View
 from .models import Property
-from .context import get_properties
+from .forms import PropertyForm
 
 
-class AddProperty(generic.ListView):
+class PropertyCreateView(View):
     """
-    A list view class rendering the add property page
+    A standard view class rendering the add property
+    page for each review using the form_class attribute
     """
+    form_class = PropertyForm
     model = Property
-    queryset = Property.objects.filter(status=1).order_by(
-        '-created_on',
-        'title',
-    )
     template_name = 'add-property.html'
 
 

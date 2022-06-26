@@ -8,6 +8,8 @@ changed assertTrue test to assertLessEquals
 
 Needed to create user and property instances to get review unittests to work 
 
+Repetative code for displaying star ratings on property.html, solution was to use Django's built in {% include '.html' %} tags. Similar to extend, allowed variables to be used across the two templates.
+
 Carousel on index.html was pulling all property data entries and laying them ontop of one another. Fix was made using an if loop to ensure the only first property of the for loop was displayed until the carousel nav buttons were used 
 
 migration bug:

@@ -1,22 +1,5 @@
 {% extends 'base.html' %}
-
-<!--Header and Navbar Code-->
-{% block header %}
-<a href="#" class="d-none d-md-inline-block d-lg-none me-1"><i class="fa-solid fa-pencil fa-2x"></i></a>
-<a href="#" class="d-none d-lg-inline-block me-1 text-decoration-none"><i
-        class="fa-solid fa-pencil fa-2x"></i>Review</a>
-<a href="#" class="d-none d-md-inline-block d-lg-none mx-1"><i class="fa-solid fa-heart fa-2x"></i></a>
-<a href="#" class="d-none d-lg-inline-block mx-1 text-decoration-none"><i class="fa-solid fa-heart fa-2x"></i>Likes</a>
-<a href="#" class="d-none d-md-inline-block d-lg-none mx-1"><i class="fa-solid fa-bell fa-2x"></i></a>
-<a href="#" class="d-none d-lg-inline-block mx-1 text-decoration-none"><i class="fa-solid fa-bell fa-2x"></i>Alerts</a>
-<!--Logged in view differs as nav bar buttons change depending on user type-->
-{% if user.is_ll_or_ea %}
-<a href="#" class="d-none d-md-inline-block d-lg-none mx-1"><i class="fa-solid fa-plus fa-2x"></i></a>
-<a href="#" class="d-none d-lg-inline-block mx-1 text-decoration-none"><i class="fa-solid fa-plus fa-2x"></i>Add a
-    property</a>
-{% endif %}
-<a href="#" class="d-inline-block"><i class="fa-solid fa-user fa-2x"></i></a>
-{% endblock %}
+{% load crispy_forms_tags %}
 
 <!--Main Content Code-->
 {% block content %}
@@ -31,11 +14,25 @@
             properties to be uploaded. Allow your rental to stand out from the crowd and add it here!!</p>
     </div>
 </div>
-<form action="">
-<div class="row m-2">
-    <div class="col">
-        <h4>Select your property type</h4>
-    </div>
+<div class="card">
+    <form action="" method="POST">
+        {% csrf_token %}
+
+        {{ form | crispy }}
+        <div class="row m-2">
+            <div class="col">
+                <label for="type_of_property">
+                    <h4>Select your property type</h4>
+                </label>
+            </div>
+        </div>
+        <div class="row mx-2 justify-content-center">
+            <div class="col col-lg-6">
+                <button class="form-control m-2 nav-btn" type="submit" name="save" value="save">
+                    Add Property
+                </button>
+            </div>
+        </div>
+    </form>
 </div>
-</form>
 {% endblock %}
