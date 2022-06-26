@@ -1,6 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, reverse
 from django.views import View
 from django.urls import reverse_lazy
+from django.http import HttpResponseRedirect
 from properties.models import Property
 from .forms import ReviewForm
 from .models import Review
@@ -37,39 +38,37 @@ class ReviewCreateView(View):
             },
         )
 
-    # def post(self, id, request, *args, **kwargs):
-    #     """
-    #     This method handles the post request and saves the review information
-    #     from the form  to the dataset
-    #     """
-    #     rate = Review.objects.get(id=id)
-    #     form = self.form_class(request.POST)
-    #     if request.POST.get('save'):
-    #         for field in rate:
-    #             field.save()
+    def post(self, request, *args, **kwargs):
+        """
+        This method handles the post request and saves the review information
+        from the form  to the dataset
+        """
+        form = self.form_class(request.POST)
 
-    #     if form.is_valid():
-    #         form.save()
-    #         text = form.cleaned_data[
-    #             'property',
-    #             'title',
-    #             'content',
-    #             'condition_of_property',
-    #             'quality_of_landlord',
-    #             'rate_the_neighbourhood',
-    #             'value_for_money',
-    #             'standard_of_amenities_nearby',
-    #             'images',
-    #             'date_rented_from',
-    #             'date_rented_to'
-    #             ]
-    #         return HttpResponseRedirect('/properties/<slug:slug>//')
+        if form.is_valid():
+            text = form.cleaned_data[
+                'property',
+                'title',
+                'content',
+                'condition_of_property',
+                'quality_of_landlord',
+                'rate_the_neighbourhood',
+                'value_for_money',
+                'standard_of_amenities_nearby',
+                'images',
+                'date_rented_from',
+                'date_rented_to'
+                ]
+            review = form.save()
+            review.save()
 
-    #     return render(
-    #         request,
-    #         self.template_name,
-    #         {
-    #             'form': form,
-    #             'text': text
-    #         },
-    #         )
+            return HttpResponseRedirect(reverse('homepage'))
+
+        return render(
+            request,
+            self.template_name,
+            {
+                'form': form,
+                'property': property
+            },
+            )

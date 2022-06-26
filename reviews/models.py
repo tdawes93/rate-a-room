@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 from django.core.validators import MaxValueValidator
 from cloudinary.models import CloudinaryField
 from properties.models import Property
@@ -50,11 +51,6 @@ class Review(models.Model):
         Property,
         on_delete=models.CASCADE,
         related_name='reviews')
-    likes = models.ManyToManyField(
-        User,
-        related_name='review_likes',
-        blank=True,
-    )
     images = CloudinaryField(
         'image',
         default='placeholder',
@@ -80,5 +76,5 @@ class Review(models.Model):
     def snippet(self):
         return self.content[:100] + '...'
 
-    def num_of_likes(self):
-        return self.likes.count()
+    def get_absolute_url(self):
+        return reverse('homepage')

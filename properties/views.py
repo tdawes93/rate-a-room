@@ -14,19 +14,6 @@ class PropertyCreateView(CreateView):
     model = Property
     template_name = 'add-property.html'
 
-    # def get(self, request, *args, **kwargs):
-    #     """DOC"""
-    #     form = self.form_class()
-
-    #     return render(
-    #         request,
-    #         self.template_name,
-    #         {
-    #             'form': form,
-    #             'property': property,
-    #         }
-    #     )
-
 
 class PropertyDetail(View):
     """

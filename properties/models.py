@@ -95,7 +95,10 @@ class Property(models.Model):
         default=1,
         blank=False
     )
+    likes = models.ManyToManyField(
+        User, related_name='property_like', blank=True)
 
+    
     class Meta:
         """
         Class to add Metadata, in this instance the ordering options

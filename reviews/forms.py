@@ -25,19 +25,28 @@ class ReviewForm(forms.ModelForm):
             'date_rented_to',
         )
 
+    date_rented_from = forms.DateField(widget=forms.DateInput(
+        attrs={'type': 'date'}
+        ))
+    date_rented_to = forms.DateField(widget=forms.DateInput(
+        attrs={'type': 'date'}
+        ))
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
+        self.fields['date_rented_from'].label = ''
+        self.fields['date_rented_to'].label = ''
+        self.fields['images'].label = ''
         self.helper.form_id = 'addreview-form'
         self.helper.form_class = 'blueForms'
         self.helper.form_method = 'post'
-        self.helper.form_action = 'submit_survey'
         self.helper.layout = Layout(
             Div(
                 Div(
                     HTML(
                         '<h4>Give your review a name!</h4>'
-                    ), 
+                    ),
                     css_class="col",
                 ), css_class="row m-2",
             ),
@@ -57,16 +66,16 @@ class ReviewForm(forms.ModelForm):
                 Div(
                     HTML(
                         '<h4>When did you rent this property?</h4>'
-                    ), 
-                    css_class="col",
+                    ),
+                    css_class="col mt-2",
                 ), css_class="row m-2",
             ),
             Div(
                 Div(
                     HTML(
                         '<h4>from:</h4>'
-                    ), 
-                    css_class="col-2 text-end",
+                    ),
+                    css_class="col-2 text-end px-0",
                 ),
                 Div(
                     Field('date_rented_from',),
@@ -75,7 +84,7 @@ class ReviewForm(forms.ModelForm):
                 Div(
                     HTML(
                         '<h4>to:</h4>'
-                    ), 
+                    ),
                     css_class="col-2 text-end",
                 ),
                 Div(
@@ -87,7 +96,7 @@ class ReviewForm(forms.ModelForm):
                 Div(
                     HTML(
                         '<h4>Rate the following aspects of the property</h4>'
-                    ), 
+                    ),
                     css_class="col",
                 ), css_class="row m-2",
             ),
@@ -107,8 +116,8 @@ class ReviewForm(forms.ModelForm):
                 Div(
                     HTML(
                         '<h4>Add some images to your review</h4>'
-                    ), 
-                    css_class="col",
+                    ),
+                    css_class="col mt-2",
                 ), css_class="row m-2",
             ),
             Div(
@@ -119,7 +128,7 @@ class ReviewForm(forms.ModelForm):
             ),
             Div(
                 Div(
-                    Submit('submit', 'Add Review', css_class='nav-btn'),
+                    Submit('', 'Add Review', css_class='nav-btn'),
                     css_class="col mt-2 text-center justify-content-center"),
                 css_class="row m-2",
             ),
