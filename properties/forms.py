@@ -129,7 +129,7 @@ class PropertyForm(forms.ModelForm):
             ),
             Div(
                 Div(
-                    Submit('submit', 'Submit', css_class='nav-btn'),
+                    Submit('submit', 'Add Property', css_class='nav-btn'),
                     css_class="col mt-2 text-center justify-content-center"),
                 css_class="row m-2",
             ),
