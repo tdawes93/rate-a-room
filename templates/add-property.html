@@ -14,25 +14,11 @@
             properties to be uploaded. Allow your rental to stand out from the crowd and add it here!!</p>
     </div>
 </div>
-<div class="card">
-    <form action="" method="POST">
-        {% csrf_token %}
-
-        {{ form | crispy }}
-        <div class="row m-2">
-            <div class="col">
-                <label for="type_of_property">
-                    <h4>Select your property type</h4>
-                </label>
-            </div>
+<div class="card form-background">
+    <div class="row m-2">
+        <div class="col">
+            {% crispy form form.helper %}
         </div>
-        <div class="row mx-2 justify-content-center">
-            <div class="col col-lg-6">
-                <button class="form-control m-2 nav-btn" type="submit" name="save" value="save">
-                    Add Property
-                </button>
-            </div>
-        </div>
-    </form>
+    </div>
 </div>
 {% endblock %}

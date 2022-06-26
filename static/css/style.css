@@ -31,6 +31,7 @@ a:hover {
     background-color: #fff;
     border: solid #171C1F;
     border-radius: 15px;
+    color: #171C1F;
 
 }
 
@@ -75,6 +76,10 @@ a:hover {
 /*Forms*/
 .card {
     border: solid #171C1F;
+}
+
+.form-background {
+    background-color: #D2CFCC;
 }
 
 

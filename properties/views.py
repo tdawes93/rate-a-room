@@ -28,7 +28,6 @@ class PropertyCreateView(CreateView):
     #     )
 
 
-
 class PropertyDetail(View):
     """
     A standard view class rendering the individual
