@@ -27,13 +27,17 @@ class PropertyForm(forms.ModelForm):
             'status',
         )
 
+        widgets = {
+            'type_of_property': forms.RadioSelect,
+        }
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.fields['images'].label = ''
         self.helper = FormHelper()
         self.helper.form_id = 'addproperty-form'
         self.helper.form_class = 'blueForms'
         self.helper.form_method = 'post'
-        self.helper.form_action = 'submit_survey'
         self.helper.layout = Layout(
             Div(
                 HTML(
@@ -129,7 +133,7 @@ class PropertyForm(forms.ModelForm):
             ),
             Div(
                 Div(
-                    Submit('submit', 'Add Property', css_class='nav-btn'),
+                    Submit('', 'Add Property', css_class='nav-btn'),
                     css_class="col mt-2 text-center justify-content-center"),
                 css_class="row m-2",
             ),
