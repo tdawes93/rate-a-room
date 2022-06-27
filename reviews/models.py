@@ -2,8 +2,8 @@ from django.db import models
 from django.urls import reverse
 from django.core.validators import MaxValueValidator
 from cloudinary.models import CloudinaryField
-from properties.models import Property
 from django.conf import settings
+from properties.models import Property
 
 User = settings.AUTH_USER_MODEL
 
@@ -74,9 +74,6 @@ class Review(models.Model):
             ]
         )) / 5
         return super(Review, self).save(*args, **kwargs)
-
-    def snippet(self):
-        return self.content[:100] + '...'
 
     def get_absolute_url(self):
         return reverse('homepage')

@@ -53,6 +53,7 @@ class SearchPropertyForReview(View):
     doc
     """
     model = Property
+
     def post(self, request, *args, **kwargs):
         """
         doc

@@ -66,7 +66,7 @@
                     </div>
                     <!--Logged in view differs as nav bar buttons change depending on user type-->
                     {% if user.is_authenticated %}
-                    {% if user.is_ll_or_ea %}
+                    {% if user.role == LL_OR_EA %}
                     <a href="{% url 'properties/add-property' %}" class="d-none d-md-inline-block d-lg-none mx-1"><i
                             class="fa-solid fa-plus fa-2x"></i></a>
                     <a href="{% url 'properties/add-property' %}"
@@ -85,6 +85,14 @@
 
     <!-- This is the main content area on the screen. Inside here can be many rows and cols to fit the desired layout. -->
     <main class="container-lg px-0 px-md-5">
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+        {% endif %}
         {% block content %}
         <!-- Content Goes here -->
         {% endblock %}
