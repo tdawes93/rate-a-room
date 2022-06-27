@@ -100,7 +100,6 @@ class Property(models.Model):
     likes = models.ManyToManyField(
         User, related_name='property_like', blank=True)
 
-    
     class Meta:
         """
         Class to add Metadata, in this instance the ordering options
@@ -116,6 +115,8 @@ class Property(models.Model):
         return f'{self.title}'
 
     def number_of_likes(self):
+        """Method counts the number of likes for each property
+        entry in the database"""
         return self.likes.count()
 
     def get_absolute_url(self):

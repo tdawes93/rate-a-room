@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, render, reverse
-from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from django.views.generic.edit import CreateView
 from django.http import HttpResponseRedirect
 from django.views import View
 from .models import Property
@@ -72,8 +72,14 @@ class PropertyDetail(View):
 
 
 class PropertyLike(View):
-    
+    """Class view to accept the request to like a
+    property. It checks if the property has or hasn't
+    been liked by the user and renders the new page
+    accordingly"""
+
     def post(self, request, slug, *args, **kwargs):
+        """Post request for generic propertylike view,
+        will update the likes field on the property model"""
         property = get_object_or_404(Property, slug=slug)
         if property.likes.filter(id=request.user.id).exists():
             property.likes.remove(request.user)
