@@ -1,9 +1,11 @@
 from django.db import models
-from django.contrib.auth.models import User
 from django.urls import reverse
 from django.core.validators import MaxValueValidator
 from cloudinary.models import CloudinaryField
 from properties.models import Property
+from django.conf import settings
+
+User = settings.AUTH_USER_MODEL
 
 
 # def date_validation(date1, date2):

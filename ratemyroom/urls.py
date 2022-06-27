@@ -10,6 +10,12 @@ urlpatterns = [
     path('properties/', include('properties.urls'), name='property_urls'),
     path('reviews/', include('reviews.urls'), name='review_urls'),
     path(
+        'profiles/',
+        include('django.contrib.auth.urls'),
+        name='django_auth_urls'
+        ),
+    path('profiles/', include('profiles.urls'), name='profiles_urls'),
+    path(
         'search_properties/',
         views.SearchProperty.as_view(),
         name='search_properties'
