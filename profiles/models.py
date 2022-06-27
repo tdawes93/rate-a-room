@@ -10,13 +10,10 @@ class User(AbstractUser):
     """
     LL_OR_EA = 'LANDLORD_OR_ESTATEAGENT'
     TENANT = 'TENANT'
-  
+
     ROLE_CHOICES = (
         (LL_OR_EA, 'Landlord or Estate Agent'),
         (TENANT, 'Tenant'),
     )
     profile_photo = CloudinaryImage()
     role = models.CharField(max_length=30, choices=ROLE_CHOICES)
-
-    def __str__(self):
-        return self.username

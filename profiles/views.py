@@ -1,18 +1,21 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login, logout
-from django.contrib import messages
+from django.contrib.auth import authenticate, login
 from django.views.generic import View
-from .forms import LoginForm
 from . import forms
 
 
 class LoginUserView(View):
-    """Doc"""
+    """Generic view that takes the Login Form and
+    renders it. In event of a Post request the login
+    details are authenticated and a new page is rendered or
+    the page is reloaded"""
     form_class = forms.LoginForm
     template_name = 'authenticate/login.html'
 
     def get(self, request):
-        """Doc"""
+        """Get request for the Login user view. It takes
+        the login form and renders it on the html page. No
+        message is shown"""
         form = self.form_class()
         message = ''
         return render(
@@ -25,6 +28,10 @@ class LoginUserView(View):
         )
 
     def post(self, request):
+        """Post request for Login view. The login form is validated and if
+        passed the login info is authenticated. In the event of an authorised
+        user the user is logged in and redirected to the homepage. If a fail
+        occurs the page is reloaded"""
         form = self.form_class(request.POST)
         if form.is_valid():
             user = authenticate(
@@ -33,6 +40,7 @@ class LoginUserView(View):
             )
             if user is not None:
                 login(request, user)
+                message = f'You are loggin in as {user.username}'
                 return redirect('homepage')
 
         message = 'Login failed!'
