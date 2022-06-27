@@ -44,10 +44,10 @@
                     <ul class="navbar-nav me-2 mb-auto mb-lg-0">
                         <li class="nav-item">
                             <a href="{% url 'search_form' %}"
-                                class="d-none d-md-inline-block d-lg-none me-1 nav-link nav-links"><i
+                                class="d-none d-md-inline-block d-lg-none mx-1 nav-link nav-links"><i
                                     class="fa-solid fa-pencil "></i></a>
                             <a href="{% url 'search_form' %}"
-                                class="d-md-none d-lg-inline-block me-1 nav-link nav-links"><i
+                                class="d-md-none d-lg-inline-block mx-1 nav-link nav-links"><i
                                     class="fa-solid fa-pencil "></i> Review</a>
                         </li>
                         <li class="nav-item">
@@ -59,18 +59,22 @@
                         {% if user.role != LANDLORD_OR_ESTATEAGENT %}
                         <li class="nav-item">
                             <a href="{% url 'add_property' %}"
-                                class="d-none d-md-inline-block d-lg-none nav-link nav-links"><i
+                                class="d-none d-md-inline-block d-lg-none mx-1 nav-link nav-links"><i
                                     class="fa-solid fa-plus"></i></a>
-                            <a href="{% url 'add_property' %}" class="d-md-none d-lg-inline-block nav-link nav-links"><i
+                            <a href="{% url 'add_property' %}" class="d-md-none d-lg-inline-block mx-1 nav-link nav-links"><i
                                     class="fa-solid fa-plus"></i>Add a property</a>
                         </li>
                         {% endif %}
                         {% if user.is_authenticated %}
                         <li class="nav-item">
-                            <a href="{% url 'logout' %}" class=" mx-1 nav-link nav-links">Logout</a>
+                            <a href="{% url 'logout' %}" class="mx-1 nav-link nav-links">Logout</a>
                         </li>
 
                         {% else %}
+                        <li class="nav-item d-md-none">
+                            <a href="{% url 'logout' %}" class="mx-1 nav-link nav-links">Register</a>
+                        </li>
+
                         <li class="nav-item dropdown d-none d-md-inline-block d-lg-none">
                             <a class="nav-link nav-links dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
@@ -78,12 +82,12 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="{% url 'login' %}">Log in</a></li>
-                                <li><a class="dropdown-item" href="#">Register</a></li>
+                                <li><a class="dropdown-item" href="{% url 'register' %}">Register</a></li>
                             </ul>
                         </li>
 
                         <li class="nav-item">
-                            <form action="#">
+                            <form action="{% url 'register' %}">
                                 <button class="d-none d-lg-inline-block btn-lg mx-1 p-1 nav-btn">Register</button>
                             </form>
                         </li>
@@ -98,9 +102,9 @@
                 </div>
 
                 {% if user.is_authenticated %}
-                <a href="#" class="d-inline-block nav-link nav-links"><i class="fa-solid fa-user fa-2x"></i></a>
+                <a href="#" class="d-inline-block nav-link mx-1 nav-links"><i class="fa-solid fa-user fa-2x"></i></a>
                 {% else %}
-                <a href="{% url 'login' %}" class="d-inline-block d-md-none nav-link nav-links"><i
+                <a href="{% url 'login' %}" class="d-inline-block d-md-none mx-1 nav-link nav-links"><i
                         class="fa-solid fa-right-to-bracket fa-2x"></i></a>
                 {% endif %}
             </div>
