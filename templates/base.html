@@ -53,20 +53,31 @@
                                 class="fa-solid fa-pencil "></i> Review</a>
                     </div>
                     <div class="nav-links">
-                        <a href="#" class="d-none d-md-inline-block d-lg-none mx-1"><i class="fa-solid fa-heart "></i></a>
-                        <a href="#" class="d-none d-lg-inline-block mx-1 text-decoration-none"><i class="fa-solid fa-heart"></i> Likes</a>
+                        <a href="#" class="d-none d-md-inline-block d-lg-none mx-1"><i
+                                class="fa-solid fa-heart "></i></a>
+                        <a href="#" class="d-none d-lg-inline-block mx-1 text-decoration-none"><i
+                                class="fa-solid fa-heart"></i> Likes</a>
                     </div>
                     <div class="nav-links">
-                        <a href="#" class="d-none d-md-inline-block d-lg-none mx-1"><i class="fa-solid fa-bell "></i></a>
-                        <a href="#" class="d-none d-lg-inline-block mx-1 text-decoration-none"><i class="fa-solid fa-bell "></i> Alerts</a>
+                        <a href="#" class="d-none d-md-inline-block d-lg-none mx-1"><i
+                                class="fa-solid fa-bell "></i></a>
+                        <a href="#" class="d-none d-lg-inline-block mx-1 text-decoration-none"><i
+                                class="fa-solid fa-bell "></i> Alerts</a>
                     </div>
                     <!--Logged in view differs as nav bar buttons change depending on user type-->
+                    {% if user.is_authenticated %}
                     {% if user.is_ll_or_ea %}
-                    <a href="{% url 'properties/add-property' %}" class="d-none d-md-inline-block d-lg-none mx-1"><i class="fa-solid fa-plus fa-2x"></i></a>
-                    <a href="{% url 'properties/add-property' %}" class="d-none d-lg-inline-block mx-1 text-decoration-none"><i class="fa-solid fa-plus fa-2x"></i>Add a property</a>
+                    <a href="{% url 'properties/add-property' %}" class="d-none d-md-inline-block d-lg-none mx-1"><i
+                            class="fa-solid fa-plus fa-2x"></i></a>
+                    <a href="{% url 'properties/add-property' %}"
+                        class="d-none d-lg-inline-block mx-1 text-decoration-none"><i
+                            class="fa-solid fa-plus fa-2x"></i>Add a property</a>
                     {% endif %}
                     <a href="#" class="d-inline-block"><i class="fa-solid fa-user fa-2x"></i></a>
-
+                    {% else %}
+                    <a href="{% url 'login' %}" class="d-inline-block"><i
+                            class="fa-solid fa-right-to-bracket fa-2x"></i></a>
+                    {% endif %}
                 </div>
             </nav>
         </div>
@@ -126,7 +137,7 @@
     <!--Bootstrap Js-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
-    </script>    
+    </script>
     <!--Main JS Files-->
     <script src="{% static 'js/stars.js' %}" defer></script>
     <script src="{% static 'js/teaser.js' %}" defer></script>
