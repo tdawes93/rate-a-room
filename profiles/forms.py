@@ -15,4 +15,3 @@ class LoginForm(forms.Form):
         max_length=60,
         widget=forms.PasswordInput()
     )
-

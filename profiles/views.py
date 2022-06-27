@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
 from django.views.generic import View
 from . import forms
 
@@ -17,13 +18,11 @@ class LoginUserView(View):
         the login form and renders it on the html page. No
         message is shown"""
         form = self.form_class()
-        message = ''
         return render(
             request,
             self.template_name,
             {
               'form': form,
-              'message': message,
             }
         )
 
@@ -40,20 +39,24 @@ class LoginUserView(View):
             )
             if user is not None:
                 login(request, user)
-                message = f'You are loggin in as {user.username}'
+                messages.success(
+                    request,
+                    f'You are logged in as {user.username}'
+                    )
                 return redirect('homepage')
 
-        message = 'Login failed!'
+        messages.success(request, 'Login failed!')
         return render(
             request,
             self.template_name,
             {
                 'form': form,
-                'message': message
             }
         )
 
 
 def logout_user(request):
     logout(request)
+    messages.success(request, 'Successfully logged out')
+
     return redirect('homepage')
