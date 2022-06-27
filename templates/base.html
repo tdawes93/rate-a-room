@@ -56,7 +56,7 @@
                             <a href="#" class="d-md-none d-lg-inline-block mx-1 nav-link nav-links"><i
                                     class="fa-solid fa-heart"></i> Likes</a>
                         </li>
-                        {% if user.role != LANDLORD_OR_ESTATEAGENT %}
+                        {% if user.role == LANDLORD_OR_ESTATEAGENT %}
                         <li class="nav-item">
                             <a href="{% url 'add_property' %}"
                                 class="d-none d-md-inline-block d-lg-none mx-1 nav-link nav-links"><i

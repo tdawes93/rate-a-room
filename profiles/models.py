@@ -16,4 +16,8 @@ class User(AbstractUser):
         (TENANT, 'Tenant'),
     )
     profile_photo = CloudinaryImage()
-    role = models.CharField(max_length=30, choices=ROLE_CHOICES)
+    role = models.CharField(
+        max_length=30,
+        choices=ROLE_CHOICES,
+        default='Tenant'
+        )

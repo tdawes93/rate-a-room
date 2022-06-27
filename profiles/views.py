@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
+from django.urls import reverse_lazy
 from django.contrib import messages
 from django.views.generic import View, CreateView
+from django.contrib.messages.views import SuccessMessageMixin
 from . import forms
 from .forms import RegisterUserForm
 from .models import User
@@ -64,7 +66,7 @@ def logout_user(request):
     return redirect('homepage')
 
 
-class RegisterUser(CreateView):
+class RegisterUser(SuccessMessageMixin, CreateView):
     """
     Class view to render a form to allow users
     to register with the site, the post request
@@ -75,17 +77,5 @@ class RegisterUser(CreateView):
     template_name = 'authenticate/register_user.html'
     form_class = RegisterUserForm
     model = User
-
-    def post(self, request):
-        form = self.form_class(request.POST)
-        if form.is_valid:
-            form.save()
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password1']
-            user = form.authenticate(username=username, password=password)
-            login(request, user)
-            messages.success(
-                request,
-                f"Registration successful. You're logged in as {user.username}"
-                )
-            return redirect('homepage')
+    success_url = reverse_lazy('homepage')
+    success_message = f'Registration successful!'
