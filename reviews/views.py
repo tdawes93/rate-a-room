@@ -1,13 +1,13 @@
 from django.shortcuts import render, get_object_or_404, reverse
 from django.views import View
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from properties.models import Property
 from .forms import ReviewForm
 from .models import Review
 
-
-class ReviewCreateView(View):
+class ReviewCreateView(LoginRequiredMixin, View):
     """
     A standard view class rendering the add review
     page for each review using the form_class attribute
