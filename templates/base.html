@@ -30,66 +30,81 @@
     <!--The header section remains the same for all pages with the exception of a few tweaks when users are logged in.
     These changes are controlled by the individual templates-->
     <header class="container-lg mt-0 px-0 px-md-5">
-        <div class="row px-4 mx-0">
-            <nav class="navbar">
-                <div class="col-3 text-left d-md-none">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse"
-                        data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
-                        aria-expanded="false" aria-label="Toggle Navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                </div>
-                <div class="col-6 text-center text-md-start">
-                    <h1>
-                        <a href="{% url 'homepage' %}" class="text-decoration-none">RatemyRoom</a>
-                    </h1>
-                </div>
-                <div class="col-3 col-md-6 text-end">
+        <nav class="navbar navbar-expand-md bg-light">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <a class="navbar-brand" href="{% url 'homepage' %}">
+                    <h1>RatemyRoom</h1>
+                </a>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-2 mb-auto mb-lg-0">
+                        <li class="nav-item">
+                            <a href="{% url 'search_form' %}"
+                                class="d-none d-md-inline-block d-lg-none me-1 nav-link nav-links"><i
+                                    class="fa-solid fa-pencil "></i></a>
+                            <a href="{% url 'search_form' %}"
+                                class="d-md-none d-lg-inline-block me-1 nav-link nav-links"><i
+                                    class="fa-solid fa-pencil "></i> Review</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="d-none d-md-inline-block d-lg-none mx-1 nav-link nav-links"><i
+                                    class="fa-solid fa-heart "></i></a>
+                            <a href="#" class="d-md-none d-lg-inline-block mx-1 nav-link nav-links"><i
+                                    class="fa-solid fa-heart"></i> Likes</a>
+                        </li>
+                        {% if user.role != LANDLORD_OR_ESTATEAGENT %}
+                        <li class="nav-item">
+                            <a href="{% url 'add_property' %}"
+                                class="d-none d-md-inline-block d-lg-none nav-link nav-links"><i
+                                    class="fa-solid fa-plus"></i></a>
+                            <a href="{% url 'add_property' %}" class="d-md-none d-lg-inline-block nav-link nav-links"><i
+                                    class="fa-solid fa-plus"></i>Add a property</a>
+                        </li>
+                        {% endif %}
+                        {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a href="#" class=" mx-1 nav-link nav-links">Logout</a>
+                        </li>
 
-                    <div class="nav-links">
-                        <a href="{% url 'search_form' %}" class="d-none d-md-inline-block d-lg-none me-1"><i
-                                class="fa-solid fa-pencil "></i></a>
-                        <a href="{% url 'search_form' %}" class="d-none d-lg-inline-block me-1 text-decoration-none"><i
-                                class="fa-solid fa-pencil "></i> Review</a>
-                    </div>
-                    <div class="nav-links">
-                        <a href="#" class="d-none d-md-inline-block d-lg-none mx-1"><i
-                                class="fa-solid fa-heart "></i></a>
-                        <a href="#" class="d-none d-lg-inline-block mx-1 text-decoration-none"><i
-                                class="fa-solid fa-heart"></i> Likes</a>
-                    </div>
-                    <div class="nav-links">
-                        <a href="#" class="d-none d-md-inline-block d-lg-none mx-1"><i
-                                class="fa-solid fa-bell "></i></a>
-                        <a href="#" class="d-none d-lg-inline-block mx-1 text-decoration-none"><i
-                                class="fa-solid fa-bell "></i> Alerts</a>
-                    </div>
-                    <!--Logged in view differs as nav bar buttons change depending on user type-->
-                    {% if user.is_authenticated %}
-                    {% if user.role == LL_OR_EA %}
-                    <a href="{% url 'properties/add-property' %}" class="d-none d-md-inline-block d-lg-none mx-1"><i
-                            class="fa-solid fa-plus fa-2x"></i></a>
-                    <a href="{% url 'properties/add-property' %}"
-                        class="d-none d-lg-inline-block mx-1 text-decoration-none"><i
-                            class="fa-solid fa-plus fa-2x"></i>Add a property</a>
-                    {% endif %}
-                    <a href="#" class="d-inline-block"><i class="fa-solid fa-user fa-2x"></i></a>
-                    {% else %}
-                    <a href="{% url 'login' %}" class="d-inline-block d-md-none"><i
-                            class="fa-solid fa-right-to-bracket fa-2x"></i></a>
-                    <div class="nav-links">
-                        <form action="#">
-                            <button class="d-none d-lg-inline-block btn-lg mx-1 nav-btn">Register</button></form>
-                    </div>
-                    <div class="nav-links">
-                        <form action="{% url 'login' %}">
-                            <button class="d-none d-md-inline-block btn-lg ms-1 nav-btn" id="sign-in-btn">Sign
-                                in</button></form></div>
+                        {% else %}
+                        <li class="nav-item dropdown d-none d-md-inline-block d-lg-none">
+                            <a class="nav-link nav-links dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Sign In
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#">Log in</a></li>
+                                <li><a class="dropdown-item" href="#">Register</a></li>
+                            </ul>
+                        </li>
 
-                            {% endif %}
-                    </div>
-            </nav>
-        </div>
+                        <li class="nav-item">
+                            <form action="#">
+                                <button class="d-none d-lg-inline-block btn-lg mx-1 p-1 nav-btn">Register</button>
+                            </form>
+                        </li>
+                        <li class="nav-item">
+                            <form action="{% url 'login' %}">
+                                <button class="d-none d-lg-inline-block btn-lg ms-1 nav-btn p-1" id="sign-in-btn">Sign
+                                    in</button></form>
+                        </li>
+                        {% endif %}
+
+                    </ul>
+                </div>
+
+                {% if user.is_authenticated %}
+                <a href="#" class="d-inline-block nav-link nav-links"><i class="fa-solid fa-user fa-2x"></i></a>
+                {% else %}
+                <a href="{% url 'login' %}" class="d-inline-block d-md-none nav-link nav-links"><i
+                        class="fa-solid fa-right-to-bracket fa-2x"></i></a>
+                {% endif %}
+            </div>
+        </nav>
     </header>
 
     <!-- This is the main content area on the screen. Inside here can be many rows and cols to fit the desired layout. -->

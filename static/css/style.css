@@ -4,24 +4,21 @@ body {
     color: #171C1F;
 }
 
-a {
+a, a h1 {
     color: #171C1F;
 }
 
-a:hover {
+a:hover, a h1:hover {
     color: #A5A640;
 }
 
 .nav-links {
-    display: inline-block;
+    font-size: 100%;
+    color: #171C1F;
+
 }
 
-.nav-links a i {
-    padding-top: 1rem;
-    font-size: 150%;
-}
-
-.nav-links:hover a {
+.nav-links:hover {
     text-decoration: underline;
     color: #A5A640;
 
@@ -57,6 +54,10 @@ a:hover {
 
 .header-icon {
     font-size: 10rem;
+}
+
+#strapline {
+    color: #171C1F;
 }
 
 /*, .carousel-indicators */
