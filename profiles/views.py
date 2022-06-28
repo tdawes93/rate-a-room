@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse_lazy
 from django.contrib import messages
-from django.views.generic import View, CreateView, UpdateView
+from django.views.generic import View, CreateView, UpdateView, DeleteView
 from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -115,6 +115,17 @@ class EditUser(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
         )
 
 
+class DeleteUser(LoginRequiredMixin, DeleteView):
+    """
+    A standard view class deleting the property
+    before redirecting to the homepage
+    """
+    model = User
+    template_name = 'authenticate/profile_confirm_delete.html'
+    success_url = reverse_lazy('homepage')
+    success_message = 'Your profile has been deleted succesfully!'
+
+
 class PasswordsChangeView(PasswordChangeView):
     """
     Custom class view to change the password of users
@@ -124,4 +135,3 @@ class PasswordsChangeView(PasswordChangeView):
     template_name = 'authenticate/change-password.html'
     success_url = reverse_lazy('homepage')
     success_message = "Password changed succesfully!"
-

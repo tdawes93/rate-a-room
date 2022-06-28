@@ -6,8 +6,16 @@
 {% if user.is_authenticated %}
 
 <div class="row m-2 text-start">
-    <div class="col">
+    <div class="col-10">
         <h2>{{ user.username }}</h2>
+    </div>
+    <div class="col-2"> <a href="{% url 'delete_user' user.pk %}" class="text-decoration-none"><i
+                class="fa-solid fa-trash-can"></i> Delete Profile</a>
+    </div>
+</div>
+<div class="row m-2 text-start">
+    <div class="col">
+
         <h6>Name: {{ user.first_name }} {{ user.last_name }}</h6>
         <h6>Email: {{ user.email }}</h6>
     </div>
