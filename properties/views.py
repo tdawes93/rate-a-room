@@ -27,7 +27,7 @@ class PropertyCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
 
 class PropertyUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     """
-    A standard view class rendering the add property
+    A standard view class rendering the edit property
     page for each review using the form_class attribute
     """
     form_class = PropertyForm
