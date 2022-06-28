@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth import get_user_model
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
 
 class LoginForm(forms.Form):
@@ -31,3 +31,18 @@ class RegisterUserForm(UserCreationForm):
         widgets = {
             'role': forms.RadioSelect,
         }
+
+
+class EditUserForm(UserChangeForm):
+    """
+    Class that creates the registration form from
+    the User model
+    """
+    class Meta(UserChangeForm.Meta):
+        model = get_user_model()
+        fields = (
+            'username',
+            'email',
+            'first_name',
+            'last_name',
+            )

@@ -102,7 +102,7 @@
                 </div>
 
                 {% if user.is_authenticated %}
-                <a href="#" class="d-inline-block nav-link mx-1 nav-links"><i class="fa-solid fa-user fa-2x"></i></a>
+                <a href="{% url 'edit_user' user.pk %}" class="d-inline-block nav-link mx-1 nav-links"><i class="fa-solid fa-user fa-2x"></i></a>
                 {% else %}
                 <a href="{% url 'login' %}" class="d-inline-block d-md-none mx-1 nav-link nav-links"><i
                         class="fa-solid fa-right-to-bracket fa-2x"></i></a>

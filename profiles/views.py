@@ -2,10 +2,13 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse_lazy
 from django.contrib import messages
-from django.views.generic import View, CreateView
+from django.views.generic import View, CreateView, UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from . import forms
-from .forms import RegisterUserForm
+from .forms import RegisterUserForm, EditUserForm
+from properties.models import Property
+from reviews.models import Review
 from .models import User
 
 
@@ -78,4 +81,33 @@ class RegisterUser(SuccessMessageMixin, CreateView):
     form_class = RegisterUserForm
     model = User
     success_url = reverse_lazy('homepage')
-    success_message = f'Registration successful!'
+    success_message = "Registration successful!"
+
+
+class EditUser(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
+    """
+    A standard view class rendering the user profile
+    page
+    """
+    template_name = 'authenticate/edit_profile.html'
+    form_class = EditUserForm
+    model = User
+    success_url = reverse_lazy('homepage')
+    success_message = "Profile succesfully updated!"
+    properties = Property.objects.filter(status=1)
+    reviews = Review.objects.all()
+
+    def get(self, request, *args, **kwargs):
+        """
+        d
+        """
+        form = self.form_class()
+        return render(
+            request,
+            self.template_name,
+            {
+              'form': form,
+              'reviews': self.reviews,
+              'properties': self.properties
+            }
+        )
