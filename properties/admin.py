@@ -14,5 +14,6 @@ class PropertyAdmin(admin.ModelAdmin):
         'street_address',
         'address_postcode',
         'num_of_bedrooms',
-        'for_rent'
+        'for_rent',
+        'll_or_ea',
     )

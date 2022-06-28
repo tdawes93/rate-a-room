@@ -115,18 +115,18 @@ class EditUser(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
         )
 
 
-class DeleteUser(LoginRequiredMixin, DeleteView):
+class DeleteUser(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     """
     A standard view class deleting the property
     before redirecting to the homepage
     """
     model = User
-    template_name = 'authenticate/profile_confirm_delete.html'
+    template_name = 'review_confirm_delete.html'
     success_url = reverse_lazy('homepage')
     success_message = 'Your profile has been deleted succesfully!'
 
 
-class PasswordsChangeView(PasswordChangeView):
+class PasswordsChangeView(SuccessMessageMixin, PasswordChangeView):
     """
     Custom class view to change the password of users
     upon request

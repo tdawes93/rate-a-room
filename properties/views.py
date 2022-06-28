@@ -58,7 +58,6 @@ class PropertyDeleteView(LoginRequiredMixin, DeleteView):
     success_message = 'Your property has been deleted succesfully!'
 
 
-
 class PropertyDetail(View):
     """
     A standard view class rendering the individual

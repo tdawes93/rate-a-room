@@ -12,6 +12,21 @@ Repetative code for displaying star ratings on property.html, solution was to us
 
 Carousel on index.html was pulling all property data entries and laying them ontop of one another. Fix was made using an if loop to ensure the only first property of the for loop was displayed until the carousel nav buttons were used 
 
+UserPassesTestMixin not working correctly and allowing users whose role is a tenant to add properties
+
+
+add review bug: 
+
+code that fixed by:     def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(**kwargs)
+        slug = self.request.GET.get("slug")
+        queryset = Property.objects.filter(status=1)
+        property = get_object_or_404(queryset, slug=slug)
+        context['property'] = property
+        return context
+
+Raised new error regarding slug already defined. removed slug from reviews model
+
 migration bug:
 removed and uninstalled django-address, this messed up this dependancies in the migrations, attempted to fix by removing migrations. Easiest solution in the end was to duplicate the properties app, delete the old one, delete all migrations and migrate again. 
 
