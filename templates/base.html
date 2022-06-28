@@ -50,12 +50,6 @@
                                 class="d-md-none d-lg-inline-block mx-1 nav-link nav-links"><i
                                     class="fa-solid fa-pencil "></i> Review</a>
                         </li>
-                        <li class="nav-item">
-                            <a href="#" class="d-none d-md-inline-block d-lg-none mx-1 nav-link nav-links"><i
-                                    class="fa-solid fa-heart "></i></a>
-                            <a href="#" class="d-md-none d-lg-inline-block mx-1 nav-link nav-links"><i
-                                    class="fa-solid fa-heart"></i> Likes</a>
-                        </li>
                         {% if user.is_authenticated %}
                         {% if user.role == 'LANDLORD_OR_ESTATEAGENT' %}
                         <li class="nav-item">
