@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+<!--Main Content Code-->
+{% block content %}
+<div class="row m-2">
+    <div class="col">
+        <h2>Edit your property here!</h2>
+    </div>
+</div>
+
+<div class="card form-background">
+    <div class="row m-2">
+        <div class="col">
+            {% crispy form form.helper %}
+        </div>
+    </div>
+</div>
+{% endblock %}

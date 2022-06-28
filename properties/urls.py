@@ -18,4 +18,9 @@ urlpatterns = [
         views.PropertyLike.as_view(),
         name='property_like'
         ),
+    path(
+        'edit-property/<slug:slug>/',
+        views.PropertyUpdateView.as_view(),
+        name='edit_property',
+        ),
 ]

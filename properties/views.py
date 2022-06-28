@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, render, reverse
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views import View
@@ -17,12 +17,31 @@ class PropertyCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     template_name = 'add-property.html'
 
     def test_func(self):
-        if self.request.user.role == 'LANDLORD_OR_ESTATEAGENT':
+        if self.request.user.role == 'LL_OR_EA':
             return True
         else:
             return HttpResponse(
                 "You are not authenticated to edit this profile",
                 status=403)
+
+
+class PropertyUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    """
+    A standard view class rendering the add property
+    page for each review using the form_class attribute
+    """
+    form_class = PropertyForm
+    model = Property
+    template_name = 'edit-property.html'
+
+    def test_func(self):
+        if self.request.user.role == 'LL_OR_EA':
+            return True
+        else:
+            return HttpResponse(
+                "You are not authenticated to edit this profile",
+                status=403)
+
 
 
 class PropertyDetail(View):
