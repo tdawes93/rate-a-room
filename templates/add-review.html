@@ -33,9 +33,9 @@
                 <div class="col">
                     <h5>{{ property.street_address}},
                         {% if property.address_street2 %}
-                        {{ property.address_street2 }}, {% endif %} {{ property.address_town }},
-                        {{ property.address_county }},
-                        {{ property.address_postcode }}, {{ property.address_country }}</h5>
+                        {{ property.address_street2 }}, {% endif %} {% if property.address_town %} {{ property.address_town }},{% endif %}
+                        {% if property.address_county %} {{ property.address_county }}, {% endif %}
+                        {% if property.address_postcode %} {{ property.address_postcode }}, {% endif %} {% if property.address_country %} {{ property.address_country }} {% endif %}</h5>
                 </div>
             </div>
         </div>
