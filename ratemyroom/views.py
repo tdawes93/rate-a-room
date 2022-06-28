@@ -15,11 +15,13 @@ class PropertyList(generic.ListView):
 
 class SearchProperty(View):
     """
-    doc
+    A generic view class rendering the search page
     """
     def post(self, request, *args, **kwargs):
         """
-        doc
+        Post request for the search page, the property
+        objects are filtered by critera allowing the user
+        to search for different address types
         """
         searched = request.POST.get('searched')
         searched_properties = Property.objects.filter(Q(
@@ -39,7 +41,8 @@ class SearchProperty(View):
 
     def get(self, request, *args, **kwargs):
         """
-        doc
+        The get request for the search page rendering
+        the basic template
         """
         return render(
             request,
@@ -50,14 +53,16 @@ class SearchProperty(View):
 
 class SearchPropertyForReview(View):
     """
-    doc
+    Generic class view rending the same search page,
+    the links then take you to the add-review page
     """
     model = Property
 
     def post(self, request, *args, **kwargs):
         """
-        doc
-        """
+        Post request for the search page, the property
+        objects are filtered by critera allowing the user
+        to search for different address types        """
         searched = request.POST.get('searched')
         searched_properties = Property.objects.filter(Q(
             address_postcode__icontains=searched)
@@ -76,7 +81,8 @@ class SearchPropertyForReview(View):
 
     def get(self, request, *args, **kwargs):
         """
-        doc
+        The get request for the search page rendering
+        the basic template
         """
         return render(
             request,
@@ -86,9 +92,13 @@ class SearchPropertyForReview(View):
 
 
 class SearchForm(View):
-    """Doc"""
+    """
+    A generic view rending the search bar itself
+    """
     def get(self, request, *args, **kwargs):
-        """DOC"""
+        """
+        Get request for the search bar
+        """
         return render(
                 request,
                 'search-form.html',

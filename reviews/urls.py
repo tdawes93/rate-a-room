@@ -18,6 +18,4 @@ urlpatterns = [
         views.ReviewDeleteView.as_view(),
         name='delete_review',
         ),
-
-
-]
+    ]
