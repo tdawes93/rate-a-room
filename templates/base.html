@@ -56,7 +56,8 @@
                             <a href="#" class="d-md-none d-lg-inline-block mx-1 nav-link nav-links"><i
                                     class="fa-solid fa-heart"></i> Likes</a>
                         </li>
-                        {% if user.role == LANDLORD_OR_ESTATEAGENT %}
+                        {% if user.is_authenticated %}
+                        {% if user.role == 'LANDLORD_OR_ESTATEAGENT' %}
                         <li class="nav-item">
                             <a href="{% url 'add_property' %}"
                                 class="d-none d-md-inline-block d-lg-none mx-1 nav-link nav-links"><i
@@ -65,7 +66,6 @@
                                     class="fa-solid fa-plus"></i>Add a property</a>
                         </li>
                         {% endif %}
-                        {% if user.is_authenticated %}
                         <li class="nav-item">
                             <a href="{% url 'logout' %}" class="mx-1 nav-link nav-links">Logout</a>
                         </li>
@@ -85,7 +85,6 @@
                                 <li><a class="dropdown-item" href="{% url 'register' %}">Register</a></li>
                             </ul>
                         </li>
-
                         <li class="nav-item">
                             <form action="{% url 'register' %}">
                                 <button class="d-none d-lg-inline-block btn-lg mx-1 p-1 nav-btn">Register</button>

@@ -12,9 +12,12 @@
         {% if user.is_authenticated %}
         <form action="{% url 'property_like' property.slug %}" class="d-inline" method="POST">
             {% csrf_token %}
-            <a href="{% url 'delete_property' property.slug %}" class="text-decoration-none"><i class="fa-solid fa-trash-can"></i> Delete</a>
+            {% if user.role == 'LANDLORD_OR_ESTATEAGENT' %}
+            <a href="{% url 'delete_property' property.slug %}" class="text-decoration-none"><i
+                    class="fa-solid fa-trash-can"></i> Delete</a>
             <a href="{% url 'edit_property' property.slug %}" class="text-decoration-none"><i
                     class="fa-solid fa-arrows-rotate"></i> Edit</a>
+            {% endif %}
             {% if liked %}
             <button class="liked-btn" type="submit" name="property_id" value="{{ property.slug }}"><i
                     class="fas fa-heart"></i></button>
@@ -54,10 +57,10 @@
 </div>
 <div class="row m-2">
     <div class="col">
-            <h4><i class="fa-solid fa-location-dot"></i> {{ property.street_address}},
-                {% if property.address_street2 %}
-                {{ property.address_street2 }}, {% endif %} {{ property.address_town }}, {{ property.address_county }},
-                {{ property.address_postcode }}, {{ property.address_country }}</h4>
+        <h4><i class="fa-solid fa-location-dot"></i> {{ property.street_address}},
+            {% if property.address_street2 %}
+            {{ property.address_street2 }}, {% endif %} {{ property.address_town }}, {{ property.address_county }},
+            {{ property.address_postcode }}, {{ property.address_country }}</h4>
     </div>
 </div>
 <div class="row m-2">

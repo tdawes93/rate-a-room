@@ -20,7 +20,7 @@ class PropertyCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     success_message = 'Your property has been added succesffuly!'
 
     def test_func(self):
-        if self.request.user.role == 'LL_OR_EA':
+        if self.request.user.role == 'LANDLORD_OR_ESTATEAGENT':
             return True
         else:
             return HttpResponse(
@@ -39,7 +39,7 @@ class PropertyUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     success_message = 'Your property has been updated succesffuly!'
 
     def test_func(self):
-        if self.request.user.role == 'LL_OR_EA':
+        if self.request.user.role == 'LANDLORD_OR_ESTATEAGENT':
             return True
         else:
             return HttpResponse(
