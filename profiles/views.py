@@ -121,7 +121,7 @@ class DeleteUser(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     before redirecting to the homepage
     """
     model = User
-    template_name = 'review_confirm_delete.html'
+    template_name = 'authenticate/review_confirm_delete.html'
     success_url = reverse_lazy('homepage')
     success_message = 'Your profile has been deleted succesfully!'
 
