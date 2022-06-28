@@ -14,30 +14,37 @@
 </div>
 <div class="row m-2">
     <div class="col">
-        {% for property in properties %}
-        {% if property.ll_or_ea == user %}
-        {{ property|length }} <h4>Properties</h4>
-        {% else %}
-        <h4>0 Properties</h4>
-        {% endif %}
-        {% endfor %}
+        <h4>Properties</h4>
+        <ul>
+            {% for property in properties %}
+            {% if property.ll_or_ea == user %}
+            <li>
+                {{ property }}
+            </li>
+            {% endif %}
+            {% endfor %}
+        </ul>
     </div>
 </div>
 <div class="row m-2">
     <div class="col">
-        {% for review in reviews %}
-        {% if review.user == user %}
-        {{ review.count }} <h4>Reviews</h4>
-
-        {% else %}
-        <h4>0 Reviews</h4>
-        {% endif %}
-        {% endfor %}
+        <h4>Reviews</h4>
+        <ul>
+            {% for review in reviews %}
+            {% if review.user == user %}
+            <li>
+                {{ review.property }} reviewd on {{ review.date_reviewed}}
+            </li>
+            {% endif %}
+            {% endfor %}
+        </ul>
     </div>
 </div>
-<div class="row mt-5 mx-2"><div class="col">
-    <h4>Edit your profile details below:</h4>
-</div></div>
+<div class="row mt-5 mx-2">
+    <div class="col">
+        <h4>Edit your profile details below:</h4>
+    </div>
+</div>
 <div class="row mt-2 mx-2 justify-content-center text-center">
     <div class="col col-md-8 lg-md-6 card p-2 text-start">
         <form action="" method="POST">
