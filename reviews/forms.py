@@ -112,7 +112,7 @@ class ReviewForm(forms.ModelForm):
             ),
             Div(
                 Div(
-                    Submit('', 'Add Review', css_class='nav-btn'),
+                    Submit('', 'Save Review', css_class='nav-btn'),
                     css_class="col mt-2 text-center justify-content-center"),
                 css_class="row m-2",
             ),

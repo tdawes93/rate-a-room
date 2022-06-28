@@ -8,4 +8,10 @@ urlpatterns = [
         views.ReviewCreateView.as_view(),
         name='add_review'
     ),
+    path(
+        'edit-review/<int:pk>/',
+        views.ReviewUpdateView.as_view(),
+        name='edit_review',
+    ),
+
 ]

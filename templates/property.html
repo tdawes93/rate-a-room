@@ -451,6 +451,14 @@
                 <div class="col-6"><strong>Rented from:</strong> {{ review.date_rented_from }}</div>
                 <div class="col-6 text-end"><strong>To:</strong> {{ review.date_rented_to }}</div>
             </div>
+            <div class="row m-2">
+                <div class="col-3">
+                    <a href="{% url 'delete_property' property.slug %}" class="text-decoration-none"><i
+                            class="fa-solid fa-trash-can"></i> Delete</a>
+                    <a href="{% url 'edit_review' review.pk %}" class="text-decoration-none"><i
+                            class="fa-solid fa-arrows-rotate"></i> Edit</a>
+                </div>
+            </div>
 
             {% endfor %}
         </div>
