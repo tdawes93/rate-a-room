@@ -1,5 +1,7 @@
 from django.shortcuts import get_object_or_404, render, reverse
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
+from django.contrib import messages
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views import View
@@ -15,6 +17,7 @@ class PropertyCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     form_class = PropertyForm
     model = Property
     template_name = 'add-property.html'
+    success_message = 'Your property has been added succesffuly!'
 
     def test_func(self):
         if self.request.user.role == 'LL_OR_EA':
@@ -33,6 +36,7 @@ class PropertyUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     form_class = PropertyForm
     model = Property
     template_name = 'edit-property.html'
+    success_message = 'Your property has been updated succesffuly!'
 
     def test_func(self):
         if self.request.user.role == 'LL_OR_EA':
@@ -41,6 +45,17 @@ class PropertyUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
             return HttpResponse(
                 "You are not authenticated to edit this profile",
                 status=403)
+
+
+class PropertyDeleteView(LoginRequiredMixin, DeleteView):
+    """
+    A standard view class deleting the property
+    before redirecting to the homepage
+    """
+    model = Property
+    template_name = 'property_confirm_delete.html'
+    success_url = reverse_lazy('homepage')
+    success_message = 'Your property has been deleted succesfully!'
 
 
 

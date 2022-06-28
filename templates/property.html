@@ -9,23 +9,24 @@
     <div class="col-4 text-end">
         <a href="{% url 'add_review' %}?slug={{ property.slug }}" class="d-inline-block me-1 text-decoration-none"><i
                 class="fa-solid fa-pencil"></i> Review</a>
-            {% if user.is_authenticated %}
-            <form action="{% url 'property_like' property.slug %}" class="d-inline" method="POST">
-                {% csrf_token %}
-                <a href="" class="text-decoration-none"><i class="fa-solid fa-trash-can"></i> Delete</a>
-                <a href="{% url 'edit_property' property.slug %}" class="text-decoration-none"><i class="fa-solid fa-arrows-rotate"></i> Edit</a>
-                {% if liked %}
-                <button class="liked-btn" type="submit" name="property_id" value="{{ property.slug }}"><i
-                        class="fas fa-heart"></i></button>
-                {% else %}
-                <button class="un-liked-btn" type="submit" name="property_id" value="{{ property.slug }}"><i
-                        class="fas fa-heart"></i></button>
-                {% endif %}
-            </form>
+        {% if user.is_authenticated %}
+        <form action="{% url 'property_like' property.slug %}" class="d-inline" method="POST">
+            {% csrf_token %}
+            <a href="{% url 'delete_property' property.slug %}" class="text-decoration-none"><i class="fa-solid fa-trash-can"></i> Delete</a>
+            <a href="{% url 'edit_property' property.slug %}" class="text-decoration-none"><i
+                    class="fa-solid fa-arrows-rotate"></i> Edit</a>
+            {% if liked %}
+            <button class="liked-btn" type="submit" name="property_id" value="{{ property.slug }}"><i
+                    class="fas fa-heart"></i></button>
             {% else %}
-            <i class="far fa-heart fa-2x"></i>
+            <button class="un-liked-btn" type="submit" name="property_id" value="{{ property.slug }}"><i
+                    class="fas fa-heart"></i></button>
             {% endif %}
-            <span class="text-secondary">{{ property.number_of_likes }}</span>
+        </form>
+        {% else %}
+        <i class="far fa-heart fa-2x"></i>
+        {% endif %}
+        <span class="text-secondary">{{ property.number_of_likes }}</span>
 
     </div>
 </div>
@@ -53,12 +54,25 @@
 </div>
 <div class="row m-2">
     <div class="col">
-        <a href="#" class="text-decoration-none">
             <h4><i class="fa-solid fa-location-dot"></i> {{ property.street_address}},
                 {% if property.address_street2 %}
                 {{ property.address_street2 }}, {% endif %} {{ property.address_town }}, {{ property.address_county }},
                 {{ property.address_postcode }}, {{ property.address_country }}</h4>
-        </a>
+    </div>
+</div>
+<div class="row m-2">
+    <div class="col-6">
+        <h4>{{ property.num_of_bedrooms }} bedrooms</h4>
+        <h4>{{ property.num_of_bathrooms }} bathrooms</h4>
+    </div>
+    <div class="col-2">
+        {% if property.for_rent %}
+        <div class="card text-bg-primary mb-3 text-center">
+            <div class="card-body" id="for-rent">
+                <h5 class="card-title">For Rent!</h5>
+            </div>
+        </div>
+        {% endif %}
     </div>
 </div>
 <div class="row mx-0 d-md-none">

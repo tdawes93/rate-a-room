@@ -12,12 +12,12 @@ class Property(models.Model):
     A class to represnt a property eligible for review.
     """
     # Specifiy choices for dropdown option
-    FLAT = '1'
-    TERRACE = '2'
-    SEMI = '3'
-    DETACHED = '4'
-    BUNGALOW = '5'
-    SHARE = '6'
+    FLAT = 'Flat'
+    TERRACE = 'Terrace house'
+    SEMI = 'Semi-detached house'
+    DETACHED = 'Detached house'
+    BUNGALOW = 'Bungalow'
+    SHARE = 'House share'
     HOUSING_CHOICES = [
         (FLAT, 'Flat'),
         (TERRACE, 'Terrace house'),

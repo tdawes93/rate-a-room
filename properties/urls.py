@@ -23,4 +23,9 @@ urlpatterns = [
         views.PropertyUpdateView.as_view(),
         name='edit_property',
         ),
+    path(
+        'delete-property/<slug:slug>',
+        views.PropertyDeleteView.as_view(),
+        name='delete_property',
+    ),
 ]
