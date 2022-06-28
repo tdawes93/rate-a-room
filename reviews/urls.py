@@ -13,5 +13,11 @@ urlpatterns = [
         views.ReviewUpdateView.as_view(),
         name='edit_review',
     ),
+    path(
+        'delete_review/<int:pk>/',
+        views.ReviewDeleteView.as_view(),
+        name='delete_review',
+        ),
+
 
 ]

@@ -12,7 +12,6 @@ class ReviewForm(forms.ModelForm):
     class Meta:
         model = Review
         fields = (
-            # 'property',
             'title',
             'content',
             'condition_of_property',
