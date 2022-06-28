@@ -1,19 +1,10 @@
 from django.db import models
 from django.urls import reverse
 from django.core.validators import MaxValueValidator
-from cloudinary.models import CloudinaryField
 from django.conf import settings
 from properties.models import Property
 
 User = settings.AUTH_USER_MODEL
-
-
-# def date_validation(date1, date2):
-#     """
-#     A validator function to check the date_rented_from
-#     occurs before the date_rented_to
-#     """
-#     if
 
 
 class Review(models.Model):
@@ -22,7 +13,6 @@ class Review(models.Model):
     """
     # Model fields
     title = models.CharField(max_length=100)
-    slug = models.SlugField(max_length=100, unique=True)
     date_rented_from = models.DateField(null=True, blank=True)
     date_rented_to = models.DateField(null=True, blank=True)
     content = models.TextField(max_length=500, null=True, blank=True)

@@ -9,7 +9,6 @@ class ReviewAdmin(SummernoteModelAdmin):
     An admin class for the Review model
     """
     summernote_fields = ('content')
-    prepopulated_fields = {'slug': ('title', 'user')}
     search_fields = ('title', 'property',)
     list_display = ('title', 'property', 'user', 'overall_rating',)
     readonly_fields = ('overall_rating',)

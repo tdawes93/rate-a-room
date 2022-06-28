@@ -3,6 +3,7 @@ from django.views.generic import CreateView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
+from django.urls import reverse_lazy
 from properties.models import Property
 from .forms import ReviewForm
 from .models import Review
@@ -16,45 +17,24 @@ class ReviewCreateView(LoginRequiredMixin, CreateView):
     model = Review
     template_name = 'add-review.html'
     form_class = ReviewForm
+    success_url = reverse_lazy('homepage')
+    success_message = (
+        f'Your review of {property}'
+        f'was created successfully')
 
-    def get(self, request, *args, **kwargs):
-        """
-        This method gets the empty form views from
-        the dataset to be filled in by the user
-        """
-        slug = request.GET.get("slug")
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(**kwargs)
+        slug = self.request.GET.get("slug")
         queryset = Property.objects.filter(status=1)
         property = get_object_or_404(queryset, slug=slug)
+        context['property'] = property
+        return context
 
-        initial = {'property': property}
-        form = self.form_class(initial=initial)
-
-        return render(
-            request,
-            self.template_name,
-            {
-                'slug': slug,
-                'form': form,
-                'property': property,
-            },
-        )
-
-    def post(self, request, *args, **kwargs):
-        """
-        This method handles the post request and saves the review information
-        from the form  to the dataset
-        """
-        form = self.form_class(request.POST)
-
-        if form.is_valid():
-            review = form.save()
-            review.save()
-
-        return render(
-            request,
-            self.template_name,
-            {
-                'form': form,
-                'property': property,
-            },
-            )
+    def form_valid(self, form, **kwargs):
+        context = self.get_context_data(**kwargs)
+        print(context)
+        form.instance.property = context['property']
+        form.instance.user = self.request.user
+        form.save()
+        return super(ReviewCreateView, self).form_valid(form)
