@@ -3,6 +3,7 @@
 
 <!--Main Content Code-->
 {% block content %}
+{% if user.role == 'LANDLORD_OR_ESTATEAGENT' %}
 <div class="row m-2">
     <div class="col">
         <h2>Add a property to RatemyRoom</h2>
@@ -21,4 +22,18 @@
         </div>
     </div>
 </div>
+{% else %}
+
+<div class="row justify-content-center text-center mt-5 pt-5">
+    <div class="col">
+        <h2>Oops! You have stumbled upon a restricted page!</h2>
+        <h4>If you wish to be able to add your own properties please create a Landlord or Estate Agent Profile!</h4>
+        <a href="{% url 'homepage' %}">
+            <h4>Please click here to return to the homepage</h4>
+        </a>
+    </div>
+</div>
+
+{% endif %}
+
 {% endblock %}
