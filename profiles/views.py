@@ -109,9 +109,6 @@ class EditUser(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     reviews = Review.objects.all()
 
     def get(self, request, *args, **kwargs):
-        """
-        d
-        """
         form = self.form_class()
         return render(
             request,
