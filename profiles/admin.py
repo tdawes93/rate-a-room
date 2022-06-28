@@ -7,6 +7,6 @@ class UserAdmin(admin.ModelAdmin):
     """
     An admin class for the User model
     """
-    search_fields = ('username',)
-    list_display = ('username', 'email')
+    search_fields = ('username', 'role',)
+    list_display = ('username', 'email', 'role',)
     readonly_fields = ('username',)
