@@ -20,7 +20,6 @@ class ReviewForm(forms.ModelForm):
             'rate_the_neighbourhood',
             'value_for_money',
             'standard_of_amenities_nearby',
-            'images',
             'date_rented_from',
             'date_rented_to',
         )
@@ -37,7 +36,6 @@ class ReviewForm(forms.ModelForm):
         self.helper = FormHelper()
         self.fields['date_rented_from'].label = ''
         self.fields['date_rented_to'].label = ''
-        self.fields['images'].label = ''
         self.helper.form_id = 'addreview-form'
         self.helper.form_class = 'blueForms'
         self.helper.form_method = 'post'
@@ -110,20 +108,6 @@ class ReviewForm(forms.ModelForm):
                         'value_for_money',
                         'standard_of_amenities_nearby',
                         ), css_class="col"
-                ), css_class="row m-2"
-            ),
-            Div(
-                Div(
-                    HTML(
-                        '<h4>Add some images to your review</h4>'
-                    ),
-                    css_class="col mt-2",
-                ), css_class="row m-2",
-            ),
-            Div(
-                Div(
-                    Field('images',),
-                    css_class="col",
                 ), css_class="row m-2"
             ),
             Div(

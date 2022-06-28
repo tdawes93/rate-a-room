@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, reverse
-from django.views import View
+from django.views.generic import CreateView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
@@ -7,14 +7,15 @@ from properties.models import Property
 from .forms import ReviewForm
 from .models import Review
 
-class ReviewCreateView(LoginRequiredMixin, View):
+
+class ReviewCreateView(LoginRequiredMixin, CreateView):
     """
     A standard view class rendering the add review
     page for each review using the form_class attribute
     """
-    form_class = ReviewForm
     model = Review
     template_name = 'add-review.html'
+    form_class = ReviewForm
 
     def get(self, request, *args, **kwargs):
         """
@@ -46,29 +47,14 @@ class ReviewCreateView(LoginRequiredMixin, View):
         form = self.form_class(request.POST)
 
         if form.is_valid():
-            text = form.cleaned_data[
-                'property',
-                'title',
-                'content',
-                'condition_of_property',
-                'quality_of_landlord',
-                'rate_the_neighbourhood',
-                'value_for_money',
-                'standard_of_amenities_nearby',
-                'images',
-                'date_rented_from',
-                'date_rented_to'
-                ]
             review = form.save()
             review.save()
-
-            return HttpResponseRedirect(reverse('homepage'))
 
         return render(
             request,
             self.template_name,
             {
                 'form': form,
-                'property': property
+                'property': property,
             },
             )

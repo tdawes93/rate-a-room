@@ -53,12 +53,6 @@ class Review(models.Model):
         Property,
         on_delete=models.CASCADE,
         related_name='reviews')
-    images = CloudinaryField(
-        'image',
-        default='placeholder',
-        blank=True,
-        null=True
-    )
 
     def __str__(self):
         return f'{self.title} by {self.user}'
