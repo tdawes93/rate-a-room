@@ -3,13 +3,15 @@ from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.views.generic import View, CreateView, UpdateView
+from django.contrib.auth.views import PasswordChangeView
+from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
-from . import forms
-from .forms import RegisterUserForm, EditUserForm
 from properties.models import Property
 from reviews.models import Review
 from .models import User
+from . import forms
+from .forms import RegisterUserForm, EditUserForm
 
 
 class LoginUserView(View):
@@ -111,3 +113,13 @@ class EditUser(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
               'properties': self.properties
             }
         )
+
+
+class PasswordsChangeView(PasswordChangeView):
+    """
+    Custom class view to change the password of users
+    upon request
+    """
+    form_class = PasswordChangeForm
+    template_name = 'authenticate/change-password.html'
+    success_url = reverse_lazy('homepage')
