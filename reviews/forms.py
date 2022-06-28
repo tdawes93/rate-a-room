@@ -35,6 +35,11 @@ class ReviewForm(forms.ModelForm):
         self.helper = FormHelper()
         self.fields['date_rented_from'].label = ''
         self.fields['date_rented_to'].label = ''
+        self.fields['condition_of_property'].widget.attrs.update(max='5')
+        self.fields['quality_of_landlord'].widget.attrs.update(max='5')
+        self.fields['rate_the_neighbourhood'].widget.attrs.update(max='5')
+        self.fields['value_for_money'].widget.attrs.update(max='5')
+        self.fields['standard_of_amenities_nearby'].widget.attrs.update(max='5')
         self.helper.form_id = 'addreview-form'
         self.helper.form_class = 'blueForms'
         self.helper.form_method = 'post'
@@ -92,7 +97,8 @@ class ReviewForm(forms.ModelForm):
             Div(
                 Div(
                     HTML(
-                        '<h4>Rate the following aspects of the property</h4>'
+                        '<h4>Rate the following aspects of the property'
+                        ' between 1 and 5</h4>'
                     ),
                     css_class="col",
                 ), css_class="row m-2",
