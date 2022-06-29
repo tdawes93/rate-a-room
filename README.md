@@ -346,7 +346,21 @@ Pages:
 
 
 ### Future Features to Implement
+
 - In addition to the features not brought across from the backlog to this iteration and those not completed in this iteration some additional features/fixes were identified that could be implemented in the future.
+
+- Key features still in the backlog that could be allocated as Must Haves in the next iteration are as follows:
+    - The ability to like a review
+    - Improve the profile page including adding a picture. This could then be shown as part of the review in addition to the username.
+    - As part of improving the profile page the property and review lists could be linked to bring the user to the relevant item. There could also be an edit and delete button available so the user has a central location where they can perform admin tasks for their profile. 
+    - The integratation of the map feature should be at the forefront of the next iteration. It could be a static map indicating the location of the property or it could be an interactive map highlighting all property locations stored on RatemyRoom
+    - An additional card could be added on the property detail page highlighting properties with similar details or locations.
+- Some less important user stories that could be integrated if the time allowed are:
+    -  Approve reviews/comments
+    - Direct messaging between users
+    - Followers and the ability to follow other users
+    - A recent activity section/ability to save a property of interest.
+
 
 ***
 
@@ -375,22 +389,34 @@ Pages:
 
 ### Overview
 
-Testing will be performed on the functionality of the app. The ease of use and clarity will also be reviewed to ensure the back-end code integrates nicely with the front-end design. 
+Testing will be performed on the functionality of the app. This is the key aspect of the appliction. Secondary to this is the front end desing and strong UX. Testing of Django built in features is not needed as the framework tests these for us and provides their own validation tools.  
 
 Testing will look for the following:
 
-- The interaction and statements printed to the terminal are clear and easy to follow.
+- The views, urls and models work as expected rendering the correct pages with no broken links
 - All inputs are checked and validated to ensure the user does not input invalid data types. Errors will be raised and an opportunity to try again will be allowed following invalid data entry.
-- No unexpected errors occur once deployed to Heroku and all errors raised are due to user input errors.
-- The user is given the option to return to the main menu upon finishing their action for ease of use.
-- All bookings made by the user are saved to the Google Sheet and then can be pulled up before calculating staff numbers.
+- Users cannot access pages/areas of the website they do not have permissions for. If they come across a page outside of their authorisation an error message will be thrown.
+- Responsive design works throughout maintaining readability and ease of use with no unexpected changes/overlaps
+- All code will be passed through an acceptable validator for the language. 
 
 ### Validator Testing
 
 - Python
     - The official PEP8 online syntax checker came back with no issues. 
 
-    ![PEP8 online checker](assets/images/pep8_checker.png) 
+    ![PEP8 online checker]()
+
+- HTML
+    - The official W3C online syntax checker came back with the following issues. They were resolved using the suggested fixes in the checker. Other issues raised were due to the implementation of Django Template Tags clashing with the rules of the checker, as per the image below.
+
+    ![W3C online checker](media/W3C-validation-results.png)
+
+
+- CSS
+    - The official Jigsaw online syntax checker came back with no issues.
+
+- Javascript 
+    - The official JSHint online syntax checker cam back with no issues. 
 
 
 ### Issues/Bugs resolved during testing 
