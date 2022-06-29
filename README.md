@@ -228,12 +228,26 @@ Pages:
 
 ### Existing Features
 
-#### Google Sheets
-- The Google Sheet was set up to host all the historical data the restaurant had been using up until this point.
-- The app will take data from this sheet and use it, in conjunction with new input data, to calculate the outputs (number of staff needed etc.)
-- All data used within this app; input data, data from calculations and output data; will be stored in this Google Sheet. 
-- The Google Sheet consists of four worksheets representing bookings, walk-ins, takings and the number of staff on shift. Each worksheet has seven columns, representing the days of the week, and each row represents a new week. 
-- The bookings worksheet has an extra row, with all 0 as this is the starting point for each week where no bookings have been made yet. 
+#### Navbar/Footer
+- Located at the top and bottom over every page on the site is the Navbar and Footer.
+- The navbar provides a quick-link area for users to Sign-in, Write a review, Add a property etc.
+- It is designed responsively using Bootstrap's Breakpoints.
+- At smaller screen sizes the Navbar will collapse into a hamburger menu icon.
+- At medium screen sizes only the icons that represent each function will show
+- At larger screen sizes there will be a combination of icons, text and buttons. 
+
+#### Hompage
+- The Homepage was designed to be eye catching yet clear. It draws people in to two key areas.
+- First the hero image and search bar:
+    - The hero image shows both rurual and urban living instantly making it clear for the subject area of the site. 
+    - Situated centre of this image is a search bar encouraging users to interact with the site
+    - Both the hero image and search bar are fully responsive with the search bar increasing in size (proportionally to screen width) as the devices get smaller. This allows the search bar to maintain functionality as it is the key feature.
+- Secondly the properties carousel
+    - This carousel automatically scrolls through the properties providing an image, the property name and a star rating, representing the average rating provided by reviews.
+    - If no reviews have been made on a property the star rating will be ommitted.
+    - The properties are currently in the order of date reviewed with the most recent first, in a future release this could be changed to be in rating order with the highest rated properties shown first.
+    - Additionally each carousel item is a link, taking you to an extended detail page on the property (see [Property Detail](#Property-Detail))
+
 ![Google Sheets](/assets/images/google_sheets.png)
 
 #### Main Menu
