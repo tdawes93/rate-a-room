@@ -20,22 +20,24 @@
         <h6>Email: {{ user.email }}</h6>
     </div>
 </div>
-{% for property in properties %}
-{% if property.ll_or_ea == user %}
+{% if user.role == 'LANDLORD_OR_ESTATEAGENT' %}
+
+<h4>Properties</h4>
+
 
 <div class="row m-2">
     <div class="col">
 
-        <h4>Properties</h4>
-        <ul>
+        <ul>{% for property in properties %}
+
             <li>
                 {{ property }}
-            </li>
+            </li>{% endfor %}
+
         </ul>
     </div>
 </div>
 {% endif %}
-{% endfor %}
 
 <div class="row m-2">
     <div class="col">
