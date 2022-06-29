@@ -290,43 +290,49 @@ Pages:
 ![Layout for large screens](media/images/layout-for-lg-screens.png)
 ![Layout for small sreens](media/images/layout-for-sm-screens.png)
 
-#### Make Booking
-- Upon selecting option 1 the user is prompted to input a day of the week
-- Again an error will be raised if the data is invalid.
-- Once a valid input has been made the user will have to input the table size. This is limited between 1 and 10 (inclusive) to limit large tables without pre-ordering/deposits etc. This data is also validated
-- Successful input of the day and party size will result in the terminal printing out a dictionary summarising the booking and a message asking if you wish to save your booking. 
-- Should the user select "Y" the user will be told the booking is saved. The Google Sheet will be updated to add the party size to the last row and relevant column in the bookings worksheet. 
-- If the user selects "N" no further action to the dictionary will be taken. Both choices are followed by the return the menu section, discussed later.  
+#### Add Property Page
 
-![Booking section](/assets/images/booking_section.png)
+- If the user is logged in as a Landlord or Estate Agent they will have access to the add property page. This can be accessed by the plus icon found in their navbar.
+- This page brings up a form asking for the property details along with requesting an image. The user will also have an option to set the property as not published which will hide it from view.
+- Once submitted the form will create a new entry in the Property table in the database and will then render a new page that can be accessed by all users.
+- Logged in users can then leave reviews and like the property. 
+- The edit property page renders the same form with the fields automatically populted. 
 
-#### View Bookings
-- If the user selects option 2, a total of all bookings per day is displayed.
-- This is displayed as a dictionary that has had its order fixed to follow the order the days of the week fall.
-- If the user selects this option first or early on in their use it will display all 0 or mainly 0. This is because no or few bookings have been made and as more bookings are made this will fill up. 
+![Add property form](media/images/add-property-form.png)
 
-![View Bookings](/assets/images/view_bookings.png)
+#### Add Review Page
 
-#### Calculate Staff Needed
-- If option 3 is chosen the user is met with a message explaining that calculating the number of staff resets the bookings for the following week and asks them if they have completed all their bookings.
-- Again the input for this answer is validated with errors raised in the event of invalid data.
-- If "N" is selected the user is taken back to the main menu and prompted to complete their bookings.
-- If "Y" is selected the calculating staff function is run. 
-- This function performs the following steps in order:
-    - Calculate the average number of walk-ins over the last 10 weeks 
-    - Iterates over the two lists adding the values together to create a "Total number of covers per day" list
-    - Multiplies the total covers list by 15 for Monday to Thursday and by 25 for Friday to Sunday to calculate the predicted takings in pounds. 
-    - Divides the predicted takings list by 400 to calculate the minimum number of staff required to work per day. 
-    - If the number is only 1, an extra staff member is added.
-    - If the day is Friday to Sunday and an extra staff member is added
-    - This list is then used along with the days of the week to create a dictionary and printed to the terminal.
-    
-![Calculate Staff](/assets/images/calculate_staff.png)
+- The add review page can be accessed by all users logged in.
+- There are two ways to access the page. Users can either navigate to the property detail page of the property they wish to review and press the review (pencil) icon, or they can click the small review icon in the navbar where they will be prompted to search for the property using address information. 
+- Both routes render the same page, which is a form requesting information about your review. The property information you are reviewing is displayed on the form to avoid confusion with rentals. 
+- Upon submission the form will create a new entry in the Review table in the database and the review will be showed on the property detail page, in the reviews section. 
+- Again there are edit and delete buttons that work in the same way as for the edit/delete property. 
 
-#### Return to Main Menu
-- All choices are followed by an option to return to the main menu. 
-- If "Y" is selected it will return the user to the main menu where they can select again from the three initial options.
-- If "N" is selected the user is thanked for using the app and it ends. 
+![Add review form](media/images/add-review-form.png)
+
+
+#### Register and login Page
+
+- The register user and login pages render simple forms which can be accessed from the navbar for users that are not logged in.
+- The pages can easily be navigated between the two incase the user presses the wrong link.
+- Upon completion of the form the user will have succesfully created/logged in to provide access to permission required pages, such as add-review and add-property.
+- The registration form is the same for both Tenants and Landlords/Estate Agents, with the role being selected on the form. 
+
+![Registration form](media/images/registration-form.png)
+
+
+#### User Profile Page
+
+- Once registered/logged in the user will have access to a profile page
+- This page shows the users personal information followed by any properties or reviews they have posted
+- In addition there is an edit profile form, where the user can change any personal information. 
+- If they wish to change their password they are take to the secure built in Change Password Form Django provides. 
+- There is a delete user button on the right of this page. Again this takes you to a confirmation page as a form of defensive programming.
+- Should the user delete their profile any properties or reviews they have left will also be deleted. In the event of properties this will also delete any associated reviews left by over users.
+- It is hence advised that Landlords/Estate Agents that no longer wish to use the site contact the administrator and their account can be made inactive. 
+
+![User profile](media/images/user-profile.png)
+
 
 ### Future Features to Implement
 - The ability to input a time of booking, not just day and number of people, would allow the user to have greater knowledge on when tables are booked.
