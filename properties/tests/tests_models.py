@@ -1,5 +1,5 @@
 from django.test import TestCase
-from django.contrib.auth.models import User
+from profiles.models import User
 from properties.models import Property
 
 
@@ -16,7 +16,7 @@ class PropertyTest(TestCase):
             num_of_bathrooms=3,
             type_of_property=1,
             for_rent=False,
-            ll_or_ea=user,  # User.objects.get(user_id),
+            ll_or_ea=user,
             )
 
     def test_title_has_max_length_of_100(self):
