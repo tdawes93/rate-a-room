@@ -164,17 +164,17 @@ As part of my agile development I assigned my user stories to a backlog, before 
 
 #### Colour Scheme
 
-- The three main colours used were Red #EF0001, White #FFFFFF and Oxford Blue #172030. These colours were taken from the Arsenal FC logo to ensure they are official Arsenal FC colours. This allows the site to be instantly identifiable by football fans. 
+- The main body of the site is White #FFF this is due to the clarity of a white background. In addition due to large number and variety of images that can be uploaded by the user, white guarantees a lack of clash as much as possible.  
 
-- The kick-off button is coloured in Metallic Sunburst #9D8349 and the background of the page is coloured in Cultured #F1F2F3. Both these colours are taken from the official Arsenal FC website and stick with the main theme.
+- The three other colours used are Citron #A5A640, Light Gray #D2CFCC and Eerie Black #171C1F. These were picked from the hero image which also represents a good representation of most real estate photography. Additional colours not used in this site but could be selected are Coloumba Blue #CBE4EC and Quick Silver #A8A4A5.
 
-![Colour Scheme](/assets/images/readme-images/coolers.PNG)
+![Colour Scheme](media/colour-scheme.png)
 
 #### Typography
 
-- Source Sans Pro is used throughout the site. It is a sharp, clear and crisp font making it easy to read. It is similar to FF Meta which is the font used on the official Arsenal FC site.
+- Quicksand is used throughout the site. It is a display sans serif with rounded terminals. It uses geometric shapes as a core foundation creating an artistic yet professional view. It is used by sites in similar business areas like SpareRoom.co.uk
 
-- The site uses uppercase for titles and buttons and capitalisation for all other text. This enables readability and allows the buttons to be easily identified.  
+- The site uses sentance case throughout, with the logo being the three words of the name pushed together. This creates a feeling of togetherness and secuirty something that is also felt in a good home.
 
 - The font has a sans-serif backup.
 
@@ -184,7 +184,26 @@ As part of my agile development I assigned my user stories to a backlog, before 
 
 - The images have been resized to be responsive.
 
-### Wireframes/Skeleton
+### Skeleton
+
+The final site consists of the following pages. Every page was written in HTML using Django Template Tags (written in Python).
+Pages:
+ - Homepage
+ - Login
+ - Register
+ - Edit User
+ - Add Property/edit property
+ - Add Review/edit review
+ - Search Property form
+ - Search Property results
+ - Property Details
+
+
+#### Database Schema
+
+![Relational Database Tables](media/database_schema.png)
+
+#### Wireframes
 
 ##### Home Page
 ![Home Page Wireframe](media/images/wireframes/wireframe-homepage.png)
