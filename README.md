@@ -346,31 +346,28 @@ Pages:
 
 
 ### Future Features to Implement
-- The ability to input a time of booking, not just day and number of people, would allow the user to have greater knowledge on when tables are booked.
-- In addition, each day could be split into three "services", breakfast, lunch and dinner. The app could then be updated to calculate the staff required for each service for each day, providing a more realistic overview of how a restaurant needs to schedule its staff. 
-- Another feature to be added in the future is the ability to make bookings further in the future than the current week. This could be done by using a date function, or a week commencing function.
-- Tieing into this the ability to view historical data/bookings/staff numbers without going to the Google Sheets would be useful to improve budgeting ability.
-- The four features above, are one step in the road into developing this app into a full business management/CRM style app. This is where I envision this app developing in the future. 
+- In addition to the features not brought across from the backlog to this iteration and those not completed in this iteration some additional features/fixes were identified that could be implemented in the future.
 
 ***
 
 ## Technologies
 
 ### Languages
-- The project was written using Python 3.8.11
--  The following modules and APIs were installed to improve the output and functionality:
-    - Math - Used for the ceil() function to round numbers up to the nearest integer
-    - Statistics - Used for the fmean() function to calculate the mean average and reduce the amount of code needed
-    - Gspread - API for Google Sheets used to get and update the worksheet 
-    - Google Auth - Authenticates Google's APIs and takes the credentials from the Google Sheets 
+- The project was written using the Django Framework in Python 3.8.11
+- The Database used was PostgreSQL hosted on Heroku
+- The Front End Design was written in HTML5 and styled mainly using the Bootstrap 5 framework.
+- A small CSS and Javascript (containing JQuery) file were added for customisation and functionality.
+- Front End page logic and rendering was completed using the Django Template tags within the HTML files
 
 ### Tools    
 - Gitpod was used as an online IDE
 - Github was used as the repository for the source code
 - Heroku was used as the platform to run the deployed app
-- Google Sheets was used to store the data and where the initial "historical data" was held
-- Code Institute's Python Essentials Template was used to view the app in a mock terminal
-- PEP8 checker was used to check the Python code for errors 
+-
+- PEP8 checker was used to check the Python code for errors
+- W3C validator was used to check the HTML code for errors
+- Jigsaw was used to check the CSS code for errors
+- JSHint was used to check the Javascript code for errors
 
 ***
 
@@ -398,17 +395,6 @@ Testing will look for the following:
 
 ### Issues/Bugs resolved during testing 
 
-- Upon deployment, the dictionary showing the current weeks bookings that was printed to the terminal was difficult to read and spread over across two lines. This was resolved by installing the pprint() function to make it clearer in the terminal with each new key:value pairing printed on a new line.
-
-- The fix above then created a new bug. In Python 3.8 + the print() function orders dictionaries in order of creation of key:value pairs. However, pprint() orders them alphabetically by key. This was solved by adding "sort_dicts=False" inside each pprint function.
-
-- If the user selected "Y" to return to the main menu within function "restart()" and then selected "N" to end the app once "restart()" is run a second time, two identical print statements were returned in the format:
-     > "Thank you for using the restaurant management app.
-Thank you for using the restaurant management app"
-
-    This was fixed by creating a new function "main_menu()" which only runs the "start()" function if the input variable is True.
-
-- I originally had the inputs accepting data starting both with and without a capital letter (e.g. Monday or monday). This made for a large number of if statements within my try statements. I didn't wish to remove the ability to use lower case as it takes away from the user-friendliness of the app. To fix this I added the .capitalize() method to the end of all my input() functions, automatically Capitalizing the input, making them valid (provided the input is of the correct type).
 
 ### Testing User Goals
 
@@ -465,11 +451,7 @@ If you wish to view or make changes without affecting the original repository yo
 ***
 
 ## Credits
-- Inspiration
-    - The idea for this app along with suggested future updates was borne from countless weeks having to estimate takings and staff numbers required whilst managing pubs
 
-- Code
-    - The update_worksheet function was taken from Code Institute's Love Sandwiches Mini Project
 
 
 ***
