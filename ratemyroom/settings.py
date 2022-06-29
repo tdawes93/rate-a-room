@@ -32,7 +32,7 @@ CLOUDINARY_URL = os.environ.get('CLOUDINARY_URL')
 GOOGLE_API_KEY = os.environ.get('GOOGLE_API_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['rate-my-room.herokuapp.com', 'localhost']
 
