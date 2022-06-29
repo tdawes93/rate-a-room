@@ -333,6 +333,17 @@ Pages:
 
 ![User profile](media/images/user-profile.png)
 
+#### Search Page
+
+- If users wish to use the search function on the homepage they can do so by inputting address information and clicking the search icon of pressing Enter
+- Additionally users who click to leave a review using the icon in the nav bar are brought to search bar which works in the same way.
+- Both search bars bring you to two separate identical pages.
+- The pages list all the properties, with useful information, that matched your search criteria. 
+- Each property card is a link which will take you to either the property detail page of the add review form. 
+- Although the search bar says 'Postcode' it will accept any or all of the address fields, however it is character sensitive so a rogue space at the end will throw the function off. 
+
+![Search results](media/images/search-results.png)
+
 
 ### Future Features to Implement
 - The ability to input a time of booking, not just day and number of people, would allow the user to have greater knowledge on when tables are booked.
