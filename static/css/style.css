@@ -4,6 +4,8 @@ body {
     color: #171C1F;
 }
 
+
+/* Header and landing page*/
 a, a h1 {
     color: #171C1F;
 }
@@ -15,13 +17,11 @@ a:hover, a h1:hover {
 .nav-links {
     font-size: 100%;
     color: #171C1F;
-
 }
 
 .nav-links:hover {
     text-decoration: underline;
     color: #A5A640;
-
 }
 
 .nav-btn {
@@ -29,7 +29,6 @@ a:hover, a h1:hover {
     border: solid #171C1F;
     border-radius: 15px;
     color: #171C1F;
-
 }
 
 .un-liked-btn {
@@ -60,6 +59,7 @@ a:hover, a h1:hover {
     color: #171C1F;
 }
 
+
 /*, .carousel-indicators */
 .carousel-control-next,
 .carousel-control-prev {
@@ -76,6 +76,8 @@ a:hover, a h1:hover {
     opacity: 1;
 }
 
+
+/*Property Detail page*/
 .checked {
     color: #A5A640;
 }
@@ -89,15 +91,11 @@ a:hover, a h1:hover {
     color: #171C1F;
 }
 
+
 /*Forms*/
 .card {
     border: solid #171C1F;
 }
-
-/* .form-background {
-    background-color: #D2CFCC;
-} */
-
 
 #for-rent {
     background-color: #A5A640;
@@ -113,12 +111,3 @@ a:hover, a h1:hover {
     background-color: #A5A640;
     border: solid #A5A640;
 }
-
-
-/* Set the size of the div element that contains the map */
-#map {
-    height: 400px;
-    /* The height is 400 pixels */
-    width: 100%;
-    /* The width is the width of the web page */
-  }

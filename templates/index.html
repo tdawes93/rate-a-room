@@ -7,7 +7,9 @@
         <img src="https://res.cloudinary.com/tdawes93/image/upload/v1655836631/ratemyroom/pexels-enric-cruz-l%C3%B3pez-6039188_n8mgza.jpg"
             alt="Image of street with city in background" class="w-100">
         <div class="row justify-content-center text-center position-absolute top-0 w-100 g-0">
-            <div class="col-6 mt-1 mt-lg-4"><h4 id="strapline">Where locals get a voice</h4></div>
+            <div class="col-6 mt-1 mt-lg-4">
+                <h4 id="strapline">Where locals get a voice</h4>
+            </div>
         </div>
         <div class="row justify-content-center text-center position-absolute bottom-50 w-100 g-0">
             <div class="col-8 col-md-6">
@@ -44,10 +46,10 @@
                                 alt="Photo of property uploaded by user">
                             <div class="carousel-caption d-none d-lg-block">
                                 <h5 class="card-title">{{ property.title }}</h5>
-                                <h6 class="card-text"></h6>
-                                {% for key, value in property.average_property_rating.items %}
-                                {% include 'star-rating.html' %}
-                                {% endfor %}</h6>
+                                <h6 class="card-text">
+                                    {% for key, value in property.average_property_rating.items %}
+                                    {% include 'star-rating.html' %}
+                                    {% endfor %}</h6>
                             </div>
                             <div class="d-lg-none">
                                 <h5 class="card-title">{{ property.title }}</h5>
@@ -59,17 +61,19 @@
                     </div>
                     {% endfor %}
                 </div>
-                <button class="carousel-control-prev carousel-control-btn" type="button"
-                    data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next carousel-control-btn" type="button"
-                    data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
             </div>
+            <button class="carousel-control-prev carousel-control-btn" type="button"
+                data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next carousel-control-btn" type="button"
+                data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
     </div>
-    {% endblock %}
+</div>
+
+{% endblock %}

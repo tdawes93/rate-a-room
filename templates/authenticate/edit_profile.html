@@ -20,20 +20,23 @@
         <h6>Email: {{ user.email }}</h6>
     </div>
 </div>
+{% for property in properties %}
+{% if property.ll_or_ea == user %}
+
 <div class="row m-2">
     <div class="col">
+
         <h4>Properties</h4>
         <ul>
-            {% for property in properties %}
-            {% if property.ll_or_ea == user %}
             <li>
                 {{ property }}
             </li>
-            {% endif %}
-            {% endfor %}
         </ul>
     </div>
 </div>
+{% endif %}
+{% endfor %}
+
 <div class="row m-2">
     <div class="col">
         <h4>Reviews</h4>
@@ -55,7 +58,7 @@
 </div>
 <div class="row mt-2 mx-2 justify-content-center text-center">
     <div class="col col-md-8 lg-md-6 card p-2 text-start">
-        <form action="" method="POST">
+        <form action="{% url 'homepage' %}" method="POST">
             {% csrf_token %}
             {{ form|crispy }}
             <div class="row d-block justify-content-center text-center">
