@@ -235,6 +235,10 @@ Pages:
 - At smaller screen sizes the Navbar will collapse into a hamburger menu icon.
 - At medium screen sizes only the icons that represent each function will show
 - At larger screen sizes there will be a combination of icons, text and buttons. 
+- The navbar will change depending on your logged in status and role selected upon registration, this is one of the methods used to restrict unautorised users from accessing pages they do not have permissions for.
+![Small navbar hamburgericon open](media/images/small-navbar.png)
+![Medium navbar](media/images/medium-navbar.png)
+![Large navbar](media/images/large-navbar.png)
 
 #### Hompage
 - The Homepage was designed to be eye catching yet clear. It draws people in to two key areas.
@@ -245,26 +249,46 @@ Pages:
 - Secondly the properties carousel
     - This carousel automatically scrolls through the properties providing an image, the property name and a star rating, representing the average rating provided by reviews.
     - If no reviews have been made on a property the star rating will be ommitted.
+    - For larger devices the title and rating will appear if the user hovers, smaller devices have this information below the image.
     - The properties are currently in the order of date reviewed with the most recent first, in a future release this could be changed to be in rating order with the highest rated properties shown first.
     - Additionally each carousel item is a link, taking you to an extended detail page on the property (see [Property Detail](#Property-Detail))
 
-![Google Sheets](/assets/images/google_sheets.png)
+![Carousel on a small device](media/images/carosel-small.png)
+![Carousel on a large device](media/images/carosel-large.png)
 
-#### Main Menu
-- The main menu welcomes the user to the app and asks them to select a choice of three options:
-    - Enter a new booking
-    - View the total number of bookings
-    - Calculate staff numbers required for the upcoming week
-- The user must answer using the numbers 1 to 3. If the input data is not a number the error 
-> "Invalid data: invalid literal for int() with base 10" 
+#### Property Detail
+- The property detail page is one of the main pages of the site. It is accessible by all users including those that have not registered. 
 
-is raised.
-- If the user inputs a number that is not 1 to 3 the error
-> "Invalid data: Input must be 1, 2 or 3. Please try again" 
+- The first section shows a breakdown of the key property information including:
+    - Property Title
+    - Number of bedrooms
+    - Number of bathrooms
+    - Address
+    - Main image
+- If the property is for rent a button button indicating 'For Rent' will also pop up in this section. 
+- One of the main drawing points to the property information is the average rating stars. This is calculated by taking the overall rating for each review made for the property an averaging it using the aggregate(Avg()) method built into Django. The result is then converted into an integer and the decimal places are removed using floatformat:0. The result is then transferred into a visual star form. 1 = One star filled in, 2 = Two stars etc.
 
-is raised. 
-- The user is then asked to select again in both instances.
-![Main Menu Invalid Data](/assets/images/main_menu_invalid.png)
+- To the right of this details section is a series of buttons/links. The types and styles will change depending on if and who is logged in as. 
+- Two icons visibile to all are the review icon (pencil) and the like icon (heart)
+- Selecting the review icon will take you to the write a review form for this particular property, or if not logged in it will prompt you to login/register
+- The heart will 'like' the property increasing the count by 1. If not logged in you will not be able to press this button.
+- The other two buttons will only be visible if you are logged in as the owner of the property. These buttons are the edit and delete buttons.
+- The edit button will take you to the same form as the 'add-property' form but with the information already filled in.
+- The delete button will take you to a confirmation page. This provides an aspect of defensive programming which can be found across the entire site. Upon confirming deletion the property and any associated reviews will be removed from the database and website.
+
+- Below the property image is the ratings a reviews section.
+- On medium and large screen sizes the ratings card can be found directly below and to the left of the property info section, on smaller screen sizes this card is omitted. 
+- The ratings section provides a breakdown of how the average rating used above is calculated. It shows the average score of 5 categories which users can rate the property when submitting their reviews. 
+- The reviews card is broken up into individual reviews, which follow the same format for all screen sizes. 
+- Each review displays the username of the user that left the review, the overall score given in the review, the content of the review and the dates the reviewer lived there. 
+- In addition there are two CRUD functionality buttons, similar to those in the property info above. Only the user who wrote the review will be able to see these buttons. 
+- The edit review button, brings the user back to the add-review page with the info already filled in.
+- The delete review button takes you to a confirmation page as before. 
+
+- Finally medium and large screen sizes have a location card on the property detail page. This card is currently blank as the user story was given a MoSoCoW ranking of 'Could Have' and was not completed in this iteration. This story will be placed back into the backlog and re-prioritised in subsequent releases. It was decided the location and card was going to be created to avoid design and layout issues in future. 
+
+![Layout for large screens](media/images/layout-for-lg-screens.png)
+![Layout for small sreens](media/images/layout-for-sm-screens.png)
 
 #### Make Booking
 - Upon selecting option 1 the user is prompted to input a day of the week
