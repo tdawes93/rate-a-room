@@ -1,6 +1,5 @@
 Future things to add/change
 
-JS script could be condensed. Need to figure out way to not repeat code for each set of star ratings
 
 
 Test Problems
@@ -8,38 +7,16 @@ changed assertTrue test to assertLessEquals
 
 Needed to create user and property instances to get review unittests to work 
 
-Repetative code for displaying star ratings on property.html, solution was to use Django's built in {% include '.html' %} tags. Similar to extend, allowed variables to be used across the two templates.
-
-Carousel on index.html was pulling all property data entries and laying them ontop of one another. Fix was made using an if loop to ensure the only first property of the for loop was displayed until the carousel nav buttons were used 
 
 UserPassesTestMixin not working correctly and allowing users whose role is a tenant to add properties
 
 Manual User testing:
 
-registration doesn't sign people in automatically 
 
-Ratings not capped at 5
 
-Styling issues on phone
 
-w3c validator had 3 fails empty href. other errors aer django tempalte tags
 
-Jigsaw passed no errors
 
-add review bug: 
-
-code that fixed by:     def get_context_data(self, *args, **kwargs):
-        context = super().get_context_data(**kwargs)
-        slug = self.request.GET.get("slug")
-        queryset = Property.objects.filter(status=1)
-        property = get_object_or_404(queryset, slug=slug)
-        context['property'] = property
-        return context
-
-Raised new error regarding slug already defined. removed slug from reviews model
-
-migration bug:
-removed and uninstalled django-address, this messed up this dependancies in the migrations, attempted to fix by removing migrations. Easiest solution in the end was to duplicate the properties app, delete the old one, delete all migrations and migrate again. 
 
 superuser password:
 tdawes93
@@ -156,9 +133,7 @@ As part of my agile development I assigned my user stories to a backlog, before 
 
 ![Project Board Snap](media/images/agile-example.png)
 
-### Structure
-
-
+## Structure
 
 ### Design
 
@@ -404,10 +379,8 @@ Testing will look for the following:
 - Python
     - The official PEP8 online syntax checker came back with no issues. 
 
-    ![PEP8 online checker]()
-
 - HTML
-    - The official W3C online syntax checker came back with the following issues. They were resolved using the suggested fixes in the checker. Other issues raised were due to the implementation of Django Template Tags clashing with the rules of the checker, as per the image below.
+    - The official W3C online syntax checker came back with 3 instances of the following issues. They were resolved using the suggested fixes in the checker. Other issues raised were due to the implementation of Django Template Tags clashing with the rules of the checker, as per the image below.
 
     ![W3C online checker](media/W3C-validation-results.png)
 
@@ -419,7 +392,47 @@ Testing will look for the following:
     - The official JSHint online syntax checker cam back with no issues. 
 
 
-### Issues/Bugs resolved during testing 
+### Issues/Bugs resolved during development 
+
+- The carousel on index.html was pulling all property data entries and laying them ontop of one another. The JS was then freezing after 3 or 4 slides, and users were unable to move on. This was fixed by integrating an if loop to ensure the only first property of the for loop was displayed until the carousel nav buttons were used.
+
+- Whilst developing the add-review page an error came back saying object had not item property.title. This was originally put into the code to allow the form to auto-populate the property field, on behalf of the user. This error was fixed by defining the context data and returning it using the following code. 
+    
+- > def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(**kwargs)
+        slug = self.request.GET.get("slug")
+        queryset = Property.objects.filter(status=1)
+        property = get_object_or_404(queryset, slug=slug)
+        context['property'] = property
+        return context
+
+- This removed the original error but then raised new error regarding stating the slug was already defined and could not overwrite it. It was decided there was no need for a slug for each review so it was removed from reviews model. This removed all errors.
+
+- The address field for the Property model orginally used the external django-address package. This required a Google Maps API which did not integrate correctly so it was decided to remove it and have separat Charfields for each line of the addresss. Once this change was made in the model and migrations ran the dependancies no longer matched up in the migrations. An attempted fix of changing and removing migrations, increase the error. The bug was resolved by duplicating the new properties app, delete the old one, delete all migrations and migrate again.
+
+- Midway through design a custom user model was made, as other models with a User FK had already been made this also threw an error due to mis-matching migrations. The fix was to drop the database and re-migrate, as this was in development this was not an issue. 
+
+#### Pre-release testing
+
+Manual testing was conducted prior to the first release when the development had been completed, below are the bugs and fixes. 
+
+It was found that registration of a new user didn't automatically sign people in upon completion of the form. This was fixed by adding a validation method to the Class based view
+
+-> 
+    def form_valid(self, form):
+        to_return = super().form_valid(form)
+        user = authenticate(
+            username=form.cleaned_data["username"],
+            password=form.cleaned_data["password1"],
+        )
+        login(self.request, user)
+        return to_return 
+
+Ratings not capped at 5
+
+Styling issues on phone
+
+
 
 
 ### Testing User Goals

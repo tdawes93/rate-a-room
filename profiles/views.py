@@ -21,6 +21,7 @@ class LoginUserView(View):
     the page is reloaded"""
     form_class = forms.LoginForm
     template_name = 'authenticate/login.html'
+    http_method_names = ['get', 'post']
 
     def get(self, request):
         """Get request for the Login user view. It takes
@@ -69,7 +70,6 @@ def logout_user(request):
     messages.success(request, 'Successfully logged out')
 
     return redirect('homepage')
-
 
 class RegisterUser(SuccessMessageMixin, CreateView):
     """
