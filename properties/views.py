@@ -9,7 +9,7 @@ from .models import Property
 from .forms import PropertyForm
 
 
-class PropertyCreateView(SuccessMixin, LoginRequiredMixin, UserPassesTestMixin, CreateView):
+class PropertyCreateView(SuccessMessageMixin, LoginRequiredMixin, UserPassesTestMixin, CreateView):
     """
     A standard view class rendering the add property
     page for each review using the form_class attribute
@@ -28,7 +28,7 @@ class PropertyCreateView(SuccessMixin, LoginRequiredMixin, UserPassesTestMixin, 
                 status=403)
 
 
-class PropertyUpdateView(SuccessMixin, LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class PropertyUpdateView(SuccessMessageMixin, LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     """
     A standard view class rendering the edit property
     page for each review using the form_class attribute
@@ -47,7 +47,7 @@ class PropertyUpdateView(SuccessMixin, LoginRequiredMixin, UserPassesTestMixin, 
                 status=403)
 
 
-class PropertyDeleteView(SuccessMixin, LoginRequiredMixin, DeleteView):
+class PropertyDeleteView(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
     """
     A standard view class deleting the property
     before redirecting to the homepage
