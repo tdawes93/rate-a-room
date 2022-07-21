@@ -3,12 +3,13 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.messages.views import SuccessMessageMixin
 from django.views import View
 from .models import Property
 from .forms import PropertyForm
 
 
-class PropertyCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
+class PropertyCreateView(SuccessMixin, LoginRequiredMixin, UserPassesTestMixin, CreateView):
     """
     A standard view class rendering the add property
     page for each review using the form_class attribute
@@ -27,7 +28,7 @@ class PropertyCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
                 status=403)
 
 
-class PropertyUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class PropertyUpdateView(SuccessMixin, LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     """
     A standard view class rendering the edit property
     page for each review using the form_class attribute
@@ -46,7 +47,7 @@ class PropertyUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
                 status=403)
 
 
-class PropertyDeleteView(LoginRequiredMixin, DeleteView):
+class PropertyDeleteView(SuccessMixin, LoginRequiredMixin, DeleteView):
     """
     A standard view class deleting the property
     before redirecting to the homepage
