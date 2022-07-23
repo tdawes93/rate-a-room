@@ -71,6 +71,7 @@ def logout_user(request):
 
     return redirect('homepage')
 
+
 class RegisterUser(SuccessMessageMixin, CreateView):
     """
     Class view to render a form to allow users
@@ -105,18 +106,18 @@ class EditUser(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     model = User
     success_url = reverse_lazy('homepage')
     success_message = "Profile succesfully updated!"
-    properties = Property.objects.filter(status=1)
-    reviews = Review.objects.all()
 
     def get(self, request, *args, **kwargs):
+        properties = Property.objects.all()
+        reviews = Review.objects.all()
         form = self.form_class()
         return render(
             request,
             self.template_name,
             {
               'form': form,
-              'reviews': self.reviews,
-              'properties': self.properties
+              'reviews': reviews,
+              'properties': properties
             }
         )
 

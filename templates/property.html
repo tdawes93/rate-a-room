@@ -5,8 +5,7 @@
 
 <!--Property Title and action buttons e.g. edit-->
 
-{{ user }}
-{{ property.ll_or_ea }}
+{% if property.status == '1' or property.status == '0' and property.ll_or_ea == user %}
 
 <div class="row m-2">
     <div class="col-7">
@@ -169,6 +168,13 @@
         <div class="card text-bg-primary mb-3 text-center">
             <div class="card-body" id="for-rent">
                 <h5 class="card-title">For Rent!</h5>
+            </div>
+        </div>
+        {% endif %}
+        {% if property.status == '0' %}
+        <div class="card text-bg-primary mb-3 text-center">
+            <div class="card-body">
+                <h5 class="card-title">Draft!</h5>
             </div>
         </div>
         {% endif %}
@@ -602,5 +608,18 @@
         </div>
     </div>
 </div>
+
+{% else %}
+
+<div class="row justify-content-center text-center mt-5 pt-5">
+    <div class="col">
+        <h2>Oops! You have stumbled upon a restricted page!</h2>
+        <a href="{% url 'homepage' %}">
+            <h4>Please click here to return to the homepage</h4>
+        </a>
+    </div>
+</div>
+
+{% endif %}
 
 {% endblock %}

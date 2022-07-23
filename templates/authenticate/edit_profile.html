@@ -22,21 +22,40 @@
 </div>
 {% if user.role == 'LANDLORD_OR_ESTATEAGENT' %}
 
-<h4>Properties</h4>
 
 
 <div class="row m-2">
     <div class="col">
+        <h4>Properties</h4>
 
         <ul>{% for property in properties %}
-
+            {% if property.ll_or_ea == user and property.status == '1' %}
             <li>
-                {{ property }}
-            </li>{% endfor %}
-
+                <a href="{% url 'property_detail' property.slug %}" class="text-decoration-none">
+                    {{ property }}</a>
+            </li>
+            {% endif %}
+            {% endfor %}
         </ul>
     </div>
 </div>
+
+<div class="row m-2">
+    <div class="col">
+        <h4>Draft Properties</h4>
+
+        <ul>{% for property in properties %}
+            {% if property.ll_or_ea == user and property.status == '0' %}
+            <li>
+                <a href="{% url 'property_detail' property.slug %}" class="text-decoration-none">
+                    {{ property }}</a>
+            </li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
 {% endif %}
 
 <div class="row m-2">

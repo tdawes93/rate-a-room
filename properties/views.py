@@ -9,7 +9,9 @@ from .models import Property
 from .forms import PropertyForm
 
 
-class PropertyCreateView(SuccessMessageMixin, LoginRequiredMixin, UserPassesTestMixin, CreateView):
+class PropertyCreateView(
+    SuccessMessageMixin, LoginRequiredMixin, UserPassesTestMixin, CreateView
+):
     """
     A standard view class rendering the add property
     page for each review using the form_class attribute
@@ -19,16 +21,24 @@ class PropertyCreateView(SuccessMessageMixin, LoginRequiredMixin, UserPassesTest
     template_name = 'add-property.html'
     success_message = 'Your property has been added succesffuly!'
 
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.ll_or_ea = self.request.user
+        self.object.save()
+        return HttpResponseRedirect(self.get_success_url())
+
     def test_func(self):
         if self.request.user.role == 'LANDLORD_OR_ESTATEAGENT':
             return True
         else:
             return HttpResponse(
-                "You are not authenticated to edit this profile",
+                "You are not authenticated to create a property",
                 status=403)
 
 
-class PropertyUpdateView(SuccessMessageMixin, LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class PropertyUpdateView(
+    SuccessMessageMixin, LoginRequiredMixin, UserPassesTestMixin, UpdateView
+):
     """
     A standard view class rendering the edit property
     page for each review using the form_class attribute
@@ -36,14 +46,14 @@ class PropertyUpdateView(SuccessMessageMixin, LoginRequiredMixin, UserPassesTest
     form_class = PropertyForm
     model = Property
     template_name = 'edit-property.html'
-    success_message = 'Your property has been updated succesffuly!'
+    success_message = 'Your property has been updated successfully!'
 
     def test_func(self):
         if self.request.user.role == 'LANDLORD_OR_ESTATEAGENT':
             return True
         else:
             return HttpResponse(
-                "You are not authenticated to edit this profile",
+                "You are not authenticated to edit this property",
                 status=403)
 
 
@@ -55,7 +65,7 @@ class PropertyDeleteView(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
     model = Property
     template_name = 'property_confirm_delete.html'
     success_url = reverse_lazy('homepage')
-    success_message = 'Your property has been deleted succesfully!'
+    success_message = 'Your property has been deleted successfully!'
 
 
 class PropertyDetail(View):
@@ -69,7 +79,7 @@ class PropertyDetail(View):
         This method gets the individual property information
         needed for each property page from the model dataset
         """
-        queryset = Property.objects.filter(status=1)
+        queryset = Property.objects.all()
         property = get_object_or_404(queryset, slug=slug)
         reviews = property.reviews.order_by('date_reviewed')
 
@@ -93,7 +103,7 @@ class PropertyDetail(View):
         This method gets the individual property information
         needed for each property page from the model dataset
         """
-        queryset = Property.objects.filter(status=1)
+        queryset = Property.objects.all()
         property = get_object_or_404(queryset, slug=slug)
         reviews = property.reviews.order_by('date_reviewed')
 
