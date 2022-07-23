@@ -87,8 +87,7 @@ class Property(models.Model):
     ll_or_ea = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
-        verbose_name='Landlord/Estate Agent',
-        default=1
+        verbose_name='Landlord/Estate Agent'
         )
     created_on = models.DateTimeField(auto_now_add=True)
     status = models.CharField(
