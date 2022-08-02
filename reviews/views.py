@@ -45,9 +45,7 @@ class ReviewUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     template_name = 'edit-review.html'
     form_class = ReviewForm
     success_url = reverse_lazy('homepage')
-    success_message = (
-        f'Your review of {Review.property}'
-        f'was updated successfully')
+    success_message = 'Your review was updated successfully'
 
 
 class ReviewDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
@@ -58,4 +56,4 @@ class ReviewDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     model = Review
     template_name = 'review_confirm_delete.html'
     success_url = reverse_lazy('homepage')
-    success_message = 'Your review of was deleted successfully'
+    success_message = 'Your review was deleted successfully'
