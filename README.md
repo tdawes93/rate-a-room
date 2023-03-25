@@ -1,3 +1,8 @@
+# **** EDIT *****
+
+Due to changes in the Heroku Dynos this site is now hosted on render. The live website can be found [here](https://rate-my-room.onrender.com) 
+
+
 # RatemyRoom
 RatemyRoom is a website similar in fashion to TripAdvisor or Yelp, however, it allows the user to provide feedback and reviews on rental properties they have lived in. As generation rent grows the number of poor landlords taking advantage also increases. The website idea came from the need to have a space for tenants to be able to voice their opinion on rental; to provide local knowledge on the area, condition of the property and most importantly the quality of the landlord. The website also provides a space for the landlords to advertise and have some good publicity!
 
